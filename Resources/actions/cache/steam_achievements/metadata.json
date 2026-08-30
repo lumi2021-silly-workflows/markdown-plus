@@ -1,0 +1,40 @@
+{
+  "LastUpdated": "2026-08-29T23:30:42.0613615Z",
+  "Achievements": [
+    {
+      "AppId": "1353300",
+      "GameName": "Idle Slayer \u2013 Incremental RPG",
+      "ApiName": "achievement_always_hit_it_first",
+      "IconUrl": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/1353300/bd2ab4c117ebdd06ce7d1cb03dfb10536685e0ec.jpg",
+      "UnlockTime": 1788042600
+    },
+    {
+      "AppId": "1353300",
+      "GameName": "Idle Slayer \u2013 Incremental RPG",
+      "ApiName": "achievement_handworker",
+      "IconUrl": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/1353300/2996c6d42598033345ae0b461cd331185ae6cc25.jpg",
+      "UnlockTime": 1787969388
+    },
+    {
+      "AppId": "1353300",
+      "GameName": "Idle Slayer \u2013 Incremental RPG",
+      "ApiName": "achievement_harden",
+      "IconUrl": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/1353300/99df0ec12d0adadafc8662d5b200c4d1c94f0140.jpg",
+      "UnlockTime": 1787845326
+    },
+    {
+      "AppId": "1353300",
+      "GameName": "Idle Slayer \u2013 Incremental RPG",
+      "ApiName": "achievement_emerald_ingot",
+      "IconUrl": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/1353300/76fa087ebe0080b41da07e2f721981ecc8a182fb.jpg",
+      "UnlockTime": 1787845113
+    },
+    {
+      "AppId": "1353300",
+      "GameName": "Idle Slayer \u2013 Incremental RPG",
+      "ApiName": "map_slayers_casino",
+      "IconUrl": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/1353300/92d3033a001dbd0f5a53481fae4f9ff2f1647e0b.jpg",
+      "UnlockTime": 1787770472
+    }
+  ]
+}

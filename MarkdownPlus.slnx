@@ -1,0 +1,8 @@
+<Solution>
+  <Project Path="MarkdownPlus.Core/MarkdownPlus.Core.csproj" />
+  <Project Path="MarkdownPlus.Github/MarkdownPlus.Github.csproj" />
+  <Project Path="MarkdownPlus.LastFm/MarkdownPlus.LastFm.csproj" />
+  <Project Path="MarkdownPlus.Steam/MarkdownPlus.Steam.csproj" />
+  <Project Path="MarkdownPlus.Wakatime/MarkdownPlus.Wakatime.csproj" />
+  <Project Path="MarkdownPlus/MarkdownPlus.csproj" />
+</Solution>

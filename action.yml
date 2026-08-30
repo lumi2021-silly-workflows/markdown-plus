@@ -1,0 +1,53 @@
+name: 'Execute MD+'
+description: 'Compiles and executes the MD+ parser'
+
+inputs:
+  wakatime_api_key:
+    required: false
+  github_api_token:
+    required: false
+  github_username:
+    required: false
+  steam_api_key:
+    required: false
+  steam_user_id:
+    required: false
+  lastfm_api_key:
+    required: false
+  lastfm_username:
+    required: false
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Checkout Profile Repo
+      uses: actions/checkout@v4
+
+    - name: Checkout Markdown+ App
+      uses: actions/checkout@v4
+      with:
+        repository: 'lumi2021-silly-workflows/markdown-plus'
+        ref: 'main'
+        path: .md-plus-app
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '10.0.x'
+
+    - name: Build Executable
+      shell: bash
+      working-directory: .md-plus-app
+      run: dotnet build --configuration Release
+
+    - name: Run MD+ parser
+      shell: bash
+      env:
+        WAKATIME_API_KEY: ${{ inputs.wakatime_api_key }}
+        GITHUB_API_TOKEN: ${{ inputs.github_api_token }}
+        GITHUB_USERNAME: ${{ inputs.github_username }}
+        STEAM_API_KEY: ${{ inputs.steam_api_key }}
+        STEAM_USER_ID: ${{ inputs.steam_user_id }}
+        LASTFM_API_KEY: ${{ inputs.lastfm_api_key }}
+        LASTFM_USERNAME: ${{ inputs.lastfm_username }}
+      run: dotnet run --project .md-plus-app/MarkdownPlus --no-build --configuration Release
