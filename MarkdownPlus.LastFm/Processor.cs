@@ -47,7 +47,7 @@ public static class Processor
                 coverUrl = "https://raw.githubusercontent.com/lumi2021/lumi2021/refs/heads/main/scripts/assets/song-no-cover.png";
             }
 
-            var duration = "—";
+            var duration = "—-:--";
             if (durationSec > 0)
             {
                 var minutes = durationSec / 60;
@@ -74,7 +74,7 @@ public static class Processor
                         Attributes =
                         {
                             { "src", coverUrl },
-                            { "width", "75" },
+                            { "width", "60" },
                             { "align", "left" },
                         },
                     },
@@ -92,7 +92,7 @@ public static class Processor
                                 SelfClosing       = false,
                                 Children          = { trackHLink }
                             },
-                            new HtmlTextNode($" - "),
+                            new HtmlTextNode($" • "),
                             artistHLink,
                         },
                     },
