@@ -266,7 +266,7 @@ public static class SteamLibProcessor
                                 TrailingLineBreak = false,
                                 Attributes =
                                 {
-                                    { "media", $"(max-width: {githubArticleMaxPx}px)" },
+                                    { "media", $"(min-width: {githubArticleMaxPx}px)" },
                                     { "width", "24%" },
                                     { "srcset", $"{game.ThinPath}" },
                                 },
