@@ -1,16 +1,25 @@
 using System.Net;
 using MarkdownPlus.Core;
+using MarkdownPlus.Core.Exceptions;
 using MarkdownPlus.Markdown.Ast;
 
 namespace MarkdownPlus;
 
 public static class TreeProcessor
 {
+    private static List<LacksEnvVarException> _lacksEnvVarExceptions = null!;
+    
     public static async Task<DocumentNode> Process(DocumentNode document)
     {
         var newDoc = new DocumentNode();
+        _lacksEnvVarExceptions = [];
+        
         foreach (var i in document.Children)
             newDoc.Children.AddRange(await ProcessNode(i));
+
+        if (_lacksEnvVarExceptions.Count > 0) DumpDebug();
+        _lacksEnvVarExceptions = null!;
+        
         return newDoc;
     }
 
@@ -70,8 +79,18 @@ public static class TreeProcessor
     private static async Task<AstNode[]> ProcessHtmlElement(HtmlElementNode htmlElement)
     {
         if (ModulesHandler.Delegates.TryGetValue(htmlElement.TagName, out var moduleTag))
-            return await moduleTag.Invoke(htmlElement, ModulesHandler.LoadedEnvironmentVariables);
-        
+        {
+            try
+            {
+                return await moduleTag.Invoke(htmlElement, ModulesHandler.LoadedEnvironmentVariables);
+            }
+            catch (AuthException e)
+            {
+                _lacksEnvVarExceptions.AddRange(e.InnerExceptions);
+                return [new HtmlCommentNode(htmlElement.TagName)];
+            }
+        }
+
         switch (htmlElement.TagName)
         {
             case "typing":
@@ -167,5 +186,35 @@ public static class TreeProcessor
         
         return [htmlElement];
     }
-    
+
+    private static void DumpDebug()
+    {
+        var foundEnvVars = ModulesHandler.LoadedEnvironmentVariables;
+        
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.WriteLine("✔ Found environment variables:");
+        if (foundEnvVars.Count > 0)
+        {
+            foreach (var (varName, _) in foundEnvVars)
+                Console.WriteLine($"  - {varName}");
+        }
+        else
+        {
+            Console.WriteLine("  (none)");
+        }
+        
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine("\n✖ Missing required environment variables:");
+        if (foundEnvVars.Count > 0)
+        {
+            foreach (var envVar in _lacksEnvVarExceptions)
+                Console.WriteLine($"  - {envVar.EnvVar} ('{envVar.Format}')");
+        }
+        else
+        {
+            Console.WriteLine("  (none)");
+        }
+
+        Console.ResetColor();
+    }
 }

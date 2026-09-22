@@ -24,11 +24,10 @@ public static class ModulesHandler
         Dictionary<string, string> resolvedEnvVars = new();
 
         HashSet<string> foundVars = [];
-        HashSet<string> missingRequiredVars = [];
 
         foreach (var module in _modules)
         {
-            foreach (var (envVar, optional) in module.EnvironmentVariables)
+            foreach (var envVar in module.EnvironmentVariables)
             {
                 var value = Environment.GetEnvironmentVariable(envVar);
 
@@ -36,10 +35,6 @@ public static class ModulesHandler
                 {
                     resolvedEnvVars[envVar] = value;
                     foundVars.Add(envVar);
-                }
-                else if (!optional)
-                {
-                    missingRequiredVars.Add(envVar);
                 }
             }
             
@@ -49,33 +44,8 @@ public static class ModulesHandler
             }
         }
         
-        if (missingRequiredVars.Count > 0)
-        {
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("✔ Found environment variables:");
-            if (foundVars.Count > 0)
-            {
-                foreach (var varName in foundVars)
-                    Console.WriteLine($"  - {varName}");
-            }
-            else
-            {
-                Console.WriteLine("  (none)");
-            }
-
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("\n✖ Missing required environment variables:");
-            foreach (var varName in missingRequiredVars)
-            {
-                Console.WriteLine($"  - {varName}");
-            }
-
-            Console.ResetColor();
-
-            throw new InvalidOperationException("Module initialization failed due to missing environment variables.");
-        }
-
         Delegates = delegates;
         LoadedEnvironmentVariables = resolvedEnvVars;
     }
 }
+

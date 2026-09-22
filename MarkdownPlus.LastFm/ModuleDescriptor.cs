@@ -7,8 +7,8 @@ public class LastFmModule : ModuleDescriptor
     public override (string tagName, ProcessNodeDelegate callback)[] Tags => [
         ("last-fm", Processor.LastfmTagProcessor),
     ];
-    public override (string envVar, bool optional)[] EnvironmentVariables => [
-        (Constants.API_KEY_VAR, false),
-        (Constants.USERNAME_VAR, false),
+    public override string[] EnvironmentVariables => [
+        Constants.API_KEY_VAR,
+        Constants.USERNAME_VAR,
     ];
 }

@@ -25,25 +25,25 @@
 
 ## My Activity
 
-- ✏️ Made 11 commits
+- ✏️ Made 2 commits
+- ✏️ Made 5 commits
+- ✏️ Made 1 commit
+- ✏️ Made 16 commits
 - ✏️ Made 1 commit
 - ✏️ Made 1 commit
 - ✏️ Made 1 commit
-- ✏️ Made 7 commits
+- ✏️ Made 8 commits
 - ✏️ Made 7 commits
 - ✏️ Made 10 commits
-- ✏️ Made 24 commits
-- 🎉 Merged pull request [#17](https://github.com/taijarals/lobo_ovelha_cacador/pull/17) in [taijarals/lobo_ovelha_cacador](https://github.com/taijarals/lobo_ovelha_cacador)
-- 🎉 Merged pull request [#16](https://github.com/taijarals/lobo_ovelha_cacador/pull/16) in [taijarals/lobo_ovelha_cacador](https://github.com/taijarals/lobo_ovelha_cacador)
 
 ```rust
-Total Time: 13 hrs
+Total Time: 11 hrs 33 mins
 
-- "C#"            ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣄⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀ 4 hrs 17 mins
-- "Markdown"      ⣿⣿⣿⣿⣿⣿⣿⣷⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀ 3 hrs 43 mins
-- "Java"          ⣿⣿⣿⣿⣷⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀ 2 hrs 16 mins
-- "YAML"          ⣿⣿⣿⣤⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀ 1 hr 33 mins
-- "Other"         ⣿⣿⣦⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀ 1 hr 8 mins
+- "C#"            ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀ 6 hrs 45 mins
+- "TypeScript"    ⣿⣿⣿⣿⣿⣶⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀ 2 hrs 10 mins
+- "HTML"          ⣿⣿⣿⣤⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀ 1 hr 17 mins
+- "SCSS"          ⣿⣿⣤⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀ 52 mins
+- "Markdown"      ⣤⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀ 9 mins
 ```
 
 <!-- <github option="most-starred">
@@ -56,59 +56,59 @@ Support my work, buy me a coffee!  \
 
 <p>
 <div style="clear: both; padding: 10px 0;">
-<img src="https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/a0/93/33/a0933384-61e2-ec73-796f-2c77fbd59ea0/artwork.jpg/60x60bb.jpg" width="75" align="left" />
+<img src="https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/a0/93/33/a0933384-61e2-ec73-796f-2c77fbd59ea0/artwork.jpg/60x60bb.jpg" width="60" align="left" />
 <p>
 <strong>
 <a href="https://www.last.fm/music/Jamie+Paige/_/Machine+Love">Machine Love</a>
 </strong>
- - 
+ • 
 <a href="https://www.last.fm/music/Jamie+Paige">Jamie Paige</a>
 </p>
 <strong clear="left">3:36</strong>
 </div>
 <div style="clear: both; padding: 10px 0;">
-<img src="https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/25/9c/a5/259ca5e1-c365-8b72-b12e-660aae6ff21d/25UMGIM87679.rgb.jpg/60x60bb.jpg" width="75" align="left" />
-<p>
-<strong>
-<a href="https://www.last.fm/music/Elio+Mei/_/Playing+Dead">Playing Dead</a>
-</strong>
- - 
-<a href="https://www.last.fm/music/Elio+Mei">Elio Mei</a>
-</p>
-<strong clear="left">4:47</strong>
-</div>
-<div style="clear: both; padding: 10px 0;">
-<img src="https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/25/9c/a5/259ca5e1-c365-8b72-b12e-660aae6ff21d/25UMGIM87679.rgb.jpg/60x60bb.jpg" width="75" align="left" />
-<p>
-<strong>
-<a href="https://www.last.fm/music/Elio+Mei/_/Velcro">Velcro</a>
-</strong>
- - 
-<a href="https://www.last.fm/music/Elio+Mei">Elio Mei</a>
-</p>
-<strong clear="left">1:53</strong>
-</div>
-<div style="clear: both; padding: 10px 0;">
-<img src="https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/25/9c/a5/259ca5e1-c365-8b72-b12e-660aae6ff21d/25UMGIM87679.rgb.jpg/60x60bb.jpg" width="75" align="left" />
+<img src="https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/25/9c/a5/259ca5e1-c365-8b72-b12e-660aae6ff21d/25UMGIM87679.rgb.jpg/60x60bb.jpg" width="60" align="left" />
 <p>
 <strong>
 <a href="https://www.last.fm/music/elio+mei/_/One+Man+Circus">One Man Circus</a>
 </strong>
- - 
+ • 
 <a href="https://www.last.fm/music/elio+mei">elio mei</a>
 </p>
 <strong clear="left">5:49</strong>
 </div>
 <div style="clear: both; padding: 10px 0;">
-<img src="https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/87/5c/bf/875cbff7-a8f7-fc4f-808c-458bb139ce26/075679787859.jpg/60x60bb.jpg" width="75" align="left" />
+<img src="https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/25/9c/a5/259ca5e1-c365-8b72-b12e-660aae6ff21d/25UMGIM87679.rgb.jpg/60x60bb.jpg" width="60" align="left" />
 <p>
 <strong>
-<a href="https://www.last.fm/music/chloe+moriondo/_/Vapor">Vapor</a>
+<a href="https://www.last.fm/music/Elio+Mei/_/Playing+Dead">Playing Dead</a>
 </strong>
- - 
-<a href="https://www.last.fm/music/chloe+moriondo">chloe moriondo</a>
+ • 
+<a href="https://www.last.fm/music/Elio+Mei">Elio Mei</a>
 </p>
-<strong clear="left">4:44</strong>
+<strong clear="left">4:47</strong>
+</div>
+<div style="clear: both; padding: 10px 0;">
+<img src="https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/25/9c/a5/259ca5e1-c365-8b72-b12e-660aae6ff21d/25UMGIM87679.rgb.jpg/60x60bb.jpg" width="60" align="left" />
+<p>
+<strong>
+<a href="https://www.last.fm/music/Elio+Mei/_/Velcro">Velcro</a>
+</strong>
+ • 
+<a href="https://www.last.fm/music/Elio+Mei">Elio Mei</a>
+</p>
+<strong clear="left">1:53</strong>
+</div>
+<div style="clear: both; padding: 10px 0;">
+<img src="https://raw.githubusercontent.com/lumi2021-silly-workflows/markdown-plus/refs/heads/main/MarkdownPlus.LastFm/assets/song-no-cover.png" width="60" align="left" />
+<p>
+<strong>
+<a href="https://www.last.fm/music/Cavetown/_/I%27m+Low+on+Gas+and+You+Need+A+Jacket">I'm Low on Gas and You Need A Jacket</a>
+</strong>
+ • 
+<a href="https://www.last.fm/music/Cavetown">Cavetown</a>
+</p>
+<strong clear="left">—-:--</strong>
 </div>
 </p>
 
@@ -123,32 +123,32 @@ Support my work, buy me a coffee!  \
 ### Recent games
 
 <p>
-<a href="https://store.steampowered.com/app/346010" target="_blank">
-<picture>
-<source media="(min-width: 1061px)" width="24%" srcset="./actions/cache/steam_recent/steam_cards_generated/346010_thin.svg" />
-<source media="(max-width: 1061px)" width="49%" srcset="./actions/cache/steam_recent/steam_cards_generated/346010_wide.svg" />
-<img style="max-width: 100%;" alt="Besiege" />
-</picture>
-</a>
 <a href="https://store.steampowered.com/app/1353300" target="_blank">
 <picture>
-<source media="(min-width: 1061px)" width="24%" srcset="./actions/cache/steam_recent/steam_cards_generated/1353300_thin.svg" />
-<source media="(max-width: 1061px)" width="49%" srcset="./actions/cache/steam_recent/steam_cards_generated/1353300_wide.svg" />
+<source media="(max-width: 1061px)" width="24%" srcset="./actions/cache/steam_recent/steam_cards_generated/1353300_thin.svg" />
+<source media="(min-width: 1061px)" width="49%" srcset="./actions/cache/steam_recent/steam_cards_generated/1353300_wide.svg" />
 <img style="max-width: 100%;" alt="Idle Slayer – Incremental RPG" />
 </picture>
 </a>
-<a href="https://store.steampowered.com/app/1454400" target="_blank">
+<a href="https://store.steampowered.com/app/431730" target="_blank">
 <picture>
-<source media="(min-width: 1061px)" width="24%" srcset="./actions/cache/steam_recent/steam_cards_generated/1454400_thin.svg" />
-<source media="(max-width: 1061px)" width="49%" srcset="./actions/cache/steam_recent/steam_cards_generated/1454400_wide.svg" />
-<img style="max-width: 100%;" alt="Cookie Clicker" />
+<source media="(max-width: 1061px)" width="24%" srcset="./actions/cache/steam_recent/steam_cards_generated/431730_thin.svg" />
+<source media="(min-width: 1061px)" width="49%" srcset="./actions/cache/steam_recent/steam_cards_generated/431730_wide.svg" />
+<img style="max-width: 100%;" alt="Aseprite" />
 </picture>
 </a>
-<a href="https://store.steampowered.com/app/1604000" target="_blank">
+<a href="https://store.steampowered.com/app/1919460" target="_blank">
 <picture>
-<source media="(min-width: 1061px)" width="24%" srcset="./actions/cache/steam_recent/steam_cards_generated/1604000_thin.svg" />
-<source media="(max-width: 1061px)" width="49%" srcset="./actions/cache/steam_recent/steam_cards_generated/1604000_wide.svg" />
-<img style="max-width: 100%;" alt="Milk outside a bag of milk outside a bag of milk" />
+<source media="(max-width: 1061px)" width="24%" srcset="./actions/cache/steam_recent/steam_cards_generated/1919460_thin.svg" />
+<source media="(min-width: 1061px)" width="49%" srcset="./actions/cache/steam_recent/steam_cards_generated/1919460_wide.svg" />
+<img style="max-width: 100%;" alt="Seraph's Last Stand" />
+</picture>
+</a>
+<a href="https://store.steampowered.com/app/457140" target="_blank">
+<picture>
+<source media="(max-width: 1061px)" width="24%" srcset="./actions/cache/steam_recent/steam_cards_generated/457140_thin.svg" />
+<source media="(min-width: 1061px)" width="49%" srcset="./actions/cache/steam_recent/steam_cards_generated/457140_wide.svg" />
+<img style="max-width: 100%;" alt="Oxygen Not Included" />
 </picture>
 </a>
 </p>
@@ -164,29 +164,29 @@ Support my work, buy me a coffee!  \
 <p>
 <a href="https://store.steampowered.com/app/1289310" target="_blank">
 <picture>
-<source media="(min-width: 1061px)" width="24%" srcset="./actions/cache/steam_perfect/steam_cards_generated/1289310_thin.svg" />
-<source media="(max-width: 1061px)" width="49%" srcset="./actions/cache/steam_perfect/steam_cards_generated/1289310_wide.svg" />
+<source media="(max-width: 1061px)" width="24%" srcset="./actions/cache/steam_perfect/steam_cards_generated/1289310_thin.svg" />
+<source media="(min-width: 1061px)" width="49%" srcset="./actions/cache/steam_perfect/steam_cards_generated/1289310_wide.svg" />
 <img style="max-width: 100%;" alt="Helltaker" />
 </picture>
 </a>
 <a href="https://store.steampowered.com/app/433340" target="_blank">
 <picture>
-<source media="(min-width: 1061px)" width="24%" srcset="./actions/cache/steam_perfect/steam_cards_generated/433340_thin.svg" />
-<source media="(max-width: 1061px)" width="49%" srcset="./actions/cache/steam_perfect/steam_cards_generated/433340_wide.svg" />
+<source media="(max-width: 1061px)" width="24%" srcset="./actions/cache/steam_perfect/steam_cards_generated/433340_thin.svg" />
+<source media="(min-width: 1061px)" width="49%" srcset="./actions/cache/steam_perfect/steam_cards_generated/433340_wide.svg" />
 <img style="max-width: 100%;" alt="Slime Rancher" />
 </picture>
 </a>
 <a href="https://store.steampowered.com/app/255520" target="_blank">
 <picture>
-<source media="(min-width: 1061px)" width="24%" srcset="./actions/cache/steam_perfect/steam_cards_generated/255520_thin.svg" />
-<source media="(max-width: 1061px)" width="49%" srcset="./actions/cache/steam_perfect/steam_cards_generated/255520_wide.svg" />
+<source media="(max-width: 1061px)" width="24%" srcset="./actions/cache/steam_perfect/steam_cards_generated/255520_thin.svg" />
+<source media="(min-width: 1061px)" width="49%" srcset="./actions/cache/steam_perfect/steam_cards_generated/255520_wide.svg" />
 <img style="max-width: 100%;" alt="Viscera Cleanup Detail: Shadow Warrior" />
 </picture>
 </a>
 <a href="https://store.steampowered.com/app/1997680" target="_blank">
 <picture>
-<source media="(min-width: 1061px)" width="24%" srcset="./actions/cache/steam_perfect/steam_cards_generated/1997680_thin.svg" />
-<source media="(max-width: 1061px)" width="49%" srcset="./actions/cache/steam_perfect/steam_cards_generated/1997680_wide.svg" />
+<source media="(max-width: 1061px)" width="24%" srcset="./actions/cache/steam_perfect/steam_cards_generated/1997680_thin.svg" />
+<source media="(min-width: 1061px)" width="49%" srcset="./actions/cache/steam_perfect/steam_cards_generated/1997680_wide.svg" />
 <img style="max-width: 100%;" alt="REFLEXIA Prototype ver." />
 </picture>
 </a>

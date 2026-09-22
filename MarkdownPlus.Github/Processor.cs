@@ -2,18 +2,27 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
 using MarkdownPlus.Core;
+using MarkdownPlus.Core.Exceptions;
 using MarkdownPlus.Markdown.Ast;
 
 namespace MarkdownPlus.Github;
 
 public static class Processor
 {
-    private static readonly ModuleLogger logger = new ModuleLogger("Github Service");
+    private static readonly ModuleLogger logger = new("Github Service");
 
     public static async Task<AstNode[]> GithubTagProcess(HtmlElementNode node, IReadOnlyDictionary<string, string> envVars)
     {
-        var token = envVars[Constants.API_TOKEN_VAR];
-        var username = envVars[Constants.USERNAME_VAR];
+        var token = envVars.GetValueOrDefault(Constants.API_TOKEN_VAR);
+        var username = envVars.GetValueOrDefault(Constants.USERNAME_VAR);
+        
+        if (token == null || username == null)
+        {
+            List<LacksEnvVarException> exceptions = [];
+            if (token == null) exceptions.Add(new LacksEnvVarException(Constants.API_TOKEN_VAR, "<your github API token>"));
+            if (username == null) exceptions.Add(new LacksEnvVarException(Constants.USERNAME_VAR, "<your github username>"));
+            throw new AuthException([..exceptions]);
+        }
         
         logger.Info("Requesting github's contribution data...");
         var contributions = await GetContributionsAsync(token, username);

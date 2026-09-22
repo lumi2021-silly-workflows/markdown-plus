@@ -1,6 +1,7 @@
 using System.Text;
 using System.Text.Json;
 using MarkdownPlus.Core;
+using MarkdownPlus.Core.Exceptions;
 using MarkdownPlus.Markdown.Ast;
 
 namespace MarkdownPlus.Steam;
@@ -48,8 +49,8 @@ public static class SteamLibProcessor
                     PurgeOldFiles(cache.Games.Values);
                 }
 
-                var userId = envVars[Constants.USER_ID_VAR];
-                var apiKey = envVars[Constants.API_KEY_VAR];
+                var (userId, apiKey) = Auth(envVars);
+                
                 logger.Info("Loading recent games...");
 
                 logger.Info("Loading owned games data (it may take a while)...");
@@ -123,8 +124,8 @@ public static class SteamLibProcessor
                     PurgeOldFiles(cache.Games.Values);
                 }
 
-                var userId = envVars[Constants.USER_ID_VAR];
-                var apiKey = envVars[Constants.API_KEY_VAR];
+                var (userId, apiKey) = Auth(envVars);
+                
                 logger.Info("Loading steam's owned games and achievements...");
 
                 var owned = await SteamApi.GetOwnedGamesAsync(userId, apiKey);
@@ -336,5 +337,18 @@ public static class SteamLibProcessor
         
         return [cards, disclaimer];
     }
-    
+
+    private static (string userId, string apiKey) Auth(IReadOnlyDictionary<string, string> envVars)
+    {
+        var userId = envVars.GetValueOrDefault(Constants.USER_ID_VAR);
+        var apiKey = envVars.GetValueOrDefault(Constants.API_KEY_VAR);
+
+        if (userId != null && apiKey != null) return (userId, apiKey);
+        
+        List<LacksEnvVarException> exceptions = [];
+        if (userId == null) exceptions.Add(new LacksEnvVarException(Constants.USER_ID_VAR, "<your steam user ID>"));
+        if (apiKey == null) exceptions.Add(new LacksEnvVarException(Constants.API_KEY_VAR, "<your steam API key>"));
+        throw new AuthException([..exceptions]);
+
+    }
 }

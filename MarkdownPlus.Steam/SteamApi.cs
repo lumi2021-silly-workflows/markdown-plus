@@ -215,7 +215,7 @@ public static class SteamApi
                 var response = await HttpClient.GetAsync(url);
                 var statusCode = (int)response.StatusCode;
 
-                if (statusCode >= 500 && statusCode <= 504)
+                if (statusCode is >= 500 and <= 504)
                 {
                     await Task.Delay(1000 * (int)Math.Pow(2, attempt));
                     continue;

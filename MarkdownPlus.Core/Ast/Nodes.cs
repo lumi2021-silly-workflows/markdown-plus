@@ -107,9 +107,9 @@ public sealed class HtmlElementNode : AstNode
     };
 }
 
-public sealed class HtmlCommentNode : AstNode
+public sealed class HtmlCommentNode(string? content = null) : AstNode
 {
-    public string Content { get; set; } = string.Empty;
+    public string Content { get; set; } = content ?? string.Empty;
 }
 
 public sealed class HtmlTextNode(string text) : AstNode

@@ -1,5 +1,6 @@
 using System.Text.Json.Nodes;
 using MarkdownPlus.Core;
+using MarkdownPlus.Core.Exceptions;
 using MarkdownPlus.Markdown.Ast;
 
 namespace MarkdownPlus.LastFm;
@@ -12,8 +13,16 @@ public static class Processor
     
     public static async Task<AstNode[]> LastfmTagProcessor(HtmlElementNode node, IReadOnlyDictionary<string, string> envVars)
     {
-        var username = envVars[Constants.USERNAME_VAR];
-        var apiKey = envVars[Constants.API_KEY_VAR];
+        var username = envVars.GetValueOrDefault(Constants.USERNAME_VAR);
+        var apiKey = envVars.GetValueOrDefault(Constants.API_KEY_VAR);
+
+        if (username == null || apiKey == null)
+        {
+            List<LacksEnvVarException> exceptions = [];
+            if (username == null) exceptions.Add(new LacksEnvVarException(Constants.USERNAME_VAR, "<your last.fm username>"));
+            if (apiKey == null) exceptions.Add(new LacksEnvVarException(Constants.API_KEY_VAR, "<your last.fm API key>"));
+            throw new AuthException([..exceptions]);
+        }
 
         logger.Info("Loading Last.fm top tracks...");
         var tracks = await FetchLastFmTopTracksAsync(username, apiKey);
@@ -44,7 +53,8 @@ public static class Processor
 
             if (string.IsNullOrEmpty(coverUrl))
             {
-                coverUrl = "https://raw.githubusercontent.com/lumi2021/lumi2021/refs/heads/main/scripts/assets/song-no-cover.png";
+                coverUrl = "https://raw.githubusercontent.com/lumi2021-silly-workflows/markdown-plus/"
+                    + "refs/heads/main/MarkdownPlus.LastFm/assets/song-no-cover.png";
             }
 
             var duration = "—-:--";
