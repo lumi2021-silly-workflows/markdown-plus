@@ -29,6 +29,7 @@ public static class TreeProcessor
         {
             case HtmlCommentNode:
             case BlockquoteNode:
+            case InlineCodeNode:
             case CodeBlockNode:
             case HeadingNode:
             case TextNode:
@@ -105,7 +106,7 @@ public static class TreeProcessor
                     //.Replace(",", "%2C");
                     ;
                 
-                var font = htmlElement.Attributes.GetValueOrDefault("font");
+                var font = htmlElement.Attributes.GetValueOrDefault("font-family");
                 var fontWeight = htmlElement.Attributes.GetValueOrDefault("font-weight");
                 var fontSize = htmlElement.Attributes.GetValueOrDefault("font-size");
                 var letterSpacing = htmlElement.Attributes.GetValueOrDefault("letter-spacing");
@@ -113,7 +114,7 @@ public static class TreeProcessor
                 var lineDuration = htmlElement.Attributes.GetValueOrDefault("line-duration");
                 var width = htmlElement.Attributes.GetValueOrDefault("width", "400")!;
                 var height = htmlElement.Attributes.GetValueOrDefault("height", "100")!;
-                var repeat = htmlElement.Attributes.GetValueOrDefault("repeat");
+                var repeat = htmlElement.Attributes.GetValueOrDefault("repeat", "on");
                 
                 var url = new UrlBuilder("https://readme-typing-svg.herokuapp.com");
                 
@@ -130,7 +131,7 @@ public static class TreeProcessor
                 if (charDuration != null) url.Query.Add("duration", charDuration);
                 if (lineDuration != null) url.Query.Add("pause", lineDuration);
                 
-                if (repeat is "on") url.Query.Add("repeat", "true");
+                url.Query.Add("repeat", repeat is "on" ? "true" : "false");
                 
                 url.Query.Add("lines", sanitizedContent);
                 
@@ -165,11 +166,13 @@ public static class TreeProcessor
                 var icon = htmlElement.Attributes.GetValueOrDefault("icon");
                 var style = htmlElement.Attributes.GetValueOrDefault("style");
                 var color = htmlElement.Attributes.GetValueOrDefault("color", "ffffff")!;
-                var labelColor = htmlElement.Attributes.GetValueOrDefault("labelColor", null);
+                var iconColor = htmlElement.Attributes.GetValueOrDefault("icon-color", null);
+                var labelColor = htmlElement.Attributes.GetValueOrDefault("label-color", null);
                 
                 var url = new UrlBuilder($"https://img.shields.io/badge/{WebUtility.UrlEncode(content)}-{color}");
                 if (icon != null) url.Query.Add("logo", icon); 
                 if (style != null) url.Query.Add("style", style);
+                if (iconColor != null) url.Query.Add("logoColor", iconColor);
                 if (labelColor != null) url.Query.Add("labelColor", labelColor);
 
                 var result = new ImageNode

@@ -351,7 +351,7 @@ public static class MarkdownRenderer
 
             case LinkNode ln:
                 return "[" + RenderInlines(ln.Children) + "](" + ln.Href + ")";
-
+            
             case HtmlCommentNode hc:
                 return "<!-- " + hc.Content + " -->";
 
