@@ -47,7 +47,8 @@ badges inside the code:
 
 The following attributes can be applied to a `badge` tag:
 - `icon`: The icon shown in the tag. Icons provided by [Simple Icons](https://simpleicons.org/).
-- `style`: Badge style. Options are  [`flat`, `flat-square`, `plastic`, `for-the-badge`, `social`] (default is `flat`)
+- `href`: Link to redirect when clicking in the badge.
+- `style`: Badge style. Options are  [`flat`, `flat-square`, `plastic`, `for-the-badge`, `social`] (default is `flat`).
 - `color`: The tag's background color.
 - `icon-color`: The tag's icon color.
 - `label-color`: The tag's label color.

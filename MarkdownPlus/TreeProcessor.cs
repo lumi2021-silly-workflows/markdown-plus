@@ -168,6 +168,7 @@ public static class TreeProcessor
                 var color = htmlElement.Attributes.GetValueOrDefault("color", "ffffff")!;
                 var iconColor = htmlElement.Attributes.GetValueOrDefault("icon-color", null);
                 var labelColor = htmlElement.Attributes.GetValueOrDefault("label-color", null);
+                var href = htmlElement.Attributes.GetValueOrDefault("href", null);
                 
                 var url = new UrlBuilder($"https://img.shields.io/badge/{WebUtility.UrlEncode(content)}-{color}");
                 if (icon != null) url.Query.Add("logo", icon); 
@@ -175,11 +176,12 @@ public static class TreeProcessor
                 if (iconColor != null) url.Query.Add("logoColor", iconColor);
                 if (labelColor != null) url.Query.Add("labelColor", labelColor);
 
-                var result = new ImageNode
+                AstNode result = new ImageNode
                 {
                     Alt = content,
                     Src = url.ToString(),
                 };
+                if (href != null) result = new LinkNode(content, href) { Children = { result } };
                 
                 return htmlElement.TrailingLineBreak
                     ? [result, new LineBreakNode()]
