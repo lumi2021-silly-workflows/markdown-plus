@@ -5,7 +5,7 @@ namespace MarkdownPlus.LastFm;
 public class LastFmModule : ModuleDescriptor
 {
     public override (string tagName, ProcessNodeDelegate callback)[] Tags => [
-        ("last-fm", Processor.LastfmTagProcessor),
+        ("last-fm-recent", Processor.LastfmTagProcessor),
     ];
     public override string[] EnvironmentVariables => [
         Constants.API_KEY_VAR,

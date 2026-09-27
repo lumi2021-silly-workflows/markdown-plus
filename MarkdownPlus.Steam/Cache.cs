@@ -4,8 +4,6 @@ public class CachedGameData
 {
     public string AppId { get; set; } = string.Empty;
     public string Name { get; set; } = string.Empty;
-    public string ThinPath { get; set; } = string.Empty;
-    public string WidePath { get; set; } = string.Empty;
 }
 
 public class CachedAchievementData

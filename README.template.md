@@ -40,7 +40,7 @@ badges inside the code:
 
 <badge color="202020" icon="python">python</badge>
 <badge color="303030" style="flat" icon="c">C</badge> \
-<badge color="404040" style="flat-square" icon="c++">C++</badge> \
+<badge color="404040" style="flat-square" icon="c++">C++</badge>
 <badge color="505050" style="plastic" icon="dotnet">C#</badge> \
 <badge color="606060" style="for-the-badge" icon="zig">Zig</badge> \
 <badge color="202020" style="social" icon="lua">Lua</badge>
@@ -60,8 +60,8 @@ The `typing` tag is a block tag that can be used to create typing animations.
 
 ```html
 <typing
-    font="Rock Salt " size="20" duration="2000" pause="150"
-    width="500" height="100" repeat="true"
+      font="Rock Salt " size="20" duration="3000" pause="300"
+      width="500" height="60" repeat="off"
 >
 Look at me!
 I'm typing!
@@ -70,7 +70,7 @@ I'm typing!
 
 <typing
 font="Rock Salt " size="20" duration="3000" pause="300"
-width="500" height="120" repeat="off"
+width="500" height="60" repeat="off"
 >
 Look at me!
 I'm typing!
@@ -124,10 +124,10 @@ variables:
 
 
 ```html
-<last-fm />
+<last-fm-recent />
 ```
 
-<last-fm />
+<last-fm-recent />
 
 ### Github
 
@@ -155,21 +155,31 @@ Some options are:
 
 Integrations with the [Steam](https://store.steampowered.com/) services.
 
-The `steam-lib` block tag provides data about a user's steam library.
+#### Recent
+
+The `steam-lib-recent` block tag provides a list of the user's recent played games.
 
 For allowing this service to work, the tool needs the following
 variables:
 - `steam_api_key`: A steam API key.
 - `steam_user_id`: The user id of the targeted steam account.
 
-Some options are:
-- `recent`: Recent played games.
-- `perfected`: Last perfected (100% achievements) games.
 
 ```html
-<steam-lib option="recent" />
-<steam-lib option="perfected" />
+<steam-lib-recent />
 ```
+<steam-lib-recent />
 
-<steam-lib option="recent" />
-<steam-lib option="perfected" />
+#### Perfected
+
+The `steam-lib-perfected` block tag provides a list of the user's perfected (100% achievements) games.
+
+For allowing this service to work, the tool needs the following
+variables:
+- `steam_api_key`: A steam API key.
+- `steam_user_id`: The user id of the targeted steam account.
+
+```html
+<steam-lib-perfected />
+```
+<steam-lib-perfected />

@@ -1,8 +1,15 @@
 using System.Buffers.Binary;
 using System.Text;
 using System.Xml.Linq;
+using MarkdownPlus.Core.Cache;
 
 namespace MarkdownPlus.Steam;
+
+public static class CardCacheKeys
+{
+    public static string Wide(string appId) => $"cards/{appId}_wide.svg";
+    public static string Thin(string appId) => $"cards/{appId}_thin.svg";
+}
 
 public static class GameCardGenerator
 {
@@ -12,28 +19,38 @@ public static class GameCardGenerator
     private const string Disclaimer = "Disclaimer: "
         + "All game titles, arts, logos, and trademarks belong to Steam "
         + "(Valve Corporation) and their respective developers.";
+    
+    public static readonly TimeSpan CardCacheExpiration = TimeSpan.FromDays(7);
 
     private static readonly XNamespace SvgNs = "http://www.w3.org/2000/svg";
     private static readonly HttpClient Client = new();
 
-    public static async Task<(string WidePath, string ThinPath)> GetResponsiveCardAsync(SteamGame game, string cacheDirectory)
+    public static async Task<(string WidePath, string ThinPath)> GetResponsiveCardAsync(SteamGame game, ICacheManager cache)
     {
-        var cacheDir = Path.Combine(cacheDirectory, "steam_cards_generated");
-        Directory.CreateDirectory(cacheDir);
+        var wideKey = CardCacheKeys.Wide(game.AppId);
+        var thinKey = CardCacheKeys.Thin(game.AppId);
 
-        var wideSvgPath = Path.Combine(cacheDir, $"{game.AppId}_wide.svg");
-        var thinSvgPath = Path.Combine(cacheDir, $"{game.AppId}_thin.svg");
+        var wideEntry = await cache.GetAsync(wideKey);
+        var thinEntry = await cache.GetAsync(thinKey);
 
-        if (!File.Exists(wideSvgPath))
+        if (wideEntry is null || thinEntry is null)
         {
             var wideContent = await MakeWideCardAsync(game);
             var thinContent = await MakeThinCardAsync(game);
 
-            await File.WriteAllTextAsync(wideSvgPath, wideContent, Encoding.UTF8);
-            await File.WriteAllTextAsync(thinSvgPath, thinContent, Encoding.UTF8);
+            await cache.SetAsync(wideKey, Encoding.UTF8.GetBytes(wideContent), CardCacheExpiration);
+            await cache.SetAsync(thinKey, Encoding.UTF8.GetBytes(thinContent), CardCacheExpiration);
+        }
+        else
+        {
+            await cache.TouchAsync(wideKey, CardCacheExpiration);
+            await cache.TouchAsync(thinKey, CardCacheExpiration);
         }
 
-        return (wideSvgPath, thinSvgPath);
+        var widePath = cache.TryGetFilePath(wideKey) ?? throw new InvalidOperationException();
+        var thinPath = cache.TryGetFilePath(thinKey) ?? throw new InvalidOperationException();
+
+        return (widePath, thinPath);
     }
 
     private static async Task<string> MakeWideCardAsync(SteamGame game)
@@ -239,7 +256,7 @@ public static class GameCardGenerator
                 width  = BinaryPrimitives.ReadInt32BigEndian(buffer.AsSpan(16));
                 height = BinaryPrimitives.ReadInt32BigEndian(buffer.AsSpan(20));
             }
-            else if ((mimeType == "image/jpeg" || mimeType == "image/jpg") && buffer.Length > 8)
+            else if (mimeType is "image/jpeg" or "image/jpg" && buffer.Length > 8)
             {
                 var i = 0;
                 while (i < buffer.Length - 8)

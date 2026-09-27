@@ -27,8 +27,7 @@ public static class Processor
         logger.Info("Loading Last.fm top tracks...");
         var tracks = await FetchLastFmTopTracksAsync(username, apiKey);
 
-        if (tracks == null || tracks.Count == 0)
-            return [new ParagraphNode("No tracks found")];
+        if (tracks == null || tracks.Count == 0) return [new ParagraphNode("No tracks found")];
 
         logger.Info("Loading tracks' cover images...");
         var container = new HtmlElementNode

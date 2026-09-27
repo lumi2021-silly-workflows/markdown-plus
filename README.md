@@ -42,8 +42,7 @@ badges inside the code:
 ```
 
 ![python](https://img.shields.io/badge/python-202020?logo=python)![C](https://img.shields.io/badge/C-303030?logo=c&style=flat) \
-![C++](https://img.shields.io/badge/C%2B%2B-404040?logo=c%2B%2B&style=flat-square) \
-![C#](https://img.shields.io/badge/C%23-505050?logo=dotnet&style=plastic) \
+![C++](https://img.shields.io/badge/C%2B%2B-404040?logo=c%2B%2B&style=flat-square)![C#](https://img.shields.io/badge/C%23-505050?logo=dotnet&style=plastic) \
 ![Zig](https://img.shields.io/badge/Zig-606060?logo=zig&style=for-the-badge) \
 ![Lua](https://img.shields.io/badge/Lua-202020?logo=lua&style=social)
 
@@ -63,8 +62,8 @@ The `typing` tag is a block tag that can be used to create typing animations.
 
 ```html
 <typing
-    font="Rock Salt " size="20" duration="2000" pause="150"
-    width="500" height="100" repeat="true"
+      font="Rock Salt " size="20" duration="3000" pause="300"
+      width="500" height="60" repeat="off"
 >
 Look at me!
 I'm typing!
@@ -72,8 +71,8 @@ I'm typing!
 ```
 
 <picture>
-<source media="(prefers-color-scheme: dark)" srcset="https://readme-typing-svg.herokuapp.com?width=500&height=120&center=true&vCenter=true&multiline=true&repeat=false&lines=Look+at+me!%3BI%27m+typing!&color=cfcfcf" />
-<source media="(prefers-color-scheme: light)" srcset="https://readme-typing-svg.herokuapp.com?width=500&height=120&center=true&vCenter=true&multiline=true&repeat=false&lines=Look+at+me!%3BI%27m+typing!&color=000000" />
+<source media="(prefers-color-scheme: dark)" srcset="https://readme-typing-svg.herokuapp.com?width=500&height=60&center=true&vCenter=true&multiline=true&repeat=false&lines=Look+at+me!%3BI%27m+typing!&color=cfcfcf" />
+<source media="(prefers-color-scheme: light)" srcset="https://readme-typing-svg.herokuapp.com?width=500&height=60&center=true&vCenter=true&multiline=true&repeat=false&lines=Look+at+me!%3BI%27m+typing!&color=000000" />
 <img draggable="false" width="100%" />
 </picture>
 
@@ -112,13 +111,13 @@ Some options are:
 ```
 
 ```rust
-Total Time: 13 hrs 15 mins
+Total Time: 10 hrs 35 mins
 
-- "C#"            ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀ 8 hrs 15 mins
-- "TypeScript"    ⣿⣿⣿⣿⣿⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀ 2 hrs 10 mins
-- "HTML"          ⣿⣿⣷⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀ 1 hr 17 mins
-- "SCSS"          ⣿⣿⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀ 52 mins
-- "tq"            ⣦⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀ 14 mins
+- "C#"            ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣄⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀ 5 hrs 23 mins
+- "TypeScript"    ⣿⣿⣿⣿⣿⣦⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀ 1 hr 57 mins
+- "HTML"          ⣿⣿⣿⣄⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀ 1 hr 8 mins
+- "Markdown"      ⣿⣿⣷⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀ 59 mins
+- "SCSS"          ⣿⣶⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀ 35 mins
 ```
 
 ### Last.fm
@@ -135,7 +134,7 @@ variables:
 - `lastfm_username`: The username of the targeted last.fm profile.
 
 ```html
-<last-fm />
+<last-fm-recent />
 ```
 
 <p>
@@ -234,7 +233,9 @@ issues and discussions.
 
 Integrations with the [Steam](https://store.steampowered.com/) services.
 
-The `steam-lib` block tag provides data about a user's steam library.
+#### Recent
+
+The `steam-lib-recent` block tag provides a list of the user's recent played games.
 
 For allowing this service to work, the tool needs the following
 variables:
@@ -242,42 +243,36 @@ variables:
 - `steam_api_key`: A steam API key.
 - `steam_user_id`: The user id of the targeted steam account.
 
-Some options are:
-
-- `recent`: Recent played games.
-- `perfected`: Last perfected (100% achievements) games.
-
 ```html
-<steam-lib option="recent" />
-<steam-lib option="perfected" />
+<steam-lib-recent />
 ```
 
 <p>
 <a href="https://store.steampowered.com/app/1353300" target="_blank">
 <picture>
-<source media="(max-width: 1061px)" width="24%" srcset="./actions/cache/steam_recent/steam_cards_generated/1353300_thin.svg" />
-<source media="(min-width: 1061px)" width="49%" srcset="./actions/cache/steam_recent/steam_cards_generated/1353300_wide.svg" />
+<source media="(max-width: 1061px)" width="24%" srcset="./actions/cache/steam_recent/cards/1353300_thin.svg" />
+<source media="(min-width: 1061px)" width="49%" srcset="./actions/cache/steam_recent/cards/1353300_wide.svg" />
 <img style="max-width: 100%;" alt="Idle Slayer – Incremental RPG" />
 </picture>
 </a>
 <a href="https://store.steampowered.com/app/457140" target="_blank">
 <picture>
-<source media="(max-width: 1061px)" width="24%" srcset="./actions/cache/steam_recent/steam_cards_generated/457140_thin.svg" />
-<source media="(min-width: 1061px)" width="49%" srcset="./actions/cache/steam_recent/steam_cards_generated/457140_wide.svg" />
+<source media="(max-width: 1061px)" width="24%" srcset="./actions/cache/steam_recent/cards/457140_thin.svg" />
+<source media="(min-width: 1061px)" width="49%" srcset="./actions/cache/steam_recent/cards/457140_wide.svg" />
 <img style="max-width: 100%;" alt="Oxygen Not Included" />
 </picture>
 </a>
 <a href="https://store.steampowered.com/app/1919460" target="_blank">
 <picture>
-<source media="(max-width: 1061px)" width="24%" srcset="./actions/cache/steam_recent/steam_cards_generated/1919460_thin.svg" />
-<source media="(min-width: 1061px)" width="49%" srcset="./actions/cache/steam_recent/steam_cards_generated/1919460_wide.svg" />
+<source media="(max-width: 1061px)" width="24%" srcset="./actions/cache/steam_recent/cards/1919460_thin.svg" />
+<source media="(min-width: 1061px)" width="49%" srcset="./actions/cache/steam_recent/cards/1919460_wide.svg" />
 <img style="max-width: 100%;" alt="Seraph's Last Stand" />
 </picture>
 </a>
 <a href="https://store.steampowered.com/app/431730" target="_blank">
 <picture>
-<source media="(max-width: 1061px)" width="24%" srcset="./actions/cache/steam_recent/steam_cards_generated/431730_thin.svg" />
-<source media="(min-width: 1061px)" width="49%" srcset="./actions/cache/steam_recent/steam_cards_generated/431730_wide.svg" />
+<source media="(max-width: 1061px)" width="24%" srcset="./actions/cache/steam_recent/cards/431730_thin.svg" />
+<source media="(min-width: 1061px)" width="49%" srcset="./actions/cache/steam_recent/cards/431730_wide.svg" />
 <img style="max-width: 100%;" alt="Aseprite" />
 </picture>
 </a>
@@ -289,32 +284,46 @@ Some options are:
 </sub>
 </p>
 
+#### Perfected
+
+The `steam-lib-perfected` block tag provides a list of the user's perfected (100% achievements) games.
+
+For allowing this service to work, the tool needs the following
+variables:
+
+- `steam_api_key`: A steam API key.
+- `steam_user_id`: The user id of the targeted steam account.
+
+```html
+<steam-lib-perfected />
+```
+
 <p>
 <a href="https://store.steampowered.com/app/1289310" target="_blank">
 <picture>
-<source media="(max-width: 1061px)" width="24%" srcset="./actions/cache/steam_perfect/steam_cards_generated/1289310_thin.svg" />
-<source media="(min-width: 1061px)" width="49%" srcset="./actions/cache/steam_perfect/steam_cards_generated/1289310_wide.svg" />
+<source media="(max-width: 1061px)" width="24%" srcset="./actions/cache/steam_perfect/cards/1289310_thin.svg" />
+<source media="(min-width: 1061px)" width="49%" srcset="./actions/cache/steam_perfect/cards/1289310_wide.svg" />
 <img style="max-width: 100%;" alt="Helltaker" />
 </picture>
 </a>
 <a href="https://store.steampowered.com/app/433340" target="_blank">
 <picture>
-<source media="(max-width: 1061px)" width="24%" srcset="./actions/cache/steam_perfect/steam_cards_generated/433340_thin.svg" />
-<source media="(min-width: 1061px)" width="49%" srcset="./actions/cache/steam_perfect/steam_cards_generated/433340_wide.svg" />
+<source media="(max-width: 1061px)" width="24%" srcset="./actions/cache/steam_perfect/cards/433340_thin.svg" />
+<source media="(min-width: 1061px)" width="49%" srcset="./actions/cache/steam_perfect/cards/433340_wide.svg" />
 <img style="max-width: 100%;" alt="Slime Rancher" />
 </picture>
 </a>
 <a href="https://store.steampowered.com/app/255520" target="_blank">
 <picture>
-<source media="(max-width: 1061px)" width="24%" srcset="./actions/cache/steam_perfect/steam_cards_generated/255520_thin.svg" />
-<source media="(min-width: 1061px)" width="49%" srcset="./actions/cache/steam_perfect/steam_cards_generated/255520_wide.svg" />
+<source media="(max-width: 1061px)" width="24%" srcset="./actions/cache/steam_perfect/cards/255520_thin.svg" />
+<source media="(min-width: 1061px)" width="49%" srcset="./actions/cache/steam_perfect/cards/255520_wide.svg" />
 <img style="max-width: 100%;" alt="Viscera Cleanup Detail: Shadow Warrior" />
 </picture>
 </a>
 <a href="https://store.steampowered.com/app/1997680" target="_blank">
 <picture>
-<source media="(max-width: 1061px)" width="24%" srcset="./actions/cache/steam_perfect/steam_cards_generated/1997680_thin.svg" />
-<source media="(min-width: 1061px)" width="49%" srcset="./actions/cache/steam_perfect/steam_cards_generated/1997680_wide.svg" />
+<source media="(max-width: 1061px)" width="24%" srcset="./actions/cache/steam_perfect/cards/1997680_thin.svg" />
+<source media="(min-width: 1061px)" width="49%" srcset="./actions/cache/steam_perfect/cards/1997680_wide.svg" />
 <img style="max-width: 100%;" alt="REFLEXIA Prototype ver." />
 </picture>
 </a>
