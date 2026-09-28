@@ -2,7 +2,7 @@
 
 namespace MarkdownPlus.ThirdParty;
 
-public class SteamModule : ModuleDescriptor
+public class BasicModule : ModuleDescriptor
 {
     public override (string tagName, ProcessNodeDelegate callback)[] Tags => [
         ("typing", TypingTag.ProcessTypingTag),

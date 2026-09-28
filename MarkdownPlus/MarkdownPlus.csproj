@@ -8,6 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\MarkdownPlus.Basic\MarkdownPlus.Basic.csproj" />
       <ProjectReference Include="..\MarkdownPlus.Core\MarkdownPlus.Core.csproj" />
       <ProjectReference Include="..\MarkdownPlus.Github\MarkdownPlus.Github.csproj" />
       <ProjectReference Include="..\MarkdownPlus.LastFm\MarkdownPlus.LastFm.csproj" />

@@ -2,6 +2,7 @@ using MarkdownPlus.Core;
 using MarkdownPlus.Github;
 using MarkdownPlus.LastFm;
 using MarkdownPlus.Steam;
+using MarkdownPlus.ThirdParty;
 using MarkdownPlus.Wakatime;
 
 namespace MarkdownPlus;
@@ -12,6 +13,7 @@ public static class ModulesHandler
         new WakatimeModule(),
         new GithubModule(),
         new LastFmModule(),
+        new BasicModule(),
         new SteamModule(),
     ];
 
