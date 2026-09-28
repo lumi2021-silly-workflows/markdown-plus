@@ -6,7 +6,7 @@ namespace MarkdownPlus.Wakatime;
 public class WakatimeModule : ModuleDescriptor
 {
     public override (string tagName, ProcessNodeDelegate callback)[] Tags => [
-        ("wakatime", Processor.WakatimeTagProcess),
+        ("wakatime-weekly-langs", Processor.WakatimeTagProcess),
     ];
     public override string[] EnvironmentVariables => [
         Constants.API_KEY_VAR,

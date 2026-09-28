@@ -1,4 +1,6 @@
+using System.Text;
 using System.Text.Json.Nodes;
+using System.Xml.Linq;
 using MarkdownPlus.Core;
 using MarkdownPlus.Core.Exceptions;
 using MarkdownPlus.Markdown.Ast;
@@ -11,7 +13,9 @@ public static class Processor
     private static readonly HttpClient Client = new();
     private static Task<JsonArray?>? _lastFmTask;
     
-    public static async Task<AstNode[]> LastfmTagProcessor(HtmlElementNode node, IReadOnlyDictionary<string, string> envVars)
+    public static async Task<AstNode> LastfmTagProcessor(
+        HtmlElementNode node,
+        IReadOnlyDictionary<string, string> envVars)
     {
         var username = envVars.GetValueOrDefault(Constants.USERNAME_VAR);
         var apiKey = envVars.GetValueOrDefault(Constants.API_KEY_VAR);
@@ -19,106 +23,189 @@ public static class Processor
         if (username == null || apiKey == null)
         {
             List<LacksEnvVarException> exceptions = [];
-            if (username == null) exceptions.Add(new LacksEnvVarException(Constants.USERNAME_VAR, "<your last.fm username>"));
-            if (apiKey == null) exceptions.Add(new LacksEnvVarException(Constants.API_KEY_VAR, "<your last.fm API key>"));
-            throw new AuthException([..exceptions]);
+
+            if (username == null)
+                exceptions.Add(
+                    new LacksEnvVarException(
+                        Constants.USERNAME_VAR,
+                        "<your last.fm username>"));
+
+            if (apiKey == null)
+                exceptions.Add(
+                    new LacksEnvVarException(
+                        Constants.API_KEY_VAR,
+                        "<your last.fm API key>"));
+
+            throw new AuthException([.. exceptions]);
         }
 
         logger.Info("Loading Last.fm top tracks...");
         var tracks = await FetchLastFmTopTracksAsync(username, apiKey);
 
-        if (tracks == null || tracks.Count == 0) return [new ParagraphNode("No tracks found")];
+        if (tracks == null || tracks.Count == 0)
+            return new ParagraphNode("No tracks found");
 
         logger.Info("Loading tracks' cover images...");
-        var container = new HtmlElementNode
-        {
-            TagName = "p",
-            SelfClosing = false,
-            TrailingLineBreak = true,
-        };
-        
+
+        XNamespace ns = "http://www.w3.org/2000/svg";
+        const double width = 600;
+        const double rowHeight = 80;
+        const double coverSize = 60;
+        const double padding = 10;
+
+        var count = tracks.Count;
+        var height = count * rowHeight;
+
+        var svg = new XElement(
+            ns + "svg",
+            new XAttribute("width", width),
+            new XAttribute("height", height),
+            new XAttribute("viewBox", $"0 0 {width} {height}"),
+
+            new XElement(
+                ns + "style",
+                """
+                svg {
+                    font-family:
+                        -apple-system,
+                        BlinkMacSystemFont,
+                        "Segoe UI",
+                        Helvetica,
+                        Arial,
+                        sans-serif;
+                }
+
+                .track-title {
+                    font-size: 15px;
+                    font-weight: 600;
+                    fill: #777;
+                }
+
+                .track-artist {
+                    font-size: 13px;
+                    fill: #777;
+                }
+
+                .track-duration {
+                    font-size: 13px;
+                    fill: #777;
+                    text-anchor: end;
+                }
+
+                .track-cover {
+                    width: 60px;
+                    height: 60px;
+                }
+                """
+            )
+        );
+
+        var index = 0;
+
         foreach (var track in tracks)
         {
             var trackObj = track?.AsObject();
-            if (trackObj == null) continue;
+            if (trackObj == null)
+                continue;
 
             var artistObj = trackObj["artist"]?.AsObject();
-            var artistName = artistObj?["name"]?.ToString() ?? "Unknown Artist";
-            var trackName = trackObj["name"]?.ToString() ?? "Unknown Track";
-            var artistUrl = artistObj?["url"]?.ToString() ?? string.Empty;
-            var trackUrl = trackObj["url"]?.ToString() ?? string.Empty;
 
-            var (coverUrl, durationSec) = await FetchItunesMetadataAsync(artistName, trackName);
+            var artistName =
+                artistObj?["name"]?.ToString()
+                ?? "Unknown Artist";
+
+            var trackName =
+                trackObj["name"]?.ToString()
+                ?? "Unknown Track";
+
+            var trackUrl =
+                trackObj["url"]?.ToString()
+                ?? string.Empty;
+
+            var (coverUrl, durationSec) =
+                await FetchItunesMetadataAsync(
+                    artistName,
+                    trackName);
 
             if (string.IsNullOrEmpty(coverUrl))
             {
-                coverUrl = "https://raw.githubusercontent.com/lumi2021-silly-workflows/markdown-plus/"
-                    + "refs/heads/main/MarkdownPlus.LastFm/assets/song-no-cover.png";
+                coverUrl =
+                    "https://raw.githubusercontent.com/" +
+                    "lumi2021-silly-workflows/markdown-plus/" +
+                    "refs/heads/main/MarkdownPlus.LastFm/" +
+                    "assets/song-no-cover.png";
             }
 
             var duration = "—-:--";
+
             if (durationSec > 0)
             {
                 var minutes = durationSec / 60;
                 var seconds = durationSec % 60;
+
                 duration = $"{minutes}:{seconds:D2}";
             }
 
-            var trackHLink = HtmlElementNode.CreateA(trackName, trackUrl);
-            var artistHLink = HtmlElementNode.CreateA(artistName, artistUrl);
+            var y = index * rowHeight;
 
-            var div = new HtmlElementNode
-            {
-                TagName           = "div",
-                TrailingLineBreak = false,
-                SelfClosing       = false,
-                Attributes        = { { "style", "clear: both; padding: 10px 0;" } },
-                Children =
-                {
-                    new HtmlElementNode
-                    {
-                        TagName           = "img",
-                        TrailingLineBreak = false,
-                        SelfClosing       = true,
-                        Attributes =
-                        {
-                            { "src", coverUrl },
-                            { "width", "60" },
-                            { "align", "left" },
-                        },
-                    },
-                    new HtmlElementNode
-                    {
-                        TagName           = "p",
-                        TrailingLineBreak = false,
-                        SelfClosing       = false,
-                        Children =
-                        {
-                            new HtmlElementNode
-                            {
-                                TagName           = "strong",
-                                TrailingLineBreak = false,
-                                SelfClosing       = false,
-                                Children          = { trackHLink }
-                            },
-                            new HtmlTextNode($" • "),
-                            artistHLink,
-                        },
-                    },
-                    new HtmlElementNode
-                    {
-                        TagName           = "strong",
-                        TrailingLineBreak = false,
-                        SelfClosing       = false,
-                        Attributes = { {"clear", "left"} },
-                        Children = { new HtmlTextNode(duration) },
-                    },
-                },
-            };
-            container.Children.Add(div);
+            var trackGroup = new XElement(
+                ns + "g",
+                new XAttribute("class", "track"),
+
+                new XElement(
+                    ns + "image",
+                    new XAttribute("class", "track-cover"),
+                    new XAttribute("x", padding),
+                    new XAttribute("y", y + padding),
+                    new XAttribute("width", coverSize),
+                    new XAttribute("height", coverSize),
+                    new XAttribute("href", coverUrl)
+                ),
+
+                new XElement(
+                    ns + "text",
+                    new XAttribute("class", "track-title"),
+                    new XAttribute("x", 85),
+                    new XAttribute("y", y + 32),
+                    trackName
+                ),
+
+                new XElement(
+                    ns + "text",
+                    new XAttribute("class", "track-artist"),
+                    new XAttribute("x", 85),
+                    new XAttribute("y", y + 52),
+                    artistName
+                ),
+
+                new XElement(
+                    ns + "text",
+                    new XAttribute("class", "track-duration"),
+                    new XAttribute("x", width - padding),
+                    new XAttribute("y", y + 32),
+                    duration
+                )
+            );
+
+            svg.Add(trackGroup);
+
+            index++;
         }
 
-        return [container];
+        var xml = svg.ToString(SaveOptions.DisableFormatting);
+
+        var base64 = Convert.ToBase64String(
+            Encoding.UTF8.GetBytes(xml));
+
+        return new HtmlElementNode
+        {
+            TagName = "img",
+            SelfClosing = true,
+            Attributes =
+            {
+                ["src"] = $"data:image/svg+xml;base64,{base64}",
+            }
+        };
     }
     
     private static Task<JsonArray?> FetchLastFmTopTracksAsync(string username, string apiKey)
@@ -133,7 +220,7 @@ public static class Processor
                     { "user", $"{Uri.EscapeDataString(username)}" },
                     { "api_key", $"{Uri.EscapeDataString(apiKey)}" },
                     { "format", "json" },
-                    { "limit", "5" }
+                    { "limit", "5" },
                 }
             ).ToString();
 

@@ -19,7 +19,7 @@ public static partial class SteamLibProcessor
         return new FileCacheManager(root);
     }
 
-    private static AstNode[] BuildCardHtmlMarkup(Dictionary<string, CachedGameData> games, ICacheManager cache)
+    private static AstNode BuildCardHtmlMarkup(Dictionary<string, CachedGameData> games, ICacheManager cache)
     {
         const int githubArticleMaxPx = 1061;
 
@@ -129,7 +129,7 @@ public static partial class SteamLibProcessor
             },
         };
 
-        return [cards, disclaimer];
+        return new AstNodesGroup([cards, disclaimer]);
     }
 
     private static (string userId, string apiKey) Auth(IReadOnlyDictionary<string, string> envVars)

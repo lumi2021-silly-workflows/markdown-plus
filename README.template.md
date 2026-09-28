@@ -36,6 +36,10 @@ badges inside the code:
 <badge color="505050" style="plastic" icon="dotnet">C#</badge> \
 <badge color="606060" style="for-the-badge" icon="zig">Zig</badge> \
 <badge color="707070" style="social" icon="lua">Lua</badge>
+<br/>
+<badge color="282b30" style="for-the-badge" icon="discord" href="https://discordapp.com/users/632992487375634432">Discord</badge>
+<badge color="ffffff" style="for-the-badge" icon="linkedin" labelColor="0077B5" href="https://www.linkedin.com/in/leoaraujodev">Linkedin</badge>
+<badge color="000000" style="for-the-badge" icon="threads" href="https://www.threads.com/@42batata42">Threads</badge>
 ```
 
 <badge color="202020" icon="python">python</badge>
@@ -44,6 +48,10 @@ badges inside the code:
 <badge color="505050" style="plastic" icon="dotnet">C#</badge> \
 <badge color="606060" style="for-the-badge" icon="zig">Zig</badge> \
 <badge color="202020" style="social" icon="lua">Lua</badge>
+<br/>
+<badge color="282b30" style="for-the-badge" icon="discord" href="https://discordapp.com/users/632992487375634432">Discord</badge>
+<badge color="ffffff" style="for-the-badge" icon="linkedin" labelColor="0077B5" href="https://www.linkedin.com/in/leoaraujodev">Linkedin</badge>
+<badge color="000000" style="for-the-badge" icon="threads" href="https://www.threads.com/@42batata42">Threads</badge>
 
 The following attributes can be applied to a `badge` tag:
 - `icon`: The icon shown in the tag. Icons provided by [Simple Icons](https://simpleicons.org/).
@@ -61,7 +69,7 @@ The `typing` tag is a block tag that can be used to create typing animations.
 
 ```html
 <typing
-      font="Rock Salt " size="20" duration="3000" pause="300"
+      font="Rock Salt" size="20" duration="3000" pause="300"
       width="500" height="60" repeat="off"
 >
 Look at me!
@@ -105,10 +113,12 @@ Some options are:
 - `weekly-langs`: Time spent in each language this week.
 
 ```html
-<wakatime option="weekly-langs" />
+<wakatime-weekly-langs />
+<wakatime-weekly-langs style="display: code;" level="⣿⣷⣶⣦⣤⣄⣀ " />
 ```
 
-<wakatime option="weekly-langs" />
+<wakatime-weekly-langs />
+<wakatime-weekly-langs style="display: code;" level="⣿⣷⣶⣦⣤⣄⣀ " />
 
 
 ### Last.fm
@@ -134,23 +144,35 @@ variables:
 
 Integrations with the [Github](https://www.github.com) services.
 
-The `github` block tag provides data about someone's github profile,
-history and contributions.
+#### Profile
+
+The `github-profile` block tag provides data about someone's profile.
 
 For allowing this service to work, the tool needs the following
 variables:
 - `github_api_token`: A token from github's API. No private access needed.
 - `github_username`: The username of the targeted github user.
 
-Some options are:
-- `activity`: Recent github activity. Includes commits, pull requests,
-  issues and discussions.
 
 ```html
-<github option="activity" />
+<github-profile />
 ```
+<github-profile />
 
-<github option="activity" />
+#### Contributions
+
+The `github-contributions` block tag provides data about someone's activity, history and contributions.
+
+For allowing this service to work, the tool needs the following
+variables:[README.md](README.md)
+- `github_api_token`: A token from github's API. No private access needed.[README.md](README.md)
+- `github_username`: The username of the targeted github user.
+
+
+```html
+<github-activity />
+```
+<github-activity />
 
 ### Steam
 

@@ -86,6 +86,10 @@ public static class MarkdownRenderer
     {
         switch (node)
         {
+            case AstNodesGroup group:
+                foreach (var i in group.Nodes) WriteBlock(i, sb, quoteDepth);
+            break;
+            
             case HeadingNode h:
                 Prefix(sb, quoteDepth);
                 sb.Append('#', h.Level).Append(' ');

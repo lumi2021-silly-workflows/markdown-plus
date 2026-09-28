@@ -7,6 +7,11 @@ public abstract class AstNode
     public int Line { get; set; }
 }
 
+public class AstNodesGroup(AstNode[] nodes) : AstNode
+{
+    public AstNode[] Nodes { get; init; } = nodes;
+}
+
 // ---------------------------------------------------------------------
 // Document
 // ---------------------------------------------------------------------
@@ -67,7 +72,7 @@ public sealed class HtmlElementNode : AstNode
 {
     public string TagName { get; set; } = string.Empty;
     public Dictionary<string, string?> Attributes { get; } = new();
-    public List<AstNode> Children { get; } = [];
+    public List<AstNode> Children { get; init; } = [];
     public bool SelfClosing { get; set; }
 
     /// <summary>
@@ -116,6 +121,13 @@ public sealed class HtmlTextNode(string text) : AstNode
 {
     public string Text { get; set; } = text;
     public HtmlTextNode() : this(string.Empty) { }
+
+    public static HtmlElementNode Div(List<AstNode> children) => new()
+    {
+        SelfClosing = false,
+        TagName     = "div",
+        Children    = children,
+    };
 }
 
 // ---------------------------------------------------------------------

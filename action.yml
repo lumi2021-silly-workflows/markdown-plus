@@ -38,7 +38,7 @@ runs:
     - name: Build Executable
       shell: bash
       working-directory: .md-plus-app
-      run: dotnet build --configuration Release
+      run: dotnet build -c Release -p:WarningLevel=0
 
     - name: Run MD+ parser
       shell: bash
@@ -50,4 +50,4 @@ runs:
         STEAM_USER_ID: ${{ inputs.steam_user_id }}
         LASTFM_API_KEY: ${{ inputs.lastfm_api_key }}
         LASTFM_USERNAME: ${{ inputs.lastfm_username }}
-      run: dotnet run --project .md-plus-app/MarkdownPlus --no-build --configuration Release
+      run: dotnet run --project .md-plus-app/MarkdownPlus --no-build -c Release

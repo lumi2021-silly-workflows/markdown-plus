@@ -5,7 +5,7 @@ namespace MarkdownPlus.Steam.Tags;
 
 public static partial class SteamLibProcessor
 {
-    public static async Task<AstNode[]> SteamLibPerfectedTag(HtmlElementNode node, IReadOnlyDictionary<string, string> envVars)
+    public static async Task<AstNode> SteamLibPerfectedTag(HtmlElementNode node, IReadOnlyDictionary<string, string> envVars)
     {
         var cache = BuildCacheManager(envVars, "steam_perfect");
 

@@ -5,20 +5,20 @@ namespace MarkdownPlus.Steam.Tags;
 
 public static partial class SteamLibProcessor
 {
-    public static async Task<AstNode[]> SteamLibRecentTag(HtmlElementNode node, IReadOnlyDictionary<string, string> envVars)
+    public static async Task<AstNode> SteamLibRecentTag(HtmlElementNode node, IReadOnlyDictionary<string, string> envVars)
     {
-        var cache = SteamLibProcessor.BuildCacheManager(envVars, "steam_recent");
+        var cache = BuildCacheManager(envVars, "steam_recent");
 
         Dictionary<string, CachedGameData> recentGameData;
 
-        await SteamLibProcessor.CacheLock.WaitAsync();
+        await CacheLock.WaitAsync();
         try
         {
-            var cached = await cache.GetJsonAsync<SteamGameCacheMetadata>(SteamLibProcessor.MetadataKey);
+            var cached = await cache.GetJsonAsync<SteamGameCacheMetadata>(MetadataKey);
 
             if (cached is null)
             {
-                var (userId, apiKey) = SteamLibProcessor.Auth(envVars);
+                var (userId, apiKey) = Auth(envVars);
 
                 logger.Info("Loading recent games...");
                 logger.Info("Loading owned games data (it may take a while)...");
@@ -30,7 +30,7 @@ public static partial class SteamLibProcessor
                     .Take(4)
                     .ToList();
 
-                SteamLibProcessor.logger.Info($"Found {recent.Count} recent games.");
+                logger.Info($"Found {recent.Count} recent games.");
 
                 recentGameData = new Dictionary<string, CachedGameData>();
 
@@ -40,17 +40,17 @@ public static partial class SteamLibProcessor
                     recentGameData[game.AppId] = new CachedGameData { AppId = game.AppId, Name = game.Name };
                 }
 
-                await cache.SetJsonAsync(SteamLibProcessor.MetadataKey, new SteamGameCacheMetadata
+                await cache.SetJsonAsync(MetadataKey, new SteamGameCacheMetadata
                 {
                     LastUpdated = DateTime.UtcNow,
                     Games = recentGameData
-                }, expiration: SteamLibProcessor.MetadataCacheExpiration);
+                }, expiration: MetadataCacheExpiration);
 
-                SteamLibProcessor.logger.Success("Fresh recent games generated.");
+                logger.Success("Fresh recent games generated.");
             }
             else
             {
-                SteamLibProcessor.logger.Info("Using cached recent steam game data...");
+                logger.Info("Using cached recent steam game data...");
                 recentGameData = cached.Games;
                 foreach (var appId in recentGameData.Keys)
                 {
@@ -60,13 +60,13 @@ public static partial class SteamLibProcessor
             }
             
             var purged = await cache.PurgeExpiredAsync();
-            if (purged.Count > 0) SteamLibProcessor.logger.Info($"Purged {purged.Count} expired cache entr{(purged.Count == 1 ? "y" : "ies")}.");
+            if (purged.Count > 0) logger.Info($"Purged {purged.Count} expired cache entr{(purged.Count == 1 ? "y" : "ies")}.");
         }
         finally
         {
-            SteamLibProcessor.CacheLock.Release();
+            CacheLock.Release();
         }
 
-        return SteamLibProcessor.BuildCardHtmlMarkup(recentGameData, cache);
+        return BuildCardHtmlMarkup(recentGameData, cache);
     }
 }
