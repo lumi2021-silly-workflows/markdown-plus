@@ -1,6 +1,6 @@
 using System.Text.Json;
 
-namespace MarkdownPlus.Core.Cache;
+namespace MarkdownPlus.Core.Caching;
 
 public static class CacheStoreExtensions
 {
@@ -10,19 +10,18 @@ public static class CacheStoreExtensions
         JsonSerializerOptions? options = null,
         CancellationToken cancellationToken = default)
     {
-        var entry = await cache.GetAsync(key, cancellationToken);
-        return entry is null ? default : JsonSerializer.Deserialize<T>(entry.Data.Span, options);
+        var entryContent = await cache.TryGetContentAsync(key, cancellationToken);
+        return entryContent is null ? default : JsonSerializer.Deserialize<T>(entryContent, options);
     }
-
+    
     public static Task SetJsonAsync<T>(
         this ICacheManager cacheManager,
         string key,
         T value,
-        TimeSpan? expiration = null,
         JsonSerializerOptions? options = null,
         CancellationToken cancellationToken = default)
     {
         var data = JsonSerializer.SerializeToUtf8Bytes(value, options);
-        return cacheManager.SetAsync(key, data, expiration, cancellationToken);
+        return cacheManager.SetContentAsync(key, data, cancellationToken);
     }
 }

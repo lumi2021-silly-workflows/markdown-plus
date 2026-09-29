@@ -38,7 +38,7 @@ public static class Processor
 
         return displayStyle switch
         {
-            DisplayStyle.Block => CardGenerator.GenerateDisplayBlock(data),
+            DisplayStyle.Block => await CardGenerator.GenerateDisplayBlock(data),
             DisplayStyle.Code => CardGenerator.GenerateDisplayCode(data, levels),
             _ => throw new ArgumentOutOfRangeException(),
         };

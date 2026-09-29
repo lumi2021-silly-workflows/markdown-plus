@@ -32,10 +32,14 @@ public static class BadgeTag
             Alt = content,
             Src = url.ToString(),
         };
-        if (href != null) result = new LinkNode(content, href) { Children = { result } };
-                
-        return node.TrailingLineBreak
-            ? new AstNodesGroup([result, new LineBreakNode()])
-            : result;
+        if (href != null) result = new LinkNode
+        {
+            Href =  href,
+            Children = { result },
+        };
+
+        return result;  //node.TrailingLineBreak
+        //? new AstNodesGroup([result, new LineBreakNode()])
+        //: result;
     }
 }

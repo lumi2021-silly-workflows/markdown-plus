@@ -1,4 +1,5 @@
-using MarkdownPlus.Core.Cache;
+using MarkdownPlus.Core;
+using MarkdownPlus.Core.Caching;
 using MarkdownPlus.Markdown.Ast;
 
 namespace MarkdownPlus.Steam.Tags;
@@ -7,15 +8,15 @@ public static partial class SteamLibProcessor
 {
     public static async Task<AstNode> SteamLibRecentTag(HtmlElementNode node, IReadOnlyDictionary<string, string> envVars)
     {
-        var cache = BuildCacheManager(envVars, "steam_recent");
+        const string DescriptorCacheKey = "perfected-cached-data";
+        var cache = Cache.GetServiceCache("steam");
 
-        Dictionary<string, CachedGameData> recentGameData;
+        List<CachedGameData> recentGameData;
 
         await CacheLock.WaitAsync();
         try
         {
-            var cached = await cache.GetJsonAsync<SteamGameCacheMetadata>(MetadataKey);
-
+            var cached = await cache.GetJsonAsync<SteamGameCacheMetadata>(DescriptorCacheKey);
             if (cached is null)
             {
                 var (userId, apiKey) = Auth(envVars);
@@ -32,41 +33,60 @@ public static partial class SteamLibProcessor
 
                 logger.Info($"Found {recent.Count} recent games.");
 
-                recentGameData = new Dictionary<string, CachedGameData>();
+                recentGameData = [];
 
                 foreach (var game in recent)
                 {
-                    await GameCardGenerator.GetResponsiveCardAsync(game, cache);
-                    recentGameData[game.AppId] = new CachedGameData { AppId = game.AppId, Name = game.Name };
+                    var newCachedData = new CachedGameData
+                    {
+                        AppId = game.AppId,
+                        Name  = game.Name,
+                    };
+                    
+                    var wideCard = await GameCardGenerator.MakeWideCardAsync(game);
+                    var thinCard = await GameCardGenerator.MakeThinCardAsync(game);
+
+                    var keyThin = CardCacheKeys.Thin(newCachedData);
+                    var keyWide = CardCacheKeys.Wide(newCachedData);
+                    
+                    cache.TouchResource(keyThin, "svg", AssetsCacheExpiration);
+                    cache.TouchResource(keyWide, "svg", AssetsCacheExpiration);
+                    await cache.SetContentAsync(keyThin, thinCard);
+                    await cache.SetContentAsync(keyWide, wideCard);
+
+                    newCachedData.ThinResourcePath = cache.GetPath(keyThin);
+                    newCachedData.WideResourcePath = cache.GetPath(keyWide);
+                    
+                    recentGameData.Add(newCachedData);
                 }
 
-                await cache.SetJsonAsync(MetadataKey, new SteamGameCacheMetadata
+                cache.TouchResource(DescriptorCacheKey, "json", AssetsCacheExpiration);
+                await cache.SetJsonAsync(DescriptorCacheKey, new SteamGameCacheMetadata
                 {
                     LastUpdated = DateTime.UtcNow,
-                    Games = recentGameData
-                }, expiration: MetadataCacheExpiration);
+                    Games = [.. recentGameData],
+                });
 
                 logger.Success("Fresh recent games generated.");
             }
             else
             {
                 logger.Info("Using cached recent steam game data...");
-                recentGameData = cached.Games;
-                foreach (var appId in recentGameData.Keys)
+                recentGameData = [.. cached.Games];
+                
+                foreach (var game in recentGameData)
                 {
-                    await cache.TouchAsync(CardCacheKeys.Wide(appId), GameCardGenerator.CardCacheExpiration);
-                    await cache.TouchAsync(CardCacheKeys.Thin(appId), GameCardGenerator.CardCacheExpiration);
+                    cache.TouchResource(CardCacheKeys.Wide(game), "svg", AssetsCacheExpiration);
+                    cache.TouchResource(CardCacheKeys.Thin(game), "svg", AssetsCacheExpiration);
                 }
             }
             
-            var purged = await cache.PurgeExpiredAsync();
-            if (purged.Count > 0) logger.Info($"Purged {purged.Count} expired cache entr{(purged.Count == 1 ? "y" : "ies")}.");
         }
         finally
         {
             CacheLock.Release();
         }
 
-        return BuildCardHtmlMarkup(recentGameData, cache);
+        return BuildCardHtmlMarkup([.. recentGameData], cache);
     }
 }

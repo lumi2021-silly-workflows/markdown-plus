@@ -1,5 +1,5 @@
 using MarkdownPlus.Core;
-using MarkdownPlus.Core.Cache;
+using MarkdownPlus.Core.Caching;
 using MarkdownPlus.Core.Exceptions;
 using MarkdownPlus.Markdown.Ast;
 
@@ -7,19 +7,11 @@ namespace MarkdownPlus.Steam.Tags;
 
 public static partial class SteamLibProcessor
 {
+    private static DateTimeOffset AssetsCacheExpiration = DateTimeOffset.UtcNow.AddDays(7).AddHours(50);
     private static readonly ModuleLogger logger = new("Steam Service");
     private static readonly SemaphoreSlim CacheLock = new(1, 1);
-    public static readonly TimeSpan MetadataCacheExpiration = TimeSpan.FromDays(6) + TimeSpan.FromMinutes(30);
-    private const string MetadataKey = "metadata";
     
-
-    private static ICacheManager BuildCacheManager(IReadOnlyDictionary<string, string> envVars, string namespaceDir)
-    {
-        var root = Path.Combine(envVars.GetValueOrDefault("CACHE_DIR", "./actions/cache"), namespaceDir);
-        return new FileCacheManager(root);
-    }
-
-    private static AstNode BuildCardHtmlMarkup(Dictionary<string, CachedGameData> games, ICacheManager cache)
+    private static AstNode BuildCardHtmlMarkup(CachedGameData[] games, ICacheManager cache)
     {
         const int githubArticleMaxPx = 1061;
 
@@ -30,10 +22,10 @@ public static partial class SteamLibProcessor
             TrailingLineBreak = true,
         };
 
-        foreach (var (appId, game) in games)
+        foreach (var game in games)
         {
-            var thinPath = cache.TryGetFilePath(CardCacheKeys.Thin(appId)) ?? string.Empty;
-            var widePath = cache.TryGetFilePath(CardCacheKeys.Wide(appId)) ?? string.Empty;
+            var thinPath = game.ThinResourcePath;
+            var widePath = game.WideResourcePath;
 
             var a = new HtmlElementNode
             {
@@ -42,8 +34,8 @@ public static partial class SteamLibProcessor
                 TrailingLineBreak = true,
                 Attributes =
                 {
-                    { "href", $"https://store.steampowered.com/app/{appId}" },
-                    { "target", "_blank" },
+                    ["href"] = $"https://store.steampowered.com/app/{game.AppId}",
+                    ["target"] = "_blank",
                 },
                 Children =
                 {
@@ -61,9 +53,9 @@ public static partial class SteamLibProcessor
                                 TrailingLineBreak = false,
                                 Attributes =
                                 {
-                                    { "media", $"(max-width: {githubArticleMaxPx}px)" },
-                                    { "width", "24%" },
-                                    { "srcset", thinPath },
+                                    ["media"] = $"(max-width: {githubArticleMaxPx}px)",
+                                    ["width"] = "24%",
+                                    ["srcset"] = thinPath,
                                 },
                             },
                             new HtmlElementNode
@@ -73,9 +65,9 @@ public static partial class SteamLibProcessor
                                 TrailingLineBreak = false,
                                 Attributes =
                                 {
-                                    { "media", $"(min-width: {githubArticleMaxPx}px)" },
-                                    { "width", "49%" },
-                                    { "srcset", widePath },
+                                    ["media"] = $"(min-width: {githubArticleMaxPx}px)",
+                                    ["width"] = "49%",
+                                    ["srcset"] = widePath,
                                 },
                             },
                             new HtmlElementNode
@@ -85,8 +77,8 @@ public static partial class SteamLibProcessor
                                 TrailingLineBreak = false,
                                 Attributes =
                                 {
-                                    { "style", "max-width: 100%;" },
-                                    { "alt", $"{game.Name}" },
+                                    ["style"] = "max-width: 100%;",
+                                    ["alt"] = $"{game.Name}",
                                 },
                             },
                         },
@@ -101,7 +93,7 @@ public static partial class SteamLibProcessor
             TagName           = "p",
             SelfClosing       = false,
             TrailingLineBreak = true,
-            Attributes = { {"align", "center"} },
+            Attributes = { ["align"] = "center" },
             Children =
             {
                 new HtmlElementNode

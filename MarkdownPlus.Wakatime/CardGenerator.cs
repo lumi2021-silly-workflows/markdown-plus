@@ -2,14 +2,17 @@ using System.Buffers.Text;
 using System.Text;
 using System.Text.Json;
 using System.Xml.Linq;
+using MarkdownPlus.Core;
 using MarkdownPlus.Markdown.Ast;
 
 namespace MarkdownPlus.Wakatime;
 
 public static class CardGenerator
 {
-    public static AstNode GenerateDisplayBlock(JsonElement data)
+    public static async Task<AstNode> GenerateDisplayBlock(JsonElement data)
     {
+        var cache = Cache.GetServiceCache("wakatime");
+        
         var languages = data.GetProperty("languages");
         var count = Math.Min(5, languages.GetArrayLength());
 
@@ -22,7 +25,7 @@ public static class CardGenerator
         const double barHeight = 12;
 
         var height = headerHeight + count * rowHeight + 10;
-        
+            
         var svg = new XElement(
             ns + "svg",
             new XAttribute("width", width),
@@ -105,20 +108,23 @@ public static class CardGenerator
             );
         }
         
-        var xml = svg.ToString(SaveOptions.DisableFormatting);
-
-        var base64 = Convert.ToBase64String(
-            Encoding.UTF8.GetBytes(xml)
+        var xml = svg.ToString(
+            #if DEBUG
+            #else
+                SaveOptions.DisableFormatting
+            #endif
         );
-
+        const string resourceKey = "weekly-langs";
+        
+        cache.TouchResource(resourceKey, "svg", new DateTimeOffset().AddHours(23));
+        await cache.SetContentAsync(resourceKey, xml);
+        var path = cache.GetPath(resourceKey);
+        
         return new HtmlElementNode
         {
-            TagName = "img",
+            TagName     = "img",
             SelfClosing = true,
-            Attributes =
-            {
-                ["src"] = $"data:image/svg+xml;base64,{base64}"
-            }
+            Attributes  = { ["src"] = path },
         };
     }
     public static AstNode GenerateDisplayCode(JsonElement data, string levels)

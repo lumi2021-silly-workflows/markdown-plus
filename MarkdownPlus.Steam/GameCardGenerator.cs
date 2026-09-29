@@ -1,14 +1,12 @@
 using System.Buffers.Binary;
-using System.Text;
 using System.Xml.Linq;
-using MarkdownPlus.Core.Cache;
 
 namespace MarkdownPlus.Steam;
 
 public static class CardCacheKeys
 {
-    public static string Wide(string appId) => $"cards/{appId}_wide.svg";
-    public static string Thin(string appId) => $"cards/{appId}_thin.svg";
+    public static string Wide(CachedGameData gameData) => $"gamecard-{gameData.AppId}-{gameData.AchievementsUnlocked:x8}-wide";
+    public static string Thin(CachedGameData gameData) => $"gamecard-{gameData.AppId}-{gameData.AchievementsUnlocked:x8}-thin";
 }
 
 public static class GameCardGenerator
@@ -24,36 +22,8 @@ public static class GameCardGenerator
 
     private static readonly XNamespace SvgNs = "http://www.w3.org/2000/svg";
     private static readonly HttpClient Client = new();
-
-    public static async Task<(string WidePath, string ThinPath)> GetResponsiveCardAsync(SteamGame game, ICacheManager cache)
-    {
-        var wideKey = CardCacheKeys.Wide(game.AppId);
-        var thinKey = CardCacheKeys.Thin(game.AppId);
-
-        var wideEntry = await cache.GetAsync(wideKey);
-        var thinEntry = await cache.GetAsync(thinKey);
-
-        if (wideEntry is null || thinEntry is null)
-        {
-            var wideContent = await MakeWideCardAsync(game);
-            var thinContent = await MakeThinCardAsync(game);
-
-            await cache.SetAsync(wideKey, Encoding.UTF8.GetBytes(wideContent), CardCacheExpiration);
-            await cache.SetAsync(thinKey, Encoding.UTF8.GetBytes(thinContent), CardCacheExpiration);
-        }
-        else
-        {
-            await cache.TouchAsync(wideKey, CardCacheExpiration);
-            await cache.TouchAsync(thinKey, CardCacheExpiration);
-        }
-
-        var widePath = cache.TryGetFilePath(wideKey) ?? throw new InvalidOperationException();
-        var thinPath = cache.TryGetFilePath(thinKey) ?? throw new InvalidOperationException();
-
-        return (widePath, thinPath);
-    }
-
-    private static async Task<string> MakeWideCardAsync(SteamGame game)
+    
+    public static async Task<string> MakeWideCardAsync(SteamGame game)
     {
         var (imageHero, _, _)                   = await ImageToBase64Async(game.Images.Hero);
         var (imageLogo, imageLogoW, imageLogoH) = await ImageToBase64Async(game.Images.Logo);
@@ -159,10 +129,14 @@ public static class GameCardGenerator
             )
         );
 
-        return doc.ToString();
+        return doc.ToString(
+            #if DEBUG
+            #else
+                SaveOptions.DisableFormatting
+            #endif
+        );
     }
-
-    private static async Task<string> MakeThinCardAsync(SteamGame game)
+    public static async Task<string> MakeThinCardAsync(SteamGame game)
     {
         var (imageCover, _, _) = await ImageToBase64Async(game.Images.Cover);
         const int canvasWidth = 600;
@@ -230,7 +204,12 @@ public static class GameCardGenerator
         }
 
         var doc = new XDocument(new XComment(Disclaimer), svgElement);
-        return doc.ToString();
+        return doc.ToString(
+            #if DEBUG
+            #else
+                SaveOptions.DisableFormatting
+            #endif    
+        );
     }
 
     private static double? GetAchievementPercent(SteamGame game)

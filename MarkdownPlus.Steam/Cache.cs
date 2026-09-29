@@ -4,6 +4,9 @@ public class CachedGameData
 {
     public string AppId { get; set; } = string.Empty;
     public string Name { get; set; } = string.Empty;
+    public int AchievementsUnlocked { get; set; }
+    public string ThinResourcePath { get; set; } = string.Empty;
+    public string WideResourcePath { get; set; } = string.Empty;
 }
 
 public class CachedAchievementData
@@ -18,7 +21,7 @@ public class CachedAchievementData
 public class SteamGameCacheMetadata
 {
     public DateTime LastUpdated { get; set; }
-    public Dictionary<string, CachedGameData> Games { get; set; } = new();
+    public CachedGameData[] Games { get; set; }
 }
 
 public class SteamAchievementCacheMetadata
