@@ -21,6 +21,13 @@ public static class CacheStoreExtensions
         JsonSerializerOptions? options = null,
         CancellationToken cancellationToken = default)
     {
+        #if DEBUG
+        options ??= new JsonSerializerOptions
+        {
+            WriteIndented =  true,
+        };
+        #endif
+        
         var data = JsonSerializer.SerializeToUtf8Bytes(value, options);
         return cacheManager.SetContentAsync(key, data, cancellationToken);
     }

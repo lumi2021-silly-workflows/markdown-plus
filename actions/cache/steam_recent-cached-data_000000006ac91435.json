@@ -1,0 +1,25 @@
+{
+  "LastUpdated": "2026-09-30T14:20:25.7108764Z",
+  "Games": [
+    {
+      "AppId": "1454400",
+      "Name": "Cookie Clicker",
+      "AchievementsUnlocked": 558
+    },
+    {
+      "AppId": "1353300",
+      "Name": "Idle Slayer \u2013 Incremental RPG",
+      "AchievementsUnlocked": 451
+    },
+    {
+      "AppId": "1919460",
+      "Name": "Seraph\u0027s Last Stand",
+      "AchievementsUnlocked": 1
+    },
+    {
+      "AppId": "433340",
+      "Name": "Slime Rancher",
+      "AchievementsUnlocked": 57
+    }
+  ]
+}

@@ -161,7 +161,7 @@ variables:
 
 #### Contributions
 
-The `github-contributions` block tag provides data about someone's activity, history and contributions.
+The `github-activity` block tag provides data about someone's activity, history and contributions.
 
 For allowing this service to work, the tool needs the following
 variables:[README.md](README.md)

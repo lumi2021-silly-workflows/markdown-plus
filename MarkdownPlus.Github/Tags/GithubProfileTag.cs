@@ -14,10 +14,6 @@ public partial class GithubTags
         var stats = await API.GetGithubUserStatsAsync(username, token);
         logger.Info($"Processing github's '{username}' data...");
 
-        var group = HtmlTextNode.Div([
-            new HtmlCommentNode("github-profile Not implemented!"),
-        ]);
-        
-        return group;
+        return await CardGenerator.BuildProfileCard(stats);
     }
 }

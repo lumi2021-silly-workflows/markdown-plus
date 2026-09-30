@@ -3,7 +3,7 @@ namespace MarkdownPlus.Core.Caching;
 public sealed record CacheEntry(
     string Service,
     string Key,
-    string Etension,
+    string Extension,
     DateTimeOffset? ExpiresAt,
     string FullPath,
     string RelativePath
@@ -18,17 +18,15 @@ public sealed record CacheEntry(
             dirty = true;
         }
     } = ExpiresAt;
-
-    public string FullPath = FullPath;
-    public string RelativePath = FullPath;
-
-    public bool dirty = false;
     
-    public override string ToString()
+    public bool dirty = false;
+
+    public static string GetFileName(string service, string key, DateTimeOffset? expiresAt, string extension)
     {
-        var expiresAtStamp = (ulong?)ExpiresAt?.ToUnixTimeSeconds() ?? ulong.MaxValue;
-        return $"{Service}_{Key}_{expiresAtStamp:x16}.{Etension}";
+        var expiresAtStamp = (ulong?)expiresAt?.ToUnixTimeSeconds() ?? ulong.MaxValue;
+        return $"{service}_{key}_{expiresAtStamp:x16}.{extension}";
     }
+    public override string ToString() => GetFileName(Service, Key, ExpiresAt, Extension);
 
     public Task<string> ReadAllContentAsync() => File.ReadAllTextAsync(FullPath);
     public Task UpdateContentAsync(string content) => File.WriteAllTextAsync(FullPath, content);

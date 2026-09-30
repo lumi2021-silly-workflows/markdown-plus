@@ -38,6 +38,7 @@ public static partial class SteamLibProcessor
                     Name             = game.Name,
                     AchievementsUnlocked = game.UnlockedAchievements.Count,
                 };
+                perfectedGameData.Add(newCachedData);
                 
                 var wideCard = await GameCardGenerator.MakeWideCardAsync(game);
                 var thinCard = await GameCardGenerator.MakeThinCardAsync(game);
@@ -49,11 +50,6 @@ public static partial class SteamLibProcessor
                 cache.TouchResource(keyWide, "svg", AssetsCacheExpiration);
                 await cache.SetContentAsync(keyThin, thinCard);
                 await cache.SetContentAsync(keyWide, wideCard);
-
-                newCachedData.ThinResourcePath = cache.GetPath(keyThin);
-                newCachedData.WideResourcePath = cache.GetPath(keyWide);
-                
-                perfectedGameData.Add(newCachedData);
             }
 
             cache.TouchResource(DescriptorCacheKey, "json", AssetsCacheExpiration);

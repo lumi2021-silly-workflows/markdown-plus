@@ -35,9 +35,7 @@ public static class CardGenerator
             new XElement(
                 ns + "style",
                 """
-                text {
-                    color: #777;
-                }
+                text { color: #777; }
                 """
             ),
 
@@ -108,13 +106,7 @@ public static class CardGenerator
             );
         }
 
-        var xml = svg.ToString(
-
-            #if DEBUG
-            #else
-                SaveOptions.DisableFormatting
-            #endif
-        );
+        var xml = svg.DumpString();
         const string resourceKey = "weekly-langs";
 
         cache.TouchResource(resourceKey, "svg", DateTimeOffset.UtcNow.AddHours(23));

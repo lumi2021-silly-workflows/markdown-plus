@@ -24,8 +24,8 @@ public static partial class SteamLibProcessor
 
         foreach (var game in games)
         {
-            var thinPath = game.ThinResourcePath;
-            var widePath = game.WideResourcePath;
+            var thinPath = cache.GetPath(CardCacheKeys.Thin(game));
+            var widePath = cache.GetPath(CardCacheKeys.Wide(game));
 
             var a = new HtmlElementNode
             {

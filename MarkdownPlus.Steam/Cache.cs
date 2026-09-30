@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+
 namespace MarkdownPlus.Steam;
 
 public class CachedGameData
@@ -5,8 +7,6 @@ public class CachedGameData
     public string AppId { get; set; } = string.Empty;
     public string Name { get; set; } = string.Empty;
     public int AchievementsUnlocked { get; set; }
-    public string ThinResourcePath { get; set; } = string.Empty;
-    public string WideResourcePath { get; set; } = string.Empty;
 }
 
 public class CachedAchievementData

@@ -1,11 +1,10 @@
-using MarkdownPlus.Core.Exceptions;
 using MarkdownPlus.Markdown.Ast;
 
 namespace MarkdownPlus.Github;
 
 public partial class GithubTags
 {
-    public static async Task<AstNode> GithubTagProcess(HtmlElementNode node, IReadOnlyDictionary<string, string> envVars)
+    public static async Task<AstNode> GithubActivityProcess(HtmlElementNode node, IReadOnlyDictionary<string, string> envVars)
     {
         var (token, username) = Auth(envVars);
         

@@ -65,7 +65,6 @@ public static class Cache
                 fullPath,
                 relativePath
             );
-            entry.dirty = false;
             
             serviceEntries.Add(resourceId, entry);
         }
@@ -86,21 +85,18 @@ public static class Cache
             ? expiresAt.Value.ToUnixTimeSeconds().ToString()
             : long.MaxValue.ToString();
 
+        var fileName = CacheEntry.GetFileName(service, resourceId, expiresAt, extension);
+        var fullPath = Path.GetFullPath(Path.Combine(_cacheRoot, fileName));
+        var relativePath = Path.GetRelativePath(".", fullPath);
+        
         var entry = new CacheEntry(
             service,
             resourceId,
             extension,
             expiresAt,
-            string.Empty,
-            string.Empty
+            fullPath,
+            relativePath
         );
-        
-        var fileName = entry.ToString();
-        var fullPath = Path.GetFullPath(Path.Combine(_cacheRoot, fileName));
-        var relativePath = Path.GetRelativePath(".", fullPath);
-
-        entry.FullPath     = fullPath;
-        entry.RelativePath = relativePath;
         entry.dirty        = true;
         
         serviceEntries.Add(resourceId, entry);
