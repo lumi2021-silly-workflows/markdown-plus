@@ -12,4 +12,5 @@ public interface ICacheManager
     public Task SetContentAsync(string key, byte[] value, CancellationToken cancellationToken = default);
 
     public void TouchResource(string key, string extension, DateTimeOffset? expiresAt);
+    public void TouchResource(string key);
 }

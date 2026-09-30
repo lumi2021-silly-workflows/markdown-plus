@@ -18,6 +18,11 @@ static class Program
         
         await File.WriteAllTextAsync("README.md", MarkdownRenderer.Render(document));
         Cache.PerformCleanup();
+        
+        Console.WriteLine();
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.WriteLine("Finished");
+        Console.ResetColor();
     }
     
 }

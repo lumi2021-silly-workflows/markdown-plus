@@ -11,79 +11,71 @@ public static partial class SteamLibProcessor
         const string DescriptorCacheKey = "perfected-cached-data";
         var cache = Cache.GetServiceCache("steam");
         
-        List<CachedGameData> perfectedGameData;
-
-        await CacheLock.WaitAsync();
-        try
+        List<CachedGameData> perfectedGameData; ;
+        var cached = await cache.GetJsonAsync<SteamGameCacheMetadata>(DescriptorCacheKey);
+        if (cached is null)
         {
-            var cached = await cache.GetJsonAsync<SteamGameCacheMetadata>(DescriptorCacheKey);
-            if (cached is null)
-            {
-                var (userId, apiKey) = Auth(envVars);
+            var (userId, apiKey) = Auth(envVars);
 
-                logger.Info("Loading steam's owned games and achievements...");
-                var owned = await SteamApi.GetOwnedGamesAsync(userId, apiKey);
+            logger.Info("Loading steam's owned games and achievements...");
+            var owned = await SteamApi.GetOwnedGamesAsync(userId, apiKey);
+            
+            var perfectGames = owned
+                .Where(g => g.IsPerfected)
+                .OrderByDescending(g => g.LatestAchievementUnlockTime)
+                .Take(4)
+                .ToList();
+
+            logger.Info($"Found {perfectGames.Count} perfected games.");
+
+            perfectedGameData = [];
+
+            foreach (var game in perfectGames)
+            {
+                var newCachedData = new CachedGameData
+                {
+                    AppId            = game.AppId,
+                    Name             = game.Name,
+                    AchievementsUnlocked = game.UnlockedAchievements.Count,
+                };
                 
-                var perfectGames = owned
-                    .Where(g => g.IsPerfected)
-                    .OrderByDescending(g => g.LatestAchievementUnlockTime)
-                    .Take(4)
-                    .ToList();
+                var wideCard = await GameCardGenerator.MakeWideCardAsync(game);
+                var thinCard = await GameCardGenerator.MakeThinCardAsync(game);
 
-                logger.Info($"Found {perfectGames.Count} perfected games.");
+                var keyThin = CardCacheKeys.Thin(newCachedData);
+                var keyWide = CardCacheKeys.Wide(newCachedData);
+                
+                cache.TouchResource(keyThin, "svg", AssetsCacheExpiration);
+                cache.TouchResource(keyWide, "svg", AssetsCacheExpiration);
+                await cache.SetContentAsync(keyThin, thinCard);
+                await cache.SetContentAsync(keyWide, wideCard);
 
-                perfectedGameData = [];
-
-                foreach (var game in perfectGames)
-                {
-                    var newCachedData = new CachedGameData
-                    {
-                        AppId            = game.AppId,
-                        Name             = game.Name,
-                        AchievementsUnlocked = game.UnlockedAchievements.Count,
-                    };
-                    
-                    var wideCard = await GameCardGenerator.MakeWideCardAsync(game);
-                    var thinCard = await GameCardGenerator.MakeThinCardAsync(game);
-
-                    var keyThin = CardCacheKeys.Thin(newCachedData);
-                    var keyWide = CardCacheKeys.Wide(newCachedData);
-                    
-                    cache.TouchResource(keyThin, "svg", AssetsCacheExpiration);
-                    cache.TouchResource(keyWide, "svg", AssetsCacheExpiration);
-                    await cache.SetContentAsync(keyThin, thinCard);
-                    await cache.SetContentAsync(keyWide, wideCard);
-
-                    newCachedData.ThinResourcePath = cache.GetPath(keyThin);
-                    newCachedData.WideResourcePath = cache.GetPath(keyWide);
-                    
-                    perfectedGameData.Add(newCachedData);
-                }
-
-                cache.TouchResource(DescriptorCacheKey, "json", AssetsCacheExpiration);
-                await cache.SetJsonAsync(DescriptorCacheKey, new SteamGameCacheMetadata
-                {
-                    LastUpdated = DateTime.UtcNow,
-                    Games = [.. perfectedGameData],
-                });
-
-                logger.Success("Fresh perfected games data generated.");
+                newCachedData.ThinResourcePath = cache.GetPath(keyThin);
+                newCachedData.WideResourcePath = cache.GetPath(keyWide);
+                
+                perfectedGameData.Add(newCachedData);
             }
-            else
+
+            cache.TouchResource(DescriptorCacheKey, "json", AssetsCacheExpiration);
+            await cache.SetJsonAsync(DescriptorCacheKey, new SteamGameCacheMetadata
             {
-                logger.Info("Using cached steam game data...");
-                perfectedGameData = [.. cached.Games];
+                LastUpdated = DateTime.UtcNow,
+                Games = [.. perfectedGameData],
+            });
 
-                foreach (var game in perfectedGameData)
-                {
-                    cache.TouchResource(CardCacheKeys.Wide(game), "svg", AssetsCacheExpiration);
-                    cache.TouchResource(CardCacheKeys.Thin(game), "svg", AssetsCacheExpiration);
-                }
-            }
+            logger.Success("Fresh perfected games data generated.");
         }
-        finally
+        else
         {
-            CacheLock.Release();
+            cache.TouchResource(DescriptorCacheKey);
+            logger.Info("Using cached steam game data...");
+            perfectedGameData = [.. cached.Games];
+
+            foreach (var game in perfectedGameData)
+            {
+                cache.TouchResource(CardCacheKeys.Wide(game));
+                cache.TouchResource(CardCacheKeys.Thin(game));
+            }
         }
 
         return BuildCardHtmlMarkup([.. perfectedGameData], cache);

@@ -26,16 +26,27 @@ public static class Cache
             var relativePath = Path.GetRelativePath(".", fullPath);
             
             var split = Path.GetFileNameWithoutExtension(i).Split('_');
+            if (split.Length < 3) continue;
+            
             var service = split[0];
             var resourceId = split[1];
-            var timestamp = split[2];
+            var timestampStr = split[2];
             var extension = Path.GetExtension(i)[1..];
 
-            var expiresAtTimestamp = ulong.Parse(timestamp, NumberStyles.HexNumber);
-            DateTimeOffset? expiresAt = expiresAtTimestamp > long.MaxValue ? DateTimeOffset.FromUnixTimeSeconds(unchecked((long)expiresAtTimestamp)) : null;
+            if (!ulong.TryParse(timestampStr, NumberStyles.HexNumber, CultureInfo.InvariantCulture,
+                    out var expiresAtTimestamp))
+            {
+                _toCleanUp.Add(i);
+                continue;
+            }
+            
+            DateTimeOffset? expiresAt = expiresAtTimestamp <= long.MaxValue 
+                ? DateTimeOffset.FromUnixTimeSeconds((long)expiresAtTimestamp) 
+                : null;
 
             if (DateTimeOffset.UtcNow > expiresAt)
             {
+                Console.WriteLine($"'{i}' expired at {expiresAt}");
                 _toCleanUp.Add(i);
                 continue;
             }
@@ -45,15 +56,18 @@ public static class Cache
                 CacheEntries.Add(service, []);
                 serviceEntries = CacheEntries[service];
             }
-            
-            serviceEntries.Add(resourceId, new CacheEntry(
+
+            var entry = new CacheEntry(
                 service,
                 resourceId,
                 extension,
                 expiresAt,
                 fullPath,
                 relativePath
-            ));
+            );
+            entry.dirty = false;
+            
+            serviceEntries.Add(resourceId, entry);
         }
     }
 
@@ -85,15 +99,30 @@ public static class Cache
         var fullPath = Path.GetFullPath(Path.Combine(_cacheRoot, fileName));
         var relativePath = Path.GetRelativePath(".", fullPath);
 
-        entry.FullPath = fullPath;
+        entry.FullPath     = fullPath;
         entry.RelativePath = relativePath;
+        entry.dirty        = true;
         
         serviceEntries.Add(resourceId, entry);
     }
     
     public static void PerformCleanup()
     {
-        foreach (var i in _toCleanUp) File.Delete(i);
+        Console.ForegroundColor = ConsoleColor.Red;
+        foreach (var i in _toCleanUp)
+        {
+            Console.WriteLine($"Removing unknown file '{i}'");
+            File.Delete(i);
+        }
+        foreach (var (_, i) in CacheEntries)
+        {
+            foreach (var (_, j) in i)
+            {
+                if (j.dirty) continue;
+                Console.WriteLine($"Removing unused cache entry '{j}'");
+                File.Delete(j.FullPath);
+            }
+        }
+        Console.ResetColor();
     }
 }
-

@@ -117,16 +117,18 @@ Some options are:
 <wakatime-weekly-langs style="display: code;" level="⣿⣷⣶⣦⣤⣄⣀ " />
 ```
 
-<img src="actions/cache/wakatime_weekly-langs_fffffff1886f4c70.svg" />
+<p align="center">
+<img src="/home/leo/Documentos/repos/MarkdownPlus/actions/cache/wakatime_weekly-langs_000000006abe5903.svg" />
+</p>
 
 ```rust
-Total Time: 12 hrs 57 mins
+Total Time: 14 hrs 21 mins
 
-- "C#"            #######################        9 hrs 45 mins
-- "Markdown"      ###                            1 hr 23 mins
+- "C#"            ######################         10 hrs 35 mins
+- "Markdown"      ###                            1 hr 32 mins
 - "Zig"           ##                             58 mins
+- "Go"            #                              26 mins
 - "tq"            #                              19 mins
-- "JSON"                                         8 mins
 ```
 
 ### Last.fm
@@ -261,32 +263,32 @@ variables:
 ```
 
 <p>
+<a href="https://store.steampowered.com/app/1454400" target="_blank">
+<picture>
+<source media="(max-width: 1061px)" width="24%" srcset="/home/leo/Documentos/repos/MarkdownPlus/actions/cache/steam_gamecard-1454400-00000000-thin_000000006ac90f44.svg" />
+<source media="(min-width: 1061px)" width="49%" srcset="/home/leo/Documentos/repos/MarkdownPlus/actions/cache/steam_gamecard-1454400-00000000-wide_000000006ac90f44.svg" />
+<img style="max-width: 100%;" alt="Cookie Clicker" />
+</picture>
+</a>
 <a href="https://store.steampowered.com/app/1353300" target="_blank">
 <picture>
-<source media="(max-width: 1061px)" width="24%" srcset="actions/cache/steam_gamecard-1353300-00000000-thin_000000006ac747d0.svg" />
-<source media="(min-width: 1061px)" width="49%" srcset="actions/cache/steam_gamecard-1353300-00000000-wide_000000006ac747d0.svg" />
+<source media="(max-width: 1061px)" width="24%" srcset="/home/leo/Documentos/repos/MarkdownPlus/actions/cache/steam_gamecard-1353300-00000000-thin_000000006ac90f44.svg" />
+<source media="(min-width: 1061px)" width="49%" srcset="/home/leo/Documentos/repos/MarkdownPlus/actions/cache/steam_gamecard-1353300-00000000-wide_000000006ac90f44.svg" />
 <img style="max-width: 100%;" alt="Idle Slayer – Incremental RPG" />
 </picture>
 </a>
 <a href="https://store.steampowered.com/app/1919460" target="_blank">
 <picture>
-<source media="(max-width: 1061px)" width="24%" srcset="actions/cache/steam_gamecard-1919460-00000000-thin_000000006ac747d0.svg" />
-<source media="(min-width: 1061px)" width="49%" srcset="actions/cache/steam_gamecard-1919460-00000000-wide_000000006ac747d0.svg" />
+<source media="(max-width: 1061px)" width="24%" srcset="/home/leo/Documentos/repos/MarkdownPlus/actions/cache/steam_gamecard-1919460-00000000-thin_000000006ac90f44.svg" />
+<source media="(min-width: 1061px)" width="49%" srcset="/home/leo/Documentos/repos/MarkdownPlus/actions/cache/steam_gamecard-1919460-00000000-wide_000000006ac90f44.svg" />
 <img style="max-width: 100%;" alt="Seraph's Last Stand" />
 </picture>
 </a>
 <a href="https://store.steampowered.com/app/433340" target="_blank">
 <picture>
-<source media="(max-width: 1061px)" width="24%" srcset="actions/cache/steam_gamecard-433340-00000000-thin_000000006ac747d0.svg" />
-<source media="(min-width: 1061px)" width="49%" srcset="actions/cache/steam_gamecard-433340-00000000-wide_000000006ac747d0.svg" />
+<source media="(max-width: 1061px)" width="24%" srcset="/home/leo/Documentos/repos/MarkdownPlus/actions/cache/steam_gamecard-433340-00000000-thin_000000006ac90f44.svg" />
+<source media="(min-width: 1061px)" width="49%" srcset="/home/leo/Documentos/repos/MarkdownPlus/actions/cache/steam_gamecard-433340-00000000-wide_000000006ac90f44.svg" />
 <img style="max-width: 100%;" alt="Slime Rancher" />
-</picture>
-</a>
-<a href="https://store.steampowered.com/app/457140" target="_blank">
-<picture>
-<source media="(max-width: 1061px)" width="24%" srcset="actions/cache/steam_gamecard-457140-00000000-thin_000000006ac747d0.svg" />
-<source media="(min-width: 1061px)" width="49%" srcset="actions/cache/steam_gamecard-457140-00000000-wide_000000006ac747d0.svg" />
-<img style="max-width: 100%;" alt="Oxygen Not Included" />
 </picture>
 </a>
 </p>
@@ -311,32 +313,32 @@ variables:
 ```
 
 <p>
-<a href="https://store.steampowered.com/app/1353300" target="_blank">
+<a href="https://store.steampowered.com/app/1289310" target="_blank">
 <picture>
-<source media="(max-width: 1061px)" width="24%" srcset="actions/cache/steam_gamecard-1353300-00000000-thin_000000006ac747d0.svg" />
-<source media="(min-width: 1061px)" width="49%" srcset="actions/cache/steam_gamecard-1353300-00000000-wide_000000006ac747d0.svg" />
-<img style="max-width: 100%;" alt="Idle Slayer – Incremental RPG" />
-</picture>
-</a>
-<a href="https://store.steampowered.com/app/1919460" target="_blank">
-<picture>
-<source media="(max-width: 1061px)" width="24%" srcset="actions/cache/steam_gamecard-1919460-00000000-thin_000000006ac747d0.svg" />
-<source media="(min-width: 1061px)" width="49%" srcset="actions/cache/steam_gamecard-1919460-00000000-wide_000000006ac747d0.svg" />
-<img style="max-width: 100%;" alt="Seraph's Last Stand" />
+<source media="(max-width: 1061px)" width="24%" srcset="actions/cache/steam_gamecard-1289310-0000000a-thin_000000006ac90fbf.svg" />
+<source media="(min-width: 1061px)" width="49%" srcset="actions/cache/steam_gamecard-1289310-0000000a-wide_000000006ac90fbf.svg" />
+<img style="max-width: 100%;" alt="Helltaker" />
 </picture>
 </a>
 <a href="https://store.steampowered.com/app/433340" target="_blank">
 <picture>
-<source media="(max-width: 1061px)" width="24%" srcset="actions/cache/steam_gamecard-433340-00000000-thin_000000006ac747d0.svg" />
-<source media="(min-width: 1061px)" width="49%" srcset="actions/cache/steam_gamecard-433340-00000000-wide_000000006ac747d0.svg" />
+<source media="(max-width: 1061px)" width="24%" srcset="actions/cache/steam_gamecard-433340-00000039-thin_000000006ac90fbf.svg" />
+<source media="(min-width: 1061px)" width="49%" srcset="actions/cache/steam_gamecard-433340-00000039-wide_000000006ac90fbf.svg" />
 <img style="max-width: 100%;" alt="Slime Rancher" />
 </picture>
 </a>
-<a href="https://store.steampowered.com/app/457140" target="_blank">
+<a href="https://store.steampowered.com/app/255520" target="_blank">
 <picture>
-<source media="(max-width: 1061px)" width="24%" srcset="actions/cache/steam_gamecard-457140-00000000-thin_000000006ac747d0.svg" />
-<source media="(min-width: 1061px)" width="49%" srcset="actions/cache/steam_gamecard-457140-00000000-wide_000000006ac747d0.svg" />
-<img style="max-width: 100%;" alt="Oxygen Not Included" />
+<source media="(max-width: 1061px)" width="24%" srcset="actions/cache/steam_gamecard-255520-00000002-thin_000000006ac90fbf.svg" />
+<source media="(min-width: 1061px)" width="49%" srcset="actions/cache/steam_gamecard-255520-00000002-wide_000000006ac90fbf.svg" />
+<img style="max-width: 100%;" alt="Viscera Cleanup Detail: Shadow Warrior" />
+</picture>
+</a>
+<a href="https://store.steampowered.com/app/1997680" target="_blank">
+<picture>
+<source media="(max-width: 1061px)" width="24%" srcset="actions/cache/steam_gamecard-1997680-0000003a-thin_000000006ac90fbf.svg" />
+<source media="(min-width: 1061px)" width="49%" srcset="actions/cache/steam_gamecard-1997680-0000003a-wide_000000006ac90fbf.svg" />
+<img style="max-width: 100%;" alt="REFLEXIA Prototype ver." />
 </picture>
 </a>
 </p>

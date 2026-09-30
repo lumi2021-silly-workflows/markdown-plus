@@ -81,14 +81,14 @@ public sealed class HtmlElementNode : AstNode
     /// </summary>
     public bool TrailingLineBreak { get; set; }
 
-    public static HtmlElementNode CreateBr() => new()
+    public static HtmlElementNode Br() => new()
     {
         TagName           = "br",
         TrailingLineBreak = false,
         SelfClosing       = true,
     };
     
-    public static HtmlElementNode CreateA(string text, string href) => new()
+    public static HtmlElementNode A(string text, string href) => new()
     {
         TagName           = "a",
         TrailingLineBreak = false,
@@ -96,19 +96,28 @@ public sealed class HtmlElementNode : AstNode
         Attributes = { { "href", href } },
         Children = { new HtmlTextNode(text) },
     };
-    public static HtmlElementNode CreateP(string text) => new()
+    public static HtmlElementNode P(string text) => new()
     {
         TagName           = "p",
         TrailingLineBreak = false,
         SelfClosing       = false,
         Children          = { new HtmlTextNode(text) },
     };
-    public static HtmlElementNode CreateStrong(string text) => new()
+    public static HtmlElementNode Strong(string text) => new()
     {
         TagName           = "strong",
         TrailingLineBreak = false,
         SelfClosing       = true,
         Children          = { new HtmlTextNode(text) },
+    };
+    
+    public static HtmlElementNode AlignCenter(List<AstNode> children) => new()
+    {
+        TagName           = "p",
+        TrailingLineBreak = false,
+        SelfClosing       = false,
+        Attributes        = { ["align"] = "center" },
+        Children          = children,
     };
 }
 

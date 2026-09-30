@@ -7,7 +7,7 @@ namespace MarkdownPlus.Steam.Tags;
 
 public static partial class SteamLibProcessor
 {
-    private static DateTimeOffset AssetsCacheExpiration = DateTimeOffset.UtcNow.AddDays(7).AddHours(50);
+    private static readonly DateTimeOffset AssetsCacheExpiration = DateTimeOffset.UtcNow.AddDays(7).AddHours(50);
     private static readonly ModuleLogger logger = new("Steam Service");
     private static readonly SemaphoreSlim CacheLock = new(1, 1);
     

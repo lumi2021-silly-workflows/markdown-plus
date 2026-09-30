@@ -12,7 +12,7 @@ public static class CardGenerator
     public static async Task<AstNode> GenerateDisplayBlock(JsonElement data)
     {
         var cache = Cache.GetServiceCache("wakatime");
-        
+
         var languages = data.GetProperty("languages");
         var count = Math.Min(5, languages.GetArrayLength());
 
@@ -25,7 +25,7 @@ public static class CardGenerator
         const double barHeight = 12;
 
         var height = headerHeight + count * rowHeight + 10;
-            
+
         var svg = new XElement(
             ns + "svg",
             new XAttribute("width", width),
@@ -35,12 +35,12 @@ public static class CardGenerator
             new XElement(
                 ns + "style",
                 """
-                 text {
-                     color: #777;
-                 }
-                 """
+                text {
+                    color: #777;
+                }
+                """
             ),
-            
+
             new XElement(
                 ns + "text",
                 new XAttribute("x", 20),
@@ -107,26 +107,32 @@ public static class CardGenerator
                 )
             );
         }
-        
+
         var xml = svg.ToString(
+
             #if DEBUG
             #else
                 SaveOptions.DisableFormatting
             #endif
         );
         const string resourceKey = "weekly-langs";
-        
-        cache.TouchResource(resourceKey, "svg", new DateTimeOffset().AddHours(23));
+
+        cache.TouchResource(resourceKey, "svg", DateTimeOffset.UtcNow.AddHours(23));
         await cache.SetContentAsync(resourceKey, xml);
         var path = cache.GetPath(resourceKey);
-        
-        return new HtmlElementNode
-        {
-            TagName     = "img",
-            SelfClosing = true,
-            Attributes  = { ["src"] = path },
-        };
+
+        return HtmlElementNode.AlignCenter(
+            [
+                new HtmlElementNode
+                {
+                    TagName     = "img",
+                    SelfClosing = true,
+                    Attributes  = { ["src"] = path },
+                },
+            ]
+        );
     }
+    
     public static AstNode GenerateDisplayCode(JsonElement data, string levels)
     {
         var content = new StringBuilder();

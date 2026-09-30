@@ -21,9 +21,8 @@ public sealed record CacheEntry(
 
     public string FullPath = FullPath;
     public string RelativePath = FullPath;
-    
-    public bool dirty { get; private set; }
-    public bool markForDeletion = false;
+
+    public bool dirty = false;
     
     public override string ToString()
     {
