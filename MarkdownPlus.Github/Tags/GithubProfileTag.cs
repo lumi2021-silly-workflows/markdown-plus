@@ -14,6 +14,7 @@ public partial class GithubTags
         var stats = await API.GetGithubUserStatsAsync(username, token);
         logger.Info($"Processing github's '{username}' data...");
 
-        return await CardGenerator.BuildProfileCard(stats);
+        var card = await CardGenerator.BuildProfileCard(stats);
+        return HtmlElementNode.A($"www.github.com/{stats.Username}", card);
     }
 }

@@ -64,8 +64,8 @@ public static class Processor
                 duration = $"{minutes}:{seconds:D2}";
             }
 
-            var trackHLink = HtmlElementNode.A(trackName, trackUrl);
-            var artistHLink = HtmlElementNode.A(artistName, artistUrl);
+            var trackHLink = HtmlElementNode.A(trackUrl, trackName);
+            var artistHLink = HtmlElementNode.A(artistUrl, artistName);
 
             var div = new HtmlElementNode
             {

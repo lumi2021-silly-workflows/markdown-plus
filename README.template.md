@@ -114,11 +114,13 @@ Some options are:
 
 ```html
 <wakatime-weekly-langs />
-<wakatime-weekly-langs style="display: code;" level="⣿⣷⣶⣦⣤⣄⣀ " />
+<wakatime-weekly-langs max="10" />
+<wakatime-weekly-langs style="display: code;" levels="⣿⣷⣶⣦⣤⣄⣀" />
 ```
 
 <wakatime-weekly-langs />
-<wakatime-weekly-langs style="display: code;" level="⣿⣷⣶⣦⣤⣄⣀ " />
+<wakatime-weekly-langs max="10" />
+<wakatime-weekly-langs style="display: code;" levels="⣿⣷⣶⣦⣤⣄⣀" />
 
 
 ### Last.fm

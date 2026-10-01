@@ -9,12 +9,12 @@ namespace MarkdownPlus.Wakatime;
 
 public static class CardGenerator
 {
-    public static async Task<AstNode> GenerateDisplayBlock(JsonElement data)
+    public static async Task<AstNode> GenerateDisplayBlock(JsonElement data, int maxLines)
     {
         var cache = Cache.GetServiceCache("wakatime");
 
         var languages = data.GetProperty("languages");
-        var count = Math.Min(5, languages.GetArrayLength());
+        var count = Math.Min(maxLines, languages.GetArrayLength());
 
         XNamespace ns = "http://www.w3.org/2000/svg";
 
@@ -107,7 +107,7 @@ public static class CardGenerator
         }
 
         var xml = svg.DumpString();
-        const string resourceKey = "weekly-langs";
+        var resourceKey = $"weekly-langs-{count}";
 
         cache.TouchResource(resourceKey, "svg", DateTimeOffset.UtcNow.AddHours(23));
         await cache.SetContentAsync(resourceKey, xml);
@@ -125,16 +125,16 @@ public static class CardGenerator
         );
     }
     
-    public static AstNode GenerateDisplayCode(JsonElement data, string levels)
+    public static AstNode GenerateDisplayCode(JsonElement data, int maxLines, string levels)
     {
         var content = new StringBuilder();
         
+        var languages = data.GetProperty("languages");
+        var limit = Math.Min(maxLines, languages.GetArrayLength());
+        
         content.AppendLine($"Total Time: {data.GetProperty("human_readable_total").GetString()}");
         content.AppendLine();
-
-        var languages = data.GetProperty("languages");
-
-        var limit = Math.Min(5, languages.GetArrayLength());
+        
         for (var i = 0; i < limit; i++)
         {
             var item = languages[i];

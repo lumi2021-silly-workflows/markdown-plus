@@ -88,13 +88,21 @@ public sealed class HtmlElementNode : AstNode
         SelfClosing       = true,
     };
     
-    public static HtmlElementNode A(string text, string href) => new()
+    public static HtmlElementNode A(string href, string text) => new()
     {
         TagName           = "a",
         TrailingLineBreak = false,
         SelfClosing       = false,
         Attributes = { { "href", href } },
         Children = { new HtmlTextNode(text) },
+    };
+    public static HtmlElementNode A(string href, params List<AstNode> children) => new()
+    {
+        TagName           = "a",
+        TrailingLineBreak = false,
+        SelfClosing       = false,
+        Attributes        = { { "href", href } },
+        Children          = children,
     };
     public static HtmlElementNode P(string text) => new()
     {

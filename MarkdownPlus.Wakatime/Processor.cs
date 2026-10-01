@@ -13,8 +13,9 @@ public static class Processor
         var apiKey = envVars[Constants.API_KEY_VAR];
 
         var displayStyle = DisplayStyle.Block;
+        var max = int.TryParse(node.Attributes.GetValueOrDefault("max", "5"), out var value) ? value : 5;
         var levels = node.Attributes.GetValueOrDefault("levels", "# ")!;
-
+        
         if (node.Attributes.TryGetValue("style", out var styleString))
         {
             var style = StyleParser.Parse(styleString!);
@@ -38,11 +39,10 @@ public static class Processor
 
         return displayStyle switch
         {
-            DisplayStyle.Block => await CardGenerator.GenerateDisplayBlock(data),
-            DisplayStyle.Code => CardGenerator.GenerateDisplayCode(data, levels),
+            DisplayStyle.Block => await CardGenerator.GenerateDisplayBlock(data, max),
+            DisplayStyle.Code => CardGenerator.GenerateDisplayCode(data, max, levels),
             _ => throw new ArgumentOutOfRangeException(),
         };
     }
-    
     
 }

@@ -114,21 +114,26 @@ Some options are:
 
 ```html
 <wakatime-weekly-langs />
-<wakatime-weekly-langs style="display: code;" level="⣿⣷⣶⣦⣤⣄⣀ " />
+<wakatime-weekly-langs max="10" />
+<wakatime-weekly-langs style="display: code;" levels="⣿⣷⣶⣦⣤⣄⣀" />
 ```
 
 <p align="center">
-<img src="actions/cache/wakatime_weekly-langs_000000006abe5caa.svg" />
+<img src="actions/cache/wakatime_weekly-langs-5_000000006abf201a.svg" />
+</p>
+
+<p align="center">
+<img src="actions/cache/wakatime_weekly-langs-10_000000006abf201b.svg" />
 </p>
 
 ```rust
-Total Time: 14 hrs 21 mins
+Total Time: 15 hrs 2 mins
 
-- "C#"            ######################         10 hrs 35 mins
-- "Markdown"      ###                            1 hr 32 mins
-- "Zig"           ##                             58 mins
-- "Go"            #                              26 mins
-- "tq"            #                              19 mins
+- "C#"            ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣀⣀⣀⣀⣀⣀⣀⣀ 10 hrs 50 mins
+- "Markdown"      ⣿⣿⣿⣦⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀ 1 hr 45 mins
+- "Zig"           ⣿⣿⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀ 58 mins
+- "Image (svg)"   ⣿⣄⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀ 33 mins
+- "Go"            ⣷⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀ 26 mins
 ```
 
 ### Last.fm
@@ -224,9 +229,11 @@ variables:
 <github-profile />
 ```
 
+<a href="www.github.com/lumi2021">
 <p align="center">
 <img src="actions/cache/github_github-profile-lumi2021_000000006abe6fd6.svg" />
 </p>
+</a>
 
 #### Contributions
 
