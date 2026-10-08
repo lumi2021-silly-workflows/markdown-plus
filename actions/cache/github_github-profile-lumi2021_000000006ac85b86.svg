@@ -35,11 +35,11 @@
     </g>
     <g transform="translate(0, 45)">
       <text x="0" y="0" class="label">Followers</text>
-      <text x="0" y="18" class="value">19</text>
+      <text x="0" y="18" class="value">20</text>
     </g>
     <g transform="translate(150, 45)">
       <text x="0" y="0" class="label">Following</text>
-      <text x="0" y="18" class="value">24</text>
+      <text x="0" y="18" class="value">25</text>
     </g>
     <g transform="translate(300, 45)">
       <text x="0" y="0" class="label">Releases</text>

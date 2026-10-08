@@ -15,6 +15,6 @@ public partial class GithubTags
         logger.Info($"Processing github's '{username}' data...");
 
         var card = await CardGenerator.BuildProfileCard(stats);
-        return HtmlElementNode.A($"www.github.com/{stats.Username}", card);
+        return HtmlElementNode.A($"www.github.com/{stats.Username}", HtmlElementNode.AlignCenter(card));
     }
 }

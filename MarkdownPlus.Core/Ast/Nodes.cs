@@ -119,7 +119,7 @@ public sealed class HtmlElementNode : AstNode
         Children          = { new HtmlTextNode(text) },
     };
     
-    public static HtmlElementNode AlignCenter(List<AstNode> children) => new()
+    public static HtmlElementNode AlignCenter(params List<AstNode> children) => new()
     {
         TagName           = "p",
         TrailingLineBreak = false,

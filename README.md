@@ -119,21 +119,21 @@ Some options are:
 ```
 
 <p align="center">
-<img src="actions/cache/wakatime_weekly-langs-5_000000006abf201a.svg" />
+<img src="actions/cache/wakatime_weekly-langs-5_000000006ac85b74.svg" />
 </p>
 
 <p align="center">
-<img src="actions/cache/wakatime_weekly-langs-10_000000006abf201b.svg" />
+<img src="actions/cache/wakatime_weekly-langs-10_000000006ac85b75.svg" />
 </p>
 
 ```rust
-Total Time: 15 hrs 2 mins
+Total Time: 13 hrs 12 mins
 
-- "C#"            ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣀⣀⣀⣀⣀⣀⣀⣀ 10 hrs 50 mins
-- "Markdown"      ⣿⣿⣿⣦⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀ 1 hr 45 mins
-- "Zig"           ⣿⣿⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀ 58 mins
-- "Image (svg)"   ⣿⣄⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀ 33 mins
-- "Go"            ⣷⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀ 26 mins
+- "Go"            ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀ 3 hrs 58 mins
+- "C#"            ⣿⣿⣿⣿⣿⣿⣿⣄⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀ 3 hrs 7 mins
+- "AsciiDoc"      ⣿⣿⣿⣿⣿⣤⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀ 2 hrs 22 mins
+- "Swift"         ⣿⣿⣿⣿⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀ 1 hr 47 mins
+- "TypeScript"    ⣿⣶⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀ 44 mins
 ```
 
 ### Last.fm
@@ -166,6 +166,17 @@ variables:
 <strong clear="left">3:36</strong>
 </div>
 <div style="clear: both; padding: 10px 0;">
+<img src="https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/2f/79/b8/2f79b8c6-4d30-ca92-4e18-8c6752a61433/5039060230695.png/60x60bb.jpg" width="60" align="left" />
+<p>
+<strong>
+<a href="https://www.last.fm/music/we+are+the+dirt/_/counting+the+days">counting the days</a>
+</strong>
+ • 
+<a href="https://www.last.fm/music/we+are+the+dirt">we are the dirt</a>
+</p>
+<strong clear="left">4:48</strong>
+</div>
+<div style="clear: both; padding: 10px 0;">
 <img src="https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/25/9c/a5/259ca5e1-c365-8b72-b12e-660aae6ff21d/25UMGIM87679.rgb.jpg/60x60bb.jpg" width="60" align="left" />
 <p>
 <strong>
@@ -188,18 +199,7 @@ variables:
 <strong clear="left">4:47</strong>
 </div>
 <div style="clear: both; padding: 10px 0;">
-<img src="https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/25/9c/a5/259ca5e1-c365-8b72-b12e-660aae6ff21d/25UMGIM87679.rgb.jpg/60x60bb.jpg" width="60" align="left" />
-<p>
-<strong>
-<a href="https://www.last.fm/music/Elio+Mei/_/Velcro">Velcro</a>
-</strong>
- • 
-<a href="https://www.last.fm/music/Elio+Mei">Elio Mei</a>
-</p>
-<strong clear="left">1:53</strong>
-</div>
-<div style="clear: both; padding: 10px 0;">
-<img src="https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/0b/78/a7/0b78a78c-0d4b-b394-d1f4-ee4793158fac/859725169963.png/60x60bb.jpg" width="60" align="left" />
+<img src="https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/00/c6/4c/00c64cfa-27c8-81cd-a12c-1cafb5e832f2/054391945853.jpg/60x60bb.jpg" width="60" align="left" />
 <p>
 <strong>
 <a href="https://www.last.fm/music/Cavetown/_/This+is+home">This is home</a>
@@ -207,7 +207,7 @@ variables:
  • 
 <a href="https://www.last.fm/music/Cavetown">Cavetown</a>
 </p>
-<strong clear="left">3:46</strong>
+<strong clear="left">4:29</strong>
 </div>
 </p>
 
@@ -231,7 +231,9 @@ variables:
 
 <a href="www.github.com/lumi2021">
 <p align="center">
-<img src="actions/cache/github_github-profile-lumi2021_000000006abe6fd6.svg" />
+<p align="center">
+<img src="actions/cache/github_github-profile-lumi2021_000000006ac85b86.svg" />
+</p>
 </p>
 </a>
 
