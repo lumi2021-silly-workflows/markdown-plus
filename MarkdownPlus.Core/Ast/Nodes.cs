@@ -127,6 +127,14 @@ public sealed class HtmlElementNode : AstNode
         Attributes        = { ["align"] = "center" },
         Children          = children,
     };
+    public static HtmlElementNode AlignRight(params List<AstNode> children) => new()
+    {
+        TagName           = "p",
+        TrailingLineBreak = false,
+        SelfClosing       = false,
+        Attributes        = { ["align"] = "right" },
+        Children          = children,
+    };
 }
 
 public sealed class HtmlCommentNode(string? content = null) : AstNode

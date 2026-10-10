@@ -4,8 +4,10 @@ namespace MarkdownPlus.Core;
 
 public static class StyleParser
 {
-    public static Dictionary<string, string> Parse(string style)
+    public static Dictionary<string, string>? Parse(string? style)
     {
+        if (style == null) return null;
+        
         var result = new Dictionary<string, string>();
 
         foreach (var declaration in SplitDeclarations(style))

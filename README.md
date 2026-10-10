@@ -226,17 +226,13 @@ variables:
 - `github_username`: The username of the targeted github user.
 
 ```html
-<github-profile width="49.5%" />
-<github-profile user="Anthragon" width="49.5%" />
+<github-profile style="width: 49.5%;" />
+<github-profile user="Anthragon" style="width: 49.5%;" />
 ```
 
-<p align="center">
 <img src="actions/cache/github_github-profile-lumi2021_000000006acb7578.svg" width="49.5%" />
-</p>
 
-<p align="center">
 <img src="actions/cache/github_github-profile-Anthragon_000000006acb7cd4.svg" width="49.5%" />
-</p>
 
 #### Repositories
 
@@ -249,20 +245,16 @@ variables:[README.md](README.md)
 - `github_username`: The username of the targeted github user.
 
 ```html
-<github-repo path="lumi2021-silly-workflows/markdown-plus" width="49.5%" />
-<github-repo path="Anthragon/Distribution" width="49.5%" />
+<github-repo path="lumi2021-silly-workflows/markdown-plus" style="width: 49.5%;" />
+<github-repo path="Anthragon/Distribution" style="width: 49.5%;" />
 ```
 
 <a href="https://github.com/lumi2021-silly-workflows/markdown-plus">
-<p align="center">
-<img src="actions/cache/github_github-repository-lumi2021-silly-workflows-markdown-plus_000000006acb79f6.svg" alt="lumi2021-silly-workflows/markdown-plus - " width="49%" />
-</p>
+<img src="actions/cache/github_github-repository-lumi2021-silly-workflows-markdown-plus_000000006acb823c.svg" width="49.5%" />
 </a>
 
 <a href="https://github.com/Anthragon/Distribution">
-<p align="center">
-<img src="actions/cache/github_github-repository-Anthragon-Distribution_000000006acb7cd5.svg" alt="Anthragon/Distribution - Operating system built in zig" width="49%" />
-</p>
+<img src="actions/cache/github_github-repository-Anthragon-Distribution_000000006acb7cd5.svg" width="49.5%" />
 </a>
 
 #### Contributions
@@ -279,7 +271,7 @@ variables:[README.md](README.md)
 <github-activity />
 ```
 
-- ✏️ Made 2 commits
+- ✏️ Made 3 commits
 - ✏️ Made 8 commits
 - ✏️ Made 18 commits
 - ✏️ Made 3 commits

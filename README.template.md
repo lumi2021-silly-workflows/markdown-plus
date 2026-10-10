@@ -31,10 +31,10 @@ badges inside the code:
 
 ```html
 <badge color="202020" icon="python">python</badge>
-<badge color="303030" style="flat" icon="c">C</badge> \
+<badge color="303030" style="flat" icon="c">C</badge>
 <badge color="404040" style="flat-square" icon="c++">C++</badge>
-<badge color="505050" style="plastic" icon="dotnet">C#</badge> \
-<badge color="606060" style="for-the-badge" icon="zig">Zig</badge> \
+<badge color="505050" style="plastic" icon="dotnet">C#</badge>
+<badge color="606060" style="for-the-badge" icon="zig">Zig</badge>
 <badge color="707070" style="social" icon="lua">Lua</badge>
 <br/>
 <badge color="282b30" style="for-the-badge" icon="discord" href="https://discordapp.com/users/632992487375634432">Discord</badge>
@@ -43,10 +43,10 @@ badges inside the code:
 ```
 
 <badge color="202020" icon="python">python</badge>
-<badge color="303030" style="flat" icon="c">C</badge> \
+<badge color="303030" style="flat" icon="c">C</badge>
 <badge color="404040" style="flat-square" icon="c++">C++</badge>
-<badge color="505050" style="plastic" icon="dotnet">C#</badge> \
-<badge color="606060" style="for-the-badge" icon="zig">Zig</badge> \
+<badge color="505050" style="plastic" icon="dotnet">C#</badge>
+<badge color="606060" style="for-the-badge" icon="zig">Zig</badge>
 <badge color="202020" style="social" icon="lua">Lua</badge>
 <br/>
 <badge color="282b30" style="for-the-badge" icon="discord" href="https://discordapp.com/users/632992487375634432">Discord</badge>
@@ -109,9 +109,6 @@ For allowing this service to work, the tool needs the following
 variables:
 - `wakatime_api_key`: The API key provided by the wakatime service.
 
-Some options are:
-- `weekly-langs`: Time spent in each language this week.
-
 ```html
 <wakatime-weekly-langs />
 <wakatime-weekly-langs max="10" />
@@ -122,6 +119,10 @@ Some options are:
 <wakatime-weekly-langs max="10" />
 <wakatime-weekly-langs style="display: code;" levels="⣿⣷⣶⣦⣤⣄⣀" />
 
+The following attributes can be applied to the `wakatime-weekly-langs` tag:
+- `max`: Maximum number of listed languages (default is 5)
+- `style`: CSS-based styling
+- `levels`: Charset used for the bar when `style.display` is `code`
 
 ### Last.fm
 
@@ -157,11 +158,15 @@ variables:
 
 
 ```html
-<github-profile width="49.5%" />
-<github-profile user="Anthragon" width="49.5%" />
+<github-profile style="width: 49.5%;" />
+<github-profile user="Anthragon" style="width: 49.5%;" />
 ```
-<github-profile width="49.5%" />
-<github-profile user="Anthragon" width="49.5%" />
+<github-profile style="width: 49.5%;" />
+<github-profile user="Anthragon" style="width: 49.5%;" />
+
+The following attributes can be applied to the `wakatime-weekly-langs` tag:
+- `user`: Desired user
+- `style`: CSS-based styling
 
 #### Repositories
 
@@ -170,15 +175,19 @@ The `github-repo` block tag provides data about someone's activity, history and 
 For allowing this service to work, the tool needs the following
 variables:[README.md](README.md)
 - `github_api_token`: A token from github's API. No private access needed.[README.md](README.md)
-- `github_username`: The username of the targeted github user.
+- `github_username`: The username of the targeted github user
 
 
 ```html
-<github-repo path="lumi2021-silly-workflows/markdown-plus" width="49.5%" />
-<github-repo path="Anthragon/Distribution" width="49.5%" />
+<github-repo path="lumi2021-silly-workflows/markdown-plus" style="width: 49.5%;" />
+<github-repo path="Anthragon/Distribution" style="width: 49.5%;" />
 ```
-<p ><github-repo path="lumi2021-silly-workflows/markdown-plus" width="49.5%" /></p>
-<github-repo path="Anthragon/Distribution" width="49.5%" />
+<github-repo path="lumi2021-silly-workflows/markdown-plus" style="width: 49.5%;" />
+<github-repo path="Anthragon/Distribution" style="width: 49.5%;" />
+
+The following attributes can be applied to the `wakatime-weekly-langs` tag:
+- `path`: Desired repository path, formated as `{owner}/{repository}`
+- `style`: Css-based styling
 
 #### Contributions
 

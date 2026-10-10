@@ -180,7 +180,7 @@ internal class API
         {
             "User" => GithubAccountType.User,
             "Organization" => GithubAccountType.Organization,
-            _ => throw new InvalidOperationException($"Tipo de conta GitHub desconhecido: {account.Type}"),
+            _ => throw new InvalidOperationException($"Unknown account type: {account.Type}"),
         };
         
         var repositories = new List<GithubRepository>();

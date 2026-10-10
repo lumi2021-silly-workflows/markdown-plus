@@ -11,12 +11,12 @@ internal static class CardGenerator
     private static readonly XNamespace Svg = "http://www.w3.org/2000/svg";
     private static readonly ICacheManager cache = Cache.GetServiceCache("github");
     private static readonly HttpClient HttpClient = new();
-
-    private const int width = 480;
-    private const int height = 250;
     
-    public static async Task<AstNode> BuildProfileCard(GithubUserStats stats, string? styleWidth = null)
+    public static async Task<AstNode> BuildProfileCard(GithubUserStats stats, CardStyles styles = default)
     {
+        const int width = 480;
+        const int height = 250;
+        
         var doc = new XElement(Svg + "svg",
             new XAttribute("width", width.ToString()),
             new XAttribute("height", height.ToString()),
@@ -63,7 +63,7 @@ internal static class CardGenerator
                 new XElement(Svg + "rect",
                     new XAttribute("x", "90"),
                     new XAttribute("y", "38"),
-                    new XAttribute("width", stats.Type.ToString().Length * 7 + 12),
+                    new XAttribute("width", stats.Type.ToString().Length * 6 + 15),
                     new XAttribute("height", "16"),
                     new XAttribute("rx", "8"),
                     new XAttribute("fill", "#238636"),
@@ -109,24 +109,32 @@ internal static class CardGenerator
 
         cache.TouchResource(resourceKey, "svg", DateTimeOffset.UtcNow.AddHours(23));
         await cache.SetContentAsync(resourceKey, xml);
-        var path = cache.GetPath(resourceKey);
-
+        
         var image = new HtmlElementNode
         {
             TagName     = "img",
             SelfClosing = true,
-            Attributes  = { ["src"] = path },
+            Attributes  = { ["src"] = cache.GetPath(resourceKey) },
         };
-        if (styleWidth != null) image.Attributes.Add("width", styleWidth);
+        if (styles.width != null) image.Attributes.Add("width", styles.width);
+
+        image = styles.alignment switch
+        {
+            Alignment.Left   => image,
+            Alignment.Center => HtmlElementNode.AlignCenter(image),
+            Alignment.Right  => HtmlElementNode.AlignRight(image),
+            _                => throw new ArgumentOutOfRangeException(),
+        };
         
-        return HtmlElementNode.AlignCenter(image);
+        return image;
     }
 
-    public static async Task<AstNode> BuildRepositoryCard(GithubRepositoryStats repository, string? styleWidth = null)
+    public static async Task<AstNode> BuildRepositoryCard(GithubRepositoryStats repository, CardStyles styles = default)
     {
-
-        var description = string.IsNullOrWhiteSpace(repository.Description) ? "" : repository.Description;
-        if (description.Length > 72) description = description[..69] + "...";
+        const int width = 480;
+        const int height = 190;
+        
+        var description = repository.Description ?? "";
 
         var doc = new XElement(Svg + "svg",
             new XAttribute("width", width),
@@ -191,22 +199,24 @@ internal static class CardGenerator
             // Description
             new XElement(Svg + "text",
                 new XAttribute("x", 20),
-                new XAttribute("y", 88),
+                new XAttribute("y", 84),
                 new XAttribute("class", "subtitle"),
-                description),
+                new XAttribute("font-size", 11),
+                WrapText(description, 65, 4)
+            ),
 
             // Divider
             new XElement(Svg + "line",
                 new XAttribute("x1", 20),
-                new XAttribute("y1", 112),
+                new XAttribute("y1", 145),
                 new XAttribute("x2", width - 20),
-                new XAttribute("y2", 112),
+                new XAttribute("y2", 145),
                 new XAttribute("stroke", "#21262d"),
                 new XAttribute("stroke-width", 1)),
 
             // Repository metrics
             new XElement(Svg + "g",
-                new XAttribute("transform", "translate(30, 135)"),
+                new XAttribute("transform", "translate(30, 165)"),
 
                 // Language
                 new XElement(Svg + "circle",
@@ -234,23 +244,24 @@ internal static class CardGenerator
         var resourceKey = $"github-repository-{repository.Owner}-{repository.Name}";
         cache.TouchResource(resourceKey, "svg", DateTimeOffset.UtcNow.AddHours(23));
         await cache.SetContentAsync(resourceKey, xml);
-
+        
         var image = new HtmlElementNode
         {
-            TagName = "img",
+            TagName     = "img",
             SelfClosing = true,
-            Attributes =
-            {
-                ["src"] = cache.GetPath(resourceKey),
-                ["alt"] = $"{repository.Owner}/{repository.Name} - {repository.Description}",
-            },
+            Attributes  = { ["src"] = cache.GetPath(resourceKey) },
         };
-        if (styleWidth != null) image.Attributes.Add("width", styleWidth);
+        if (styles.width != null) image.Attributes.Add("width", styles.width);
 
-        return HtmlElementNode.A(
-            repository.HtmlUrl,
-            HtmlElementNode.AlignCenter(image)
-        );
+        image = styles.alignment switch
+        {
+            Alignment.Left   => image,
+            Alignment.Center => HtmlElementNode.AlignCenter(image),
+            Alignment.Right  => HtmlElementNode.AlignRight(image),
+            _                => throw new ArgumentOutOfRangeException(),
+        };
+        
+        return HtmlElementNode.A(repository.HtmlUrl, image);
     }
     
     private static XElement CreateStatItem(string label, string value, int x, int y)
@@ -308,5 +319,44 @@ internal static class CardGenerator
         var hash = StringComparer.OrdinalIgnoreCase.GetHashCode(language.Trim());
         var hue = (uint)hash % 360;
         return $"hsl({hue}, 65%, 55%)";
+    }
+    private static IEnumerable<XElement> WrapText(string text, int maxCharsPerLine, int maxLines)
+    {
+        var words = text.Split((char[]?)null, StringSplitOptions.RemoveEmptyEntries);
+
+        var lines = new List<string>();
+        var currentLine = "";
+
+        foreach (var word in words)
+        {
+            var candidate = string.IsNullOrEmpty(currentLine)
+                ? word
+                : $"{currentLine} {word}";
+
+            if (candidate.Length <= maxCharsPerLine)
+            {
+                currentLine = candidate;
+                continue;
+            }
+
+            if (!string.IsNullOrEmpty(currentLine))
+                lines.Add(currentLine);
+
+            currentLine = word;
+
+            if (lines.Count == maxLines) break;
+        }
+
+        if (lines.Count < maxLines && !string.IsNullOrEmpty(currentLine))
+            lines.Add(currentLine);
+        
+        if (lines.Count == maxLines && string.Join(" ", lines).Length < text.Length)
+            lines[^1] = lines[^1].TrimEnd('.', ' ') + "...";
+
+        return lines.Take(maxLines).Select((line, index) =>
+            new XElement(Svg + "tspan",
+                new XAttribute("x", 20),
+                new XAttribute("dy", index == 0 ? 0 : 14),
+                line));
     }
 }

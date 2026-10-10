@@ -1,4 +1,3 @@
-using System.Buffers.Text;
 using System.Text;
 using System.Text.Json;
 using System.Xml.Linq;
@@ -32,11 +31,10 @@ public static class CardGenerator
             new XAttribute("height", height),
             new XAttribute("viewBox", $"0 0 {width} {height}"),
 
-            new XElement(
-                ns + "style",
+            new XElement(ns + "style",
                 """
-                text { color: #777; }
-                """
+               text { color: #777; }
+               """
             ),
 
             new XElement(

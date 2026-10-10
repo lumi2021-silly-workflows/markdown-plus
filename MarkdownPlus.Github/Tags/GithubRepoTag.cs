@@ -1,3 +1,4 @@
+using MarkdownPlus.Core;
 using MarkdownPlus.Markdown.Ast;
 
 namespace MarkdownPlus.Github;
@@ -10,7 +11,7 @@ public partial class GithubTags
         var repository = node.Attributes.GetValueOrDefault("path");
         var repoSplit = repository?.Split('/', StringSplitOptions.TrimEntries);
         
-        var styleWidth = node.Attributes.GetValueOrDefault("width");
+        var cardStyles = CardStyles.Parse(StyleParser.Parse(node.Attributes.GetValueOrDefault("style"))); 
         
         if (repoSplit is not { Length: 2 })
             return new HtmlCommentNode("Error! attribute 'path' in format '{owner}/{repository}' expected");
@@ -22,6 +23,6 @@ public partial class GithubTags
         var stats = await API.GetGithubRepositoryAsync(ownerName, repoName, token);
         logger.Info($"Processing github's '{ownerName}/{repoName}' data...");
 
-        return await CardGenerator.BuildRepositoryCard(stats, styleWidth);
+        return await CardGenerator.BuildRepositoryCard(stats, cardStyles);
     }
 }
