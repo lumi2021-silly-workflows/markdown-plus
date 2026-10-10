@@ -1,15 +1,15 @@
 {
-  "LastUpdated": "2026-09-30T14:20:25.7108764Z",
+  "LastUpdated": "2026-10-10T12:39:58.5383107Z",
   "Games": [
+    {
+      "AppId": "1353300",
+      "Name": "Idle Slayer \u2013 Incremental RPG",
+      "AchievementsUnlocked": 455
+    },
     {
       "AppId": "1454400",
       "Name": "Cookie Clicker",
       "AchievementsUnlocked": 558
-    },
-    {
-      "AppId": "1353300",
-      "Name": "Idle Slayer \u2013 Incremental RPG",
-      "AchievementsUnlocked": 451
     },
     {
       "AppId": "1919460",

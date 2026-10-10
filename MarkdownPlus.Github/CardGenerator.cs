@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Xml.Linq;
 using MarkdownPlus.Core;
 using MarkdownPlus.Core.Caching;
@@ -5,19 +6,17 @@ using MarkdownPlus.Markdown.Ast;
 
 namespace MarkdownPlus.Github;
 
-public class CardGenerator
+internal static class CardGenerator
 {
     private static readonly XNamespace Svg = "http://www.w3.org/2000/svg";
     private static readonly ICacheManager cache = Cache.GetServiceCache("github");
     private static readonly HttpClient HttpClient = new();
-    
-    public static async Task<AstNode> BuildProfileCard(API.GithubUserStats stats)
-    {
-        string FormatNum(long n) => n >= 1000 ? $"{n / 1000.0:0.#}k" : n.ToString("N0");
 
-        const int width = 480;
-        const int height = 250;
-        
+    private const int width = 480;
+    private const int height = 250;
+    
+    public static async Task<AstNode> BuildProfileCard(GithubUserStats stats, string? styleWidth = null)
+    {
         var doc = new XElement(Svg + "svg",
             new XAttribute("width", width.ToString()),
             new XAttribute("height", height.ToString()),
@@ -93,13 +92,13 @@ public class CardGenerator
 
             // Metrics
             new XElement(Svg + "g", new XAttribute("transform", "translate(30, 120)"),
-                CreateStatItem("Repositories", FormatNum(stats.Repositories), 0, 0),
-                CreateStatItem("Stars", FormatNum(stats.Stars), 150, 0),
-                CreateStatItem("Forks", FormatNum(stats.Forks), 300, 0),
+                CreateStatItem("Repositories", FormatNumber(stats.Repositories), 0, 0),
+                CreateStatItem("Stars", FormatNumber(stats.Stars), 150, 0),
+                CreateStatItem("Forks", FormatNumber(stats.Forks), 300, 0),
                 
-                CreateStatItem("Followers", FormatNum(stats.Followers), 0, 45),
-                CreateStatItem("Following", FormatNum(stats.Following), 150, 45),
-                CreateStatItem("Releases", FormatNum(stats.Releases), 300, 45),
+                CreateStatItem("Followers", FormatNumber(stats.Followers), 0, 45),
+                CreateStatItem("Following", FormatNumber(stats.Following), 150, 45),
+                CreateStatItem("Releases", FormatNumber(stats.Releases), 300, 45),
                 
                 CreateStatItem("Storage Used", FormatStorage(stats.StorageKb), 0, 90)
             )
@@ -112,18 +111,148 @@ public class CardGenerator
         await cache.SetContentAsync(resourceKey, xml);
         var path = cache.GetPath(resourceKey);
 
-        return HtmlElementNode.AlignCenter(
-            [
-                new HtmlElementNode
-                {
-                    TagName     = "img",
-                    SelfClosing = true,
-                    Attributes  = { ["src"] = path },
-                },
-            ]
-        );
+        var image = new HtmlElementNode
+        {
+            TagName     = "img",
+            SelfClosing = true,
+            Attributes  = { ["src"] = path },
+        };
+        if (styleWidth != null) image.Attributes.Add("width", styleWidth);
+        
+        return HtmlElementNode.AlignCenter(image);
     }
 
+    public static async Task<AstNode> BuildRepositoryCard(GithubRepositoryStats repository, string? styleWidth = null)
+    {
+
+        var description = string.IsNullOrWhiteSpace(repository.Description) ? "" : repository.Description;
+        if (description.Length > 72) description = description[..69] + "...";
+
+        var doc = new XElement(Svg + "svg",
+            new XAttribute("width", width),
+            new XAttribute("height", height),
+            new XAttribute("viewBox", $"0 0 {width} {height}"),
+            new XAttribute("fill", "none"),
+
+            new XElement(Svg + "style",
+                """
+                text {
+                    color: #777;
+                }
+
+                .title {
+                    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+                    font-size: 18px;
+                    font-weight: 600;
+                    fill: #58a6ff;
+                }
+
+                .subtitle {
+                    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+                    font-size: 12px;
+                    fill: #8b949e;
+                }
+
+                .badge {
+                    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+                    font-size: 10px;
+                    font-weight: bold;
+                    fill: #3fb950;
+                }
+
+                .label {
+                    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+                    font-size: 12px;
+                    fill: currentColor;
+                }
+
+                .value {
+                    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+                    font-size: 13px;
+                    font-weight: 600;
+                    fill: currentColor;
+                }
+                """),
+            
+            // Repository owner
+            new XElement(Svg + "text",
+                new XAttribute("x", 20),
+                new XAttribute("y", 35),
+                new XAttribute("class", "subtitle"),
+                repository.Owner),
+
+            // Repository name
+            new XElement(Svg + "text",
+                new XAttribute("x", 20),
+                new XAttribute("y", 62),
+                new XAttribute("class", "title"),
+                repository.Name),
+
+            // Description
+            new XElement(Svg + "text",
+                new XAttribute("x", 20),
+                new XAttribute("y", 88),
+                new XAttribute("class", "subtitle"),
+                description),
+
+            // Divider
+            new XElement(Svg + "line",
+                new XAttribute("x1", 20),
+                new XAttribute("y1", 112),
+                new XAttribute("x2", width - 20),
+                new XAttribute("y2", 112),
+                new XAttribute("stroke", "#21262d"),
+                new XAttribute("stroke-width", 1)),
+
+            // Repository metrics
+            new XElement(Svg + "g",
+                new XAttribute("transform", "translate(30, 135)"),
+
+                // Language
+                new XElement(Svg + "circle",
+                    new XAttribute("cx", 5),
+                    new XAttribute("cy", 0),
+                    new XAttribute("r", 5),
+                    new XAttribute("fill", GetLanguageColor(repository.Language))),
+
+                new XElement(Svg + "text",
+                    new XAttribute("x", 17),
+                    new XAttribute("y", 4),
+                    new XAttribute("class", "label"),
+                    repository.Language ?? "Unknown"),
+
+                // Stars
+                CreateStatItem("Stars", FormatNumber(repository.Stars), 205, 0),
+
+                // Forks
+                CreateStatItem("Forks", FormatNumber(repository.Forks), 330, 0)
+            )
+        );
+
+        var xml = doc.ToString(SaveOptions.DisableFormatting);
+
+        var resourceKey = $"github-repository-{repository.Owner}-{repository.Name}";
+        cache.TouchResource(resourceKey, "svg", DateTimeOffset.UtcNow.AddHours(23));
+        await cache.SetContentAsync(resourceKey, xml);
+
+        var image = new HtmlElementNode
+        {
+            TagName = "img",
+            SelfClosing = true,
+            Attributes =
+            {
+                ["src"] = cache.GetPath(resourceKey),
+                ["alt"] = $"{repository.Owner}/{repository.Name} - {repository.Description}",
+            },
+        };
+        if (styleWidth != null) image.Attributes.Add("width", styleWidth);
+
+        return HtmlElementNode.A(
+            repository.HtmlUrl,
+            HtmlElementNode.AlignCenter(image)
+        );
+    }
+    
     private static XElement CreateStatItem(string label, string value, int x, int y)
     {
         return new XElement(Svg + "g", new XAttribute("transform", $"translate({x}, {y})"),
@@ -171,5 +300,13 @@ public class CardGenerator
             return "data:image/png;base64,"
                 + "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=";
         }
+    }
+    private static string FormatNumber(long n) => n >= 1000 ? $"{n / 1000.0:0.#}k" : n.ToString("N0");
+    private static string GetLanguageColor(string? language)
+    {
+        if (string.IsNullOrWhiteSpace(language)) return "#8b949e";
+        var hash = StringComparer.OrdinalIgnoreCase.GetHashCode(language.Trim());
+        var hue = (uint)hash % 360;
+        return $"hsl({hue}, 65%, 55%)";
     }
 }

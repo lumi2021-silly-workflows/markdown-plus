@@ -3,86 +3,11 @@ using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 
 namespace MarkdownPlus.Github;
 
-public class API
+internal class API
 {
-    public sealed record GithubUserStats(
-        string Username, string AvatarUrl, GithubAccountType Type, DateTime JoinedAt,
-        int Followers, int Following, int Repositories, long StorageKb, int Releases,
-        long Stars, long Forks);
-    
-    public class ActivityItem
-    {
-        public string Type { get; set; } = string.Empty;
-        public DateTime Date { get; set; }
-        public int CommitCount { get; set; }
-        public int Number { get; set; }
-        public string Title { get; set; } = string.Empty;
-        public string Url { get; set; } = string.Empty;
-        public string State { get; set; } = string.Empty;
-        public string RepoNameWithOwner { get; set; } = string.Empty;
-        public string RepoUrl { get; set; } = string.Empty;
-    }
-    public enum GithubAccountType
-    {
-        User,
-        Organization
-    }
-    
-    sealed private class GithubAccount
-    {
-        [JsonPropertyName("login")]
-        public string Login { get; init; } = null!;
-
-        [JsonPropertyName("avatar_url")]
-        public string AvatarUrl { get; init; } = null!;
-
-        [JsonPropertyName("created_at")]
-        public DateTime CreatedAt { get; init; }
-
-        [JsonPropertyName("followers")]
-        public int Followers { get; init; }
-
-        [JsonPropertyName("following")]
-        public int Following { get; init; }
-
-        [JsonPropertyName("public_repos")]
-        public int PublicRepositories { get; init; }
-
-        [JsonPropertyName("type")]
-        public string Type { get; init; } = null!;
-    }
-    sealed private class GithubRepository
-    {
-        [JsonPropertyName("name")]
-        public string Name { get; init; } = null!;
-
-        [JsonPropertyName("size")]
-        public long Size { get; init; }
-
-        [JsonPropertyName("stargazers_count")]
-        public long StargazersCount { get; init; }
-
-        [JsonPropertyName("forks_count")]
-        public long ForksCount { get; init; }
-
-        [JsonPropertyName("owner")]
-        public GithubRepositoryOwner Owner { get; init; } = null!;
-    }
-    sealed private class GithubRepositoryOwner
-    {
-        [JsonPropertyName("login")]
-        public string Login { get; init; } = null!;
-    }
-    sealed private class GithubRelease
-    {
-        [JsonPropertyName("id")]
-        public long Id { get; init; }
-    }
-    
     public static async Task<List<ActivityItem>> GetActivityAsync(string token, string username, CancellationToken cancellationToken = default)
     {
         var query = $$"""
@@ -238,7 +163,10 @@ public class API
         return list.OrderByDescending(x => x.Date).ToList();
     }
 
-    public static async Task<GithubUserStats> GetGithubUserStatsAsync(string username, string token, CancellationToken cancellationToken = default)
+    public static async Task<GithubUserStats> GetGithubUserStatsAsync(
+        string username,
+        string token,
+        CancellationToken cancellationToken = default)
     {
         using var client = new HttpClient();
         client.BaseAddress = new Uri("https://api.github.com");
@@ -326,21 +254,14 @@ public class API
                 $"{Uri.EscapeDataString(repository)}/releases" +
                 "?per_page=1";
 
-            using var response = await client.GetAsync(endpoint, cancellationToken);
-            response.EnsureSuccessStatusCode();
-
-            var releases = await response.Content.ReadFromJsonAsync<List<GithubRelease>>(cancellationToken);
-
-            if (releases is null || releases.Count == 0)
-                return 0;
+            var (response, headers) = await GetAsyncWithHeader<List<GithubRelease>>(client, endpoint, cancellationToken);
             
-            if (!response.Headers.TryGetValues("Link", out var linkValues))
-                return releases.Count;
-
+            if (response.Count == 0) return 0;
+            if (!headers.TryGetValues("Link", out var linkValues)) return response.Count;
             var linkHeader = string.Join(",", linkValues);
             
             var lastPage = GetLastPageFromLinkHeader(linkHeader);
-            return lastPage ?? releases.Count;
+            return lastPage ?? response.Count;
         }
         
         int? GetLastPageFromLinkHeader(string linkHeader)
@@ -373,6 +294,33 @@ public class API
         }
     }
     
+    public static async Task<GithubRepositoryStats> GetGithubRepositoryAsync(
+        string owner,
+        string repository,
+        string token,
+        CancellationToken cancellationToken = default)
+    {
+        using var client = new HttpClient();
+
+        client.BaseAddress = new Uri("https://api.github.com");
+        client.DefaultRequestHeaders.UserAgent.ParseAdd("MarkdownPlus-App");
+        client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/vnd.github+json"));
+
+        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+        var endpoint = $"/repos/{Uri.EscapeDataString(owner)}/{Uri.EscapeDataString(repository)}";
+        var result = await GetAsync<GithubRepository>(client, endpoint, cancellationToken);
+
+        return new GithubRepositoryStats(
+            result.Owner.Login,
+            result.Name,
+            result.Description,
+            result.Language,
+            result.StargazersCount,
+            result.ForksCount,
+            result.HtmlUrl);
+    }
+    
     private static async Task<JsonDocument> GraphqlFetchAsync(string query, string token, object? variables = null)
     {
         using var client = new HttpClient();
@@ -383,7 +331,7 @@ public class API
         using var content = new StringContent(payload, Encoding.UTF8, "application/json");
 
         using var response = await client.PostAsync("https://api.github.com/graphql", content);
-        response.EnsureSuccessStatusCode();
+        await EnsureSuccessStatusCode(response);
 
         var text = await response.Content.ReadAsStringAsync();
         return JsonDocument.Parse(text);
@@ -391,9 +339,18 @@ public class API
     private static async Task<T> GetAsync<T>(HttpClient client, string endpoint, CancellationToken cancellationToken)
     {
         using var response = await client.GetAsync(endpoint, cancellationToken);
-        response.EnsureSuccessStatusCode();
+        await EnsureSuccessStatusCode(response, cancellationToken);
+        
         var result = await response.Content.ReadFromJsonAsync<T>(cancellationToken);
         return result ?? throw new InvalidOperationException($"GitHub returned an empty response: {endpoint}");
+    }
+    private static async Task<(T, HttpResponseHeaders)> GetAsyncWithHeader<T>(HttpClient client, string endpoint, CancellationToken cancellationToken)
+    {
+        using var response = await client.GetAsync(endpoint, cancellationToken);
+        await EnsureSuccessStatusCode(response, cancellationToken);
+        
+        var result = await response.Content.ReadFromJsonAsync<T>(cancellationToken);
+        return (result ?? throw new InvalidOperationException($"GitHub returned an empty response: {endpoint}"), response.Headers);
     }
     
     private static string GetWeekKey(DateTime date)
@@ -401,5 +358,29 @@ public class API
         var diff = (7 + (date.DayOfWeek - DayOfWeek.Monday)) % 7;
         var monday = date.AddDays(-1 * diff).Date;
         return monday.ToString("yyyy-MM-dd");
+    }
+
+    private static async Task EnsureSuccessStatusCode(HttpResponseMessage response, CancellationToken cancellationToken = default)
+    {
+        if (response.IsSuccessStatusCode) return;
+        
+        var body = await response.Content.ReadAsStringAsync(cancellationToken);
+
+        var sso = response.Headers.TryGetValues(
+            "X-GitHub-SSO", out var ssoValues)
+            ? string.Join(", ", ssoValues)
+            : null;
+
+        var remaining = response.Headers.TryGetValues(
+            "X-RateLimit-Remaining", out var rateValues)
+            ? string.Join(", ", rateValues)
+            : null;
+
+        throw new HttpRequestException(
+            $"GitHub API returned {(int)response.StatusCode} " +
+            $"({response.StatusCode}). " +
+            $"Body: {body}. " +
+            $"SSO: {sso ?? "not informed"}. " +
+            $"Rate limit remaining: {remaining ?? "not informed"}.");
     }
 }

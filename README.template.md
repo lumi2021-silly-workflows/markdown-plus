@@ -157,9 +157,28 @@ variables:
 
 
 ```html
-<github-profile />
+<github-profile width="49.5%" />
+<github-profile user="Anthragon" width="49.5%" />
 ```
-<github-profile />
+<github-profile width="49.5%" />
+<github-profile user="Anthragon" width="49.5%" />
+
+#### Repositories
+
+The `github-repo` block tag provides data about someone's activity, history and contributions.
+
+For allowing this service to work, the tool needs the following
+variables:[README.md](README.md)
+- `github_api_token`: A token from github's API. No private access needed.[README.md](README.md)
+- `github_username`: The username of the targeted github user.
+
+
+```html
+<github-repo path="lumi2021-silly-workflows/markdown-plus" width="49.5%" />
+<github-repo path="Anthragon/Distribution" width="49.5%" />
+```
+<p ><github-repo path="lumi2021-silly-workflows/markdown-plus" width="49.5%" /></p>
+<github-repo path="Anthragon/Distribution" width="49.5%" />
 
 #### Contributions
 

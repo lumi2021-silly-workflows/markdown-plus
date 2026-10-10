@@ -8,13 +8,14 @@ public partial class GithubTags
     public static async Task<AstNode> GithubProfileProcess(HtmlElementNode node, IReadOnlyDictionary<string, string> envVars)
     {
         var (token, self_username) = Auth(envVars);
-        var username = node.Attributes.GetValueOrDefault("username", self_username)!;
+        var user = node.Attributes.GetValueOrDefault("user", self_username)!;
+        var styleWidth = node.Attributes.GetValueOrDefault("width")!;
         
-        logger.Info($"Requesting github's '{username}' data...");
-        var stats = await API.GetGithubUserStatsAsync(username, token);
-        logger.Info($"Processing github's '{username}' data...");
+        logger.Info($"Requesting github's '{user}' data...");
+        var stats = await API.GetGithubUserStatsAsync(user, token);
+        logger.Info($"Processing github's '{user}' data...");
 
-        var card = await CardGenerator.BuildProfileCard(stats);
-        return HtmlElementNode.A($"www.github.com/{stats.Username}", HtmlElementNode.AlignCenter(card));
+        var card = await CardGenerator.BuildProfileCard(stats, styleWidth);
+        return card;
     }
 }

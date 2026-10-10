@@ -119,21 +119,21 @@ Some options are:
 ```
 
 <p align="center">
-<img src="actions/cache/wakatime_weekly-langs-5_000000006ac85b74.svg" />
+<img src="actions/cache/wakatime_weekly-langs-5_000000006acb7302.svg" />
 </p>
 
 <p align="center">
-<img src="actions/cache/wakatime_weekly-langs-10_000000006ac85b75.svg" />
+<img src="actions/cache/wakatime_weekly-langs-10_000000006acb7303.svg" />
 </p>
 
 ```rust
-Total Time: 13 hrs 12 mins
+Total Time: 12 hrs 6 mins
 
-- "Go"            ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀ 3 hrs 58 mins
-- "C#"            ⣿⣿⣿⣿⣿⣿⣿⣄⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀ 3 hrs 7 mins
-- "AsciiDoc"      ⣿⣿⣿⣿⣿⣤⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀ 2 hrs 22 mins
-- "Swift"         ⣿⣿⣿⣿⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀ 1 hr 47 mins
-- "TypeScript"    ⣿⣶⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀ 44 mins
+- "C#"            ⣿⣿⣿⣿⣿⣿⣶⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀ 2 hrs 41 mins
+- "Swift"         ⣿⣿⣿⣿⣿⣿⣶⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀ 2 hrs 40 mins
+- "Go"            ⣿⣿⣿⣿⣿⣿⣤⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀ 2 hrs 35 mins
+- "AsciiDoc"      ⣿⣿⣿⣿⣿⣷⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀ 2 hrs 22 mins
+- "TypeScript"    ⣿⣷⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀ 44 mins
 ```
 
 ### Last.fm
@@ -166,7 +166,7 @@ variables:
 <strong clear="left">3:36</strong>
 </div>
 <div style="clear: both; padding: 10px 0;">
-<img src="https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/2f/79/b8/2f79b8c6-4d30-ca92-4e18-8c6752a61433/5039060230695.png/60x60bb.jpg" width="60" align="left" />
+<img src="https://is1-ssl.mzstatic.com/image/thumb/Features115/v4/93/38/44/9338444f-8003-2c1c-4f61-c72c62c9850c/dj.uprjxxxf.jpg/60x60bb.jpg" width="60" align="left" />
 <p>
 <strong>
 <a href="https://www.last.fm/music/we+are+the+dirt/_/counting+the+days">counting the days</a>
@@ -174,7 +174,7 @@ variables:
  • 
 <a href="https://www.last.fm/music/we+are+the+dirt">we are the dirt</a>
 </p>
-<strong clear="left">4:48</strong>
+<strong clear="left">3:22</strong>
 </div>
 <div style="clear: both; padding: 10px 0;">
 <img src="https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/25/9c/a5/259ca5e1-c365-8b72-b12e-660aae6ff21d/25UMGIM87679.rgb.jpg/60x60bb.jpg" width="60" align="left" />
@@ -199,15 +199,15 @@ variables:
 <strong clear="left">4:47</strong>
 </div>
 <div style="clear: both; padding: 10px 0;">
-<img src="https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/00/c6/4c/00c64cfa-27c8-81cd-a12c-1cafb5e832f2/054391945853.jpg/60x60bb.jpg" width="60" align="left" />
+<img src="https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/25/9c/a5/259ca5e1-c365-8b72-b12e-660aae6ff21d/25UMGIM87679.rgb.jpg/60x60bb.jpg" width="60" align="left" />
 <p>
 <strong>
-<a href="https://www.last.fm/music/Cavetown/_/This+is+home">This is home</a>
+<a href="https://www.last.fm/music/Elio+Mei/_/Velcro">Velcro</a>
 </strong>
  • 
-<a href="https://www.last.fm/music/Cavetown">Cavetown</a>
+<a href="https://www.last.fm/music/Elio+Mei">Elio Mei</a>
 </p>
-<strong clear="left">4:29</strong>
+<strong clear="left">1:53</strong>
 </div>
 </p>
 
@@ -226,14 +226,42 @@ variables:
 - `github_username`: The username of the targeted github user.
 
 ```html
-<github-profile />
+<github-profile width="49.5%" />
+<github-profile user="Anthragon" width="49.5%" />
 ```
 
-<a href="www.github.com/lumi2021">
 <p align="center">
-<p align="center">
-<img src="actions/cache/github_github-profile-lumi2021_000000006ac85b86.svg" />
+<img src="actions/cache/github_github-profile-lumi2021_000000006acb7578.svg" width="49.5%" />
 </p>
+
+<p align="center">
+<img src="actions/cache/github_github-profile-Anthragon_000000006acb7cd4.svg" width="49.5%" />
+</p>
+
+#### Repositories
+
+The `github-repo` block tag provides data about someone's activity, history and contributions.
+
+For allowing this service to work, the tool needs the following
+variables:[README.md](README.md)
+
+- `github_api_token`: A token from github's API. No private access needed.[README.md](README.md)
+- `github_username`: The username of the targeted github user.
+
+```html
+<github-repo path="lumi2021-silly-workflows/markdown-plus" width="49.5%" />
+<github-repo path="Anthragon/Distribution" width="49.5%" />
+```
+
+<a href="https://github.com/lumi2021-silly-workflows/markdown-plus">
+<p align="center">
+<img src="actions/cache/github_github-repository-lumi2021-silly-workflows-markdown-plus_000000006acb79f6.svg" alt="lumi2021-silly-workflows/markdown-plus - " width="49%" />
+</p>
+</a>
+
+<a href="https://github.com/Anthragon/Distribution">
+<p align="center">
+<img src="actions/cache/github_github-repository-Anthragon-Distribution_000000006acb7cd5.svg" alt="Anthragon/Distribution - Operating system built in zig" width="49%" />
 </p>
 </a>
 
@@ -251,16 +279,16 @@ variables:[README.md](README.md)
 <github-activity />
 ```
 
-- ✏️ Made 10 commits
 - ✏️ Made 2 commits
-- ✏️ Made 5 commits
-- ✏️ Made 1 commit
-- ✏️ Made 16 commits
-- ✏️ Made 1 commit
-- ✏️ Made 1 commit
-- ✏️ Made 1 commit
 - ✏️ Made 8 commits
-- ✏️ Made 7 commits
+- ✏️ Made 18 commits
+- ✏️ Made 3 commits
+- ✏️ Made 2 commits
+- ✏️ Made 1 commit
+- ✏️ Made 46 commits
+- ✏️ Made 3 commits
+- ✏️ Made 6 commits
+- ✏️ Made 4 commits
 
 ### Steam
 
@@ -281,31 +309,31 @@ variables:
 ```
 
 <p>
-<a href="https://store.steampowered.com/app/1454400" target="_blank">
-<picture>
-<source media="(max-width: 1061px)" width="24%" srcset="actions/cache/steam_gamecard-1454400-0000022e-thin_000000006ac91435.svg" />
-<source media="(min-width: 1061px)" width="49%" srcset="actions/cache/steam_gamecard-1454400-0000022e-wide_000000006ac91435.svg" />
-<img style="max-width: 100%;" alt="Cookie Clicker" />
-</picture>
-</a>
 <a href="https://store.steampowered.com/app/1353300" target="_blank">
 <picture>
-<source media="(max-width: 1061px)" width="24%" srcset="actions/cache/steam_gamecard-1353300-000001c3-thin_000000006ac91435.svg" />
-<source media="(min-width: 1061px)" width="49%" srcset="actions/cache/steam_gamecard-1353300-000001c3-wide_000000006ac91435.svg" />
+<source media="(max-width: 1061px)" width="24%" srcset="actions/cache/steam_gamecard-1353300-000001c7-thin_000000006ad62ba9.svg" />
+<source media="(min-width: 1061px)" width="49%" srcset="actions/cache/steam_gamecard-1353300-000001c7-wide_000000006ad62ba9.svg" />
 <img style="max-width: 100%;" alt="Idle Slayer – Incremental RPG" />
+</picture>
+</a>
+<a href="https://store.steampowered.com/app/1454400" target="_blank">
+<picture>
+<source media="(max-width: 1061px)" width="24%" srcset="actions/cache/steam_gamecard-1454400-0000022e-thin_000000006ad62ba9.svg" />
+<source media="(min-width: 1061px)" width="49%" srcset="actions/cache/steam_gamecard-1454400-0000022e-wide_000000006ad62ba9.svg" />
+<img style="max-width: 100%;" alt="Cookie Clicker" />
 </picture>
 </a>
 <a href="https://store.steampowered.com/app/1919460" target="_blank">
 <picture>
-<source media="(max-width: 1061px)" width="24%" srcset="actions/cache/steam_gamecard-1919460-00000001-thin_000000006ac91435.svg" />
-<source media="(min-width: 1061px)" width="49%" srcset="actions/cache/steam_gamecard-1919460-00000001-wide_000000006ac91435.svg" />
+<source media="(max-width: 1061px)" width="24%" srcset="actions/cache/steam_gamecard-1919460-00000001-thin_000000006ad62ba9.svg" />
+<source media="(min-width: 1061px)" width="49%" srcset="actions/cache/steam_gamecard-1919460-00000001-wide_000000006ad62ba9.svg" />
 <img style="max-width: 100%;" alt="Seraph's Last Stand" />
 </picture>
 </a>
 <a href="https://store.steampowered.com/app/433340" target="_blank">
 <picture>
-<source media="(max-width: 1061px)" width="24%" srcset="actions/cache/steam_gamecard-433340-00000039-thin_000000006ac91435.svg" />
-<source media="(min-width: 1061px)" width="49%" srcset="actions/cache/steam_gamecard-433340-00000039-wide_000000006ac91435.svg" />
+<source media="(max-width: 1061px)" width="24%" srcset="actions/cache/steam_gamecard-433340-00000039-thin_000000006ad62ba9.svg" />
+<source media="(min-width: 1061px)" width="49%" srcset="actions/cache/steam_gamecard-433340-00000039-wide_000000006ad62ba9.svg" />
 <img style="max-width: 100%;" alt="Slime Rancher" />
 </picture>
 </a>
@@ -333,29 +361,29 @@ variables:
 <p>
 <a href="https://store.steampowered.com/app/1289310" target="_blank">
 <picture>
-<source media="(max-width: 1061px)" width="24%" srcset="actions/cache/steam_gamecard-1289310-0000000a-thin_000000006ac91435.svg" />
-<source media="(min-width: 1061px)" width="49%" srcset="actions/cache/steam_gamecard-1289310-0000000a-wide_000000006ac91435.svg" />
+<source media="(max-width: 1061px)" width="24%" srcset="actions/cache/steam_gamecard-1289310-0000000a-thin_000000006ad62ba9.svg" />
+<source media="(min-width: 1061px)" width="49%" srcset="actions/cache/steam_gamecard-1289310-0000000a-wide_000000006ad62ba9.svg" />
 <img style="max-width: 100%;" alt="Helltaker" />
 </picture>
 </a>
 <a href="https://store.steampowered.com/app/433340" target="_blank">
 <picture>
-<source media="(max-width: 1061px)" width="24%" srcset="actions/cache/steam_gamecard-433340-00000039-thin_000000006ac91435.svg" />
-<source media="(min-width: 1061px)" width="49%" srcset="actions/cache/steam_gamecard-433340-00000039-wide_000000006ac91435.svg" />
+<source media="(max-width: 1061px)" width="24%" srcset="actions/cache/steam_gamecard-433340-00000039-thin_000000006ad62ba9.svg" />
+<source media="(min-width: 1061px)" width="49%" srcset="actions/cache/steam_gamecard-433340-00000039-wide_000000006ad62ba9.svg" />
 <img style="max-width: 100%;" alt="Slime Rancher" />
 </picture>
 </a>
 <a href="https://store.steampowered.com/app/255520" target="_blank">
 <picture>
-<source media="(max-width: 1061px)" width="24%" srcset="actions/cache/steam_gamecard-255520-00000002-thin_000000006ac91435.svg" />
-<source media="(min-width: 1061px)" width="49%" srcset="actions/cache/steam_gamecard-255520-00000002-wide_000000006ac91435.svg" />
+<source media="(max-width: 1061px)" width="24%" srcset="actions/cache/steam_gamecard-255520-00000002-thin_000000006ad62ba9.svg" />
+<source media="(min-width: 1061px)" width="49%" srcset="actions/cache/steam_gamecard-255520-00000002-wide_000000006ad62ba9.svg" />
 <img style="max-width: 100%;" alt="Viscera Cleanup Detail: Shadow Warrior" />
 </picture>
 </a>
 <a href="https://store.steampowered.com/app/1997680" target="_blank">
 <picture>
-<source media="(max-width: 1061px)" width="24%" srcset="actions/cache/steam_gamecard-1997680-0000003a-thin_000000006ac91435.svg" />
-<source media="(min-width: 1061px)" width="49%" srcset="actions/cache/steam_gamecard-1997680-0000003a-wide_000000006ac91435.svg" />
+<source media="(max-width: 1061px)" width="24%" srcset="actions/cache/steam_gamecard-1997680-0000003a-thin_000000006ad62ba9.svg" />
+<source media="(min-width: 1061px)" width="49%" srcset="actions/cache/steam_gamecard-1997680-0000003a-wide_000000006ad62ba9.svg" />
 <img style="max-width: 100%;" alt="REFLEXIA Prototype ver." />
 </picture>
 </a>
