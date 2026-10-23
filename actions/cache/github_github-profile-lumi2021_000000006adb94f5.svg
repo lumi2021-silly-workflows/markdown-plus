@@ -39,7 +39,7 @@
     </g>
     <g transform="translate(150, 45)">
       <text x="0" y="0" class="label">Following</text>
-      <text x="0" y="18" class="value">25</text>
+      <text x="0" y="18" class="value">26</text>
     </g>
     <g transform="translate(300, 45)">
       <text x="0" y="0" class="label">Releases</text>

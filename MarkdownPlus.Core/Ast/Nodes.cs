@@ -81,6 +81,14 @@ public sealed class HtmlElementNode : AstNode
     /// </summary>
     public bool TrailingLineBreak { get; set; }
 
+    public static HtmlElementNode Div(params List<AstNode> children) => new()
+    {
+        TagName           = "div",
+        TrailingLineBreak = false,
+        SelfClosing       = false,
+        Children          = children,
+    };
+    
     public static HtmlElementNode Br() => new()
     {
         TagName           = "br",
@@ -103,6 +111,17 @@ public sealed class HtmlElementNode : AstNode
         SelfClosing       = false,
         Attributes        = { { "href", href } },
         Children          = children,
+    };
+    public static HtmlElementNode Img(string src, string alt) => new()
+    {
+        TagName           = "img",
+        TrailingLineBreak = false,
+        SelfClosing       = false,
+        Attributes =
+        {
+            ["src"] = src,
+            ["alt"] = alt,
+        },
     };
     public static HtmlElementNode P(string text) => new()
     {

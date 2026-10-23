@@ -34,10 +34,10 @@ badges inside the code:
 
 ```html
 <badge color="202020" icon="python">python</badge>
-<badge color="303030" style="flat" icon="c">C</badge> \
+<badge color="303030" style="flat" icon="c">C</badge>
 <badge color="404040" style="flat-square" icon="c++">C++</badge>
-<badge color="505050" style="plastic" icon="dotnet">C#</badge> \
-<badge color="606060" style="for-the-badge" icon="zig">Zig</badge> \
+<badge color="505050" style="plastic" icon="dotnet">C#</badge>
+<badge color="606060" style="for-the-badge" icon="zig">Zig</badge>
 <badge color="707070" style="social" icon="lua">Lua</badge>
 <br/>
 <badge color="282b30" style="for-the-badge" icon="discord" href="https://discordapp.com/users/632992487375634432">Discord</badge>
@@ -108,10 +108,6 @@ variables:
 
 - `wakatime_api_key`: The API key provided by the wakatime service.
 
-Some options are:
-
-- `weekly-langs`: Time spent in each language this week.
-
 ```html
 <wakatime-weekly-langs />
 <wakatime-weekly-langs max="10" />
@@ -119,22 +115,28 @@ Some options are:
 ```
 
 <p align="center">
-<img src="actions/cache/wakatime_weekly-langs-5_000000006acb7302.svg" />
+<img src="actions/cache/wakatime_weekly-langs-5_000000006adb94e1.svg" />
 </p>
 
 <p align="center">
-<img src="actions/cache/wakatime_weekly-langs-10_000000006acb7303.svg" />
+<img src="actions/cache/wakatime_weekly-langs-10_000000006adb94e2.svg" />
 </p>
 
 ```rust
-Total Time: 12 hrs 6 mins
+Total Time: 18 hrs 23 mins
 
-- "C#"            ⣿⣿⣿⣿⣿⣿⣶⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀ 2 hrs 41 mins
-- "Swift"         ⣿⣿⣿⣿⣿⣿⣶⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀ 2 hrs 40 mins
-- "Go"            ⣿⣿⣿⣿⣿⣿⣤⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀ 2 hrs 35 mins
-- "AsciiDoc"      ⣿⣿⣿⣿⣿⣷⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀ 2 hrs 22 mins
-- "TypeScript"    ⣿⣷⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀ 44 mins
+- "C#"            ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀ 12 hrs 59 mins
+- "Java"          ⣿⣿⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀ 1 hr 16 mins
+- "Other"         ⣿⣷⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀ 1 hr 9 mins
+- "Zig"           ⣿⣤⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀ 54 mins
+- "TypeScript"    ⣿⣤⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀ 49 mins
 ```
+
+The following attributes can be applied to the `wakatime-weekly-langs` tag:
+
+- `max`: Maximum number of listed languages (default is 5)
+- `style`: CSS-based styling
+- `levels`: Charset used for the bar when `style.display` is `code`
 
 ### Last.fm
 
@@ -153,63 +155,23 @@ variables:
 <last-fm-recent />
 ```
 
-<p>
-<div style="clear: both; padding: 10px 0;">
-<img src="https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/a0/93/33/a0933384-61e2-ec73-796f-2c77fbd59ea0/artwork.jpg/60x60bb.jpg" width="60" align="left" />
-<p>
-<strong>
-<a href="https://www.last.fm/music/Jamie+Paige/_/Machine+Love">Machine Love</a>
-</strong>
- • 
-<a href="https://www.last.fm/music/Jamie+Paige">Jamie Paige</a>
-</p>
-<strong clear="left">3:36</strong>
+<div>
+<a href="https://www.last.fm/music/Jamie+Paige/_/Machine+Love">
+<img src="actions/cache/lastfm_lastfm-top-tracks-lumi_nya-fe30f0a3-255a-48a5-88ec-41f86afa57e4-0_000000006adc1892.svg" alt="Machine Love - Jamie Paige"></img>
+</a>
+<a href="https://www.last.fm/music/elio+mei/_/One+Man+Circus">
+<img src="actions/cache/lastfm_lastfm-top-tracks-lumi_nya--1_000000006adc1892.svg" alt="One Man Circus - elio mei"></img>
+</a>
+<a href="https://www.last.fm/music/we+are+the+dirt/_/counting+the+days">
+<img src="actions/cache/lastfm_lastfm-top-tracks-lumi_nya--2_000000006adc1892.svg" alt="counting the days - we are the dirt"></img>
+</a>
+<a href="https://www.last.fm/music/Elio+Mei/_/Velcro">
+<img src="actions/cache/lastfm_lastfm-top-tracks-lumi_nya--3_000000006adc1892.svg" alt="Velcro - Elio Mei"></img>
+</a>
+<a href="https://www.last.fm/music/Elio+Mei/_/Playing+Dead">
+<img src="actions/cache/lastfm_lastfm-top-tracks-lumi_nya--4_000000006adc1892.svg" alt="Playing Dead - Elio Mei"></img>
+</a>
 </div>
-<div style="clear: both; padding: 10px 0;">
-<img src="https://is1-ssl.mzstatic.com/image/thumb/Features115/v4/93/38/44/9338444f-8003-2c1c-4f61-c72c62c9850c/dj.uprjxxxf.jpg/60x60bb.jpg" width="60" align="left" />
-<p>
-<strong>
-<a href="https://www.last.fm/music/we+are+the+dirt/_/counting+the+days">counting the days</a>
-</strong>
- • 
-<a href="https://www.last.fm/music/we+are+the+dirt">we are the dirt</a>
-</p>
-<strong clear="left">3:22</strong>
-</div>
-<div style="clear: both; padding: 10px 0;">
-<img src="https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/25/9c/a5/259ca5e1-c365-8b72-b12e-660aae6ff21d/25UMGIM87679.rgb.jpg/60x60bb.jpg" width="60" align="left" />
-<p>
-<strong>
-<a href="https://www.last.fm/music/elio+mei/_/One+Man+Circus">One Man Circus</a>
-</strong>
- • 
-<a href="https://www.last.fm/music/elio+mei">elio mei</a>
-</p>
-<strong clear="left">5:49</strong>
-</div>
-<div style="clear: both; padding: 10px 0;">
-<img src="https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/25/9c/a5/259ca5e1-c365-8b72-b12e-660aae6ff21d/25UMGIM87679.rgb.jpg/60x60bb.jpg" width="60" align="left" />
-<p>
-<strong>
-<a href="https://www.last.fm/music/Elio+Mei/_/Playing+Dead">Playing Dead</a>
-</strong>
- • 
-<a href="https://www.last.fm/music/Elio+Mei">Elio Mei</a>
-</p>
-<strong clear="left">4:47</strong>
-</div>
-<div style="clear: both; padding: 10px 0;">
-<img src="https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/25/9c/a5/259ca5e1-c365-8b72-b12e-660aae6ff21d/25UMGIM87679.rgb.jpg/60x60bb.jpg" width="60" align="left" />
-<p>
-<strong>
-<a href="https://www.last.fm/music/Elio+Mei/_/Velcro">Velcro</a>
-</strong>
- • 
-<a href="https://www.last.fm/music/Elio+Mei">Elio Mei</a>
-</p>
-<strong clear="left">1:53</strong>
-</div>
-</p>
 
 ### Github
 
@@ -230,9 +192,14 @@ variables:
 <github-profile user="Anthragon" style="width: 49.5%;" />
 ```
 
-<img src="actions/cache/github_github-profile-lumi2021_000000006acb7578.svg" width="49.5%" />
+<img src="actions/cache/github_github-profile-lumi2021_000000006adb94f5.svg" width="49.5%" />
 
-<img src="actions/cache/github_github-profile-Anthragon_000000006acb7cd4.svg" width="49.5%" />
+<img src="actions/cache/github_github-profile-Anthragon_000000006adb94f9.svg" width="49.5%" />
+
+The following attributes can be applied to the `wakatime-weekly-langs` tag:
+
+- `user`: Desired user
+- `style`: CSS-based styling
 
 #### Repositories
 
@@ -242,7 +209,7 @@ For allowing this service to work, the tool needs the following
 variables:[README.md](README.md)
 
 - `github_api_token`: A token from github's API. No private access needed.[README.md](README.md)
-- `github_username`: The username of the targeted github user.
+- `github_username`: The username of the targeted github user
 
 ```html
 <github-repo path="lumi2021-silly-workflows/markdown-plus" style="width: 49.5%;" />
@@ -250,12 +217,17 @@ variables:[README.md](README.md)
 ```
 
 <a href="https://github.com/lumi2021-silly-workflows/markdown-plus">
-<img src="actions/cache/github_github-repository-lumi2021-silly-workflows-markdown-plus_000000006acb823c.svg" width="49.5%" />
+<img src="actions/cache/github_github-repository-lumi2021-silly-workflows-markdown-plus_000000006adb94f9.svg" width="49.5%" />
 </a>
 
 <a href="https://github.com/Anthragon/Distribution">
-<img src="actions/cache/github_github-repository-Anthragon-Distribution_000000006acb7cd5.svg" width="49.5%" />
+<img src="actions/cache/github_github-repository-Anthragon-Distribution_000000006adb94fa.svg" width="49.5%" />
 </a>
+
+The following attributes can be applied to the `wakatime-weekly-langs` tag:
+
+- `path`: Desired repository path, formated as `{owner}/{repository}`
+- `style`: Css-based styling
 
 #### Contributions
 
@@ -271,16 +243,16 @@ variables:[README.md](README.md)
 <github-activity />
 ```
 
-- ✏️ Made 3 commits
-- ✏️ Made 8 commits
-- ✏️ Made 18 commits
-- ✏️ Made 3 commits
 - ✏️ Made 2 commits
-- ✏️ Made 1 commit
-- ✏️ Made 46 commits
-- ✏️ Made 3 commits
+- ✏️ Made 9 commits
 - ✏️ Made 6 commits
+- ✏️ Made 8 commits
+- ✏️ Made 19 commits
+- ✏️ Made 3 commits
 - ✏️ Made 4 commits
+- ✏️ Made 1 commit
+- ✏️ Made 47 commits
+- ✏️ Made 3 commits
 
 ### Steam
 
@@ -303,30 +275,30 @@ variables:
 <p>
 <a href="https://store.steampowered.com/app/1353300" target="_blank">
 <picture>
-<source media="(max-width: 1061px)" width="24%" srcset="actions/cache/steam_gamecard-1353300-000001c7-thin_000000006ad62ba9.svg" />
-<source media="(min-width: 1061px)" width="49%" srcset="actions/cache/steam_gamecard-1353300-000001c7-wide_000000006ad62ba9.svg" />
+<source media="(max-width: 1061px)" width="24%" srcset="actions/cache/steam_gamecard-1353300-000001cc-thin_000000006ae64b2b.svg" />
+<source media="(min-width: 1061px)" width="49%" srcset="actions/cache/steam_gamecard-1353300-000001cc-wide_000000006ae64b2b.svg" />
 <img style="max-width: 100%;" alt="Idle Slayer – Incremental RPG" />
 </picture>
 </a>
-<a href="https://store.steampowered.com/app/1454400" target="_blank">
+<a href="https://store.steampowered.com/app/431730" target="_blank">
 <picture>
-<source media="(max-width: 1061px)" width="24%" srcset="actions/cache/steam_gamecard-1454400-0000022e-thin_000000006ad62ba9.svg" />
-<source media="(min-width: 1061px)" width="49%" srcset="actions/cache/steam_gamecard-1454400-0000022e-wide_000000006ad62ba9.svg" />
-<img style="max-width: 100%;" alt="Cookie Clicker" />
+<source media="(max-width: 1061px)" width="24%" srcset="actions/cache/steam_gamecard-431730-00000000-thin_000000006ae64b2b.svg" />
+<source media="(min-width: 1061px)" width="49%" srcset="actions/cache/steam_gamecard-431730-00000000-wide_000000006ae64b2b.svg" />
+<img style="max-width: 100%;" alt="Aseprite" />
 </picture>
 </a>
 <a href="https://store.steampowered.com/app/1919460" target="_blank">
 <picture>
-<source media="(max-width: 1061px)" width="24%" srcset="actions/cache/steam_gamecard-1919460-00000001-thin_000000006ad62ba9.svg" />
-<source media="(min-width: 1061px)" width="49%" srcset="actions/cache/steam_gamecard-1919460-00000001-wide_000000006ad62ba9.svg" />
+<source media="(max-width: 1061px)" width="24%" srcset="actions/cache/steam_gamecard-1919460-00000001-thin_000000006ae64b2b.svg" />
+<source media="(min-width: 1061px)" width="49%" srcset="actions/cache/steam_gamecard-1919460-00000001-wide_000000006ae64b2b.svg" />
 <img style="max-width: 100%;" alt="Seraph's Last Stand" />
 </picture>
 </a>
-<a href="https://store.steampowered.com/app/433340" target="_blank">
+<a href="https://store.steampowered.com/app/1454400" target="_blank">
 <picture>
-<source media="(max-width: 1061px)" width="24%" srcset="actions/cache/steam_gamecard-433340-00000039-thin_000000006ad62ba9.svg" />
-<source media="(min-width: 1061px)" width="49%" srcset="actions/cache/steam_gamecard-433340-00000039-wide_000000006ad62ba9.svg" />
-<img style="max-width: 100%;" alt="Slime Rancher" />
+<source media="(max-width: 1061px)" width="24%" srcset="actions/cache/steam_gamecard-1454400-0000022e-thin_000000006ae64b2b.svg" />
+<source media="(min-width: 1061px)" width="49%" srcset="actions/cache/steam_gamecard-1454400-0000022e-wide_000000006ae64b2b.svg" />
+<img style="max-width: 100%;" alt="Cookie Clicker" />
 </picture>
 </a>
 </p>
@@ -353,29 +325,29 @@ variables:
 <p>
 <a href="https://store.steampowered.com/app/1289310" target="_blank">
 <picture>
-<source media="(max-width: 1061px)" width="24%" srcset="actions/cache/steam_gamecard-1289310-0000000a-thin_000000006ad62ba9.svg" />
-<source media="(min-width: 1061px)" width="49%" srcset="actions/cache/steam_gamecard-1289310-0000000a-wide_000000006ad62ba9.svg" />
+<source media="(max-width: 1061px)" width="24%" srcset="actions/cache/steam_gamecard-1289310-0000000a-thin_000000006ae64b2b.svg" />
+<source media="(min-width: 1061px)" width="49%" srcset="actions/cache/steam_gamecard-1289310-0000000a-wide_000000006ae64b2b.svg" />
 <img style="max-width: 100%;" alt="Helltaker" />
 </picture>
 </a>
 <a href="https://store.steampowered.com/app/433340" target="_blank">
 <picture>
-<source media="(max-width: 1061px)" width="24%" srcset="actions/cache/steam_gamecard-433340-00000039-thin_000000006ad62ba9.svg" />
-<source media="(min-width: 1061px)" width="49%" srcset="actions/cache/steam_gamecard-433340-00000039-wide_000000006ad62ba9.svg" />
+<source media="(max-width: 1061px)" width="24%" srcset="actions/cache/steam_gamecard-433340-00000039-thin_000000006ae64b2b.svg" />
+<source media="(min-width: 1061px)" width="49%" srcset="actions/cache/steam_gamecard-433340-00000039-wide_000000006ae64b2b.svg" />
 <img style="max-width: 100%;" alt="Slime Rancher" />
 </picture>
 </a>
 <a href="https://store.steampowered.com/app/255520" target="_blank">
 <picture>
-<source media="(max-width: 1061px)" width="24%" srcset="actions/cache/steam_gamecard-255520-00000002-thin_000000006ad62ba9.svg" />
-<source media="(min-width: 1061px)" width="49%" srcset="actions/cache/steam_gamecard-255520-00000002-wide_000000006ad62ba9.svg" />
+<source media="(max-width: 1061px)" width="24%" srcset="actions/cache/steam_gamecard-255520-00000002-thin_000000006ae64b2b.svg" />
+<source media="(min-width: 1061px)" width="49%" srcset="actions/cache/steam_gamecard-255520-00000002-wide_000000006ae64b2b.svg" />
 <img style="max-width: 100%;" alt="Viscera Cleanup Detail: Shadow Warrior" />
 </picture>
 </a>
 <a href="https://store.steampowered.com/app/1997680" target="_blank">
 <picture>
-<source media="(max-width: 1061px)" width="24%" srcset="actions/cache/steam_gamecard-1997680-0000003a-thin_000000006ad62ba9.svg" />
-<source media="(min-width: 1061px)" width="49%" srcset="actions/cache/steam_gamecard-1997680-0000003a-wide_000000006ad62ba9.svg" />
+<source media="(max-width: 1061px)" width="24%" srcset="actions/cache/steam_gamecard-1997680-0000003a-thin_000000006ae64b2b.svg" />
+<source media="(min-width: 1061px)" width="49%" srcset="actions/cache/steam_gamecard-1997680-0000003a-wide_000000006ae64b2b.svg" />
 <img style="max-width: 100%;" alt="REFLEXIA Prototype ver." />
 </picture>
 </a>
