@@ -1,10 +1,15 @@
 {
-  "LastUpdated": "2026-10-22T18:10:52.8994425Z",
+  "LastUpdated": "2026-11-01T21:13:00.7449969Z",
   "Games": [
+    {
+      "AppId": "105600",
+      "Name": "Terraria",
+      "AchievementsUnlocked": 127
+    },
     {
       "AppId": "1353300",
       "Name": "Idle Slayer \u2013 Incremental RPG",
-      "AchievementsUnlocked": 460
+      "AchievementsUnlocked": 463
     },
     {
       "AppId": "431730",
@@ -15,11 +20,6 @@
       "AppId": "1919460",
       "Name": "Seraph\u0027s Last Stand",
       "AchievementsUnlocked": 1
-    },
-    {
-      "AppId": "1454400",
-      "Name": "Cookie Clicker",
-      "AchievementsUnlocked": 558
     }
   ]
 }

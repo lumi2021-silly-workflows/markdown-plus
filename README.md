@@ -115,21 +115,21 @@ variables:
 ```
 
 <p align="center">
-<img src="actions/cache/wakatime_weekly-langs-5_000000006adb94e1.svg" />
+<img src="actions/cache/wakatime_weekly-langs-5_000000006ae8ec77.svg" />
 </p>
 
 <p align="center">
-<img src="actions/cache/wakatime_weekly-langs-10_000000006adb94e2.svg" />
+<img src="actions/cache/wakatime_weekly-langs-10_000000006ae8ec78.svg" />
 </p>
 
 ```rust
-Total Time: 18 hrs 23 mins
+Total Time: 11 hrs 10 mins
 
-- "C#"            ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀ 12 hrs 59 mins
-- "Java"          ⣿⣿⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀ 1 hr 16 mins
-- "Other"         ⣿⣷⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀ 1 hr 9 mins
-- "Zig"           ⣿⣤⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀ 54 mins
-- "TypeScript"    ⣿⣤⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀ 49 mins
+- "Java"          ⣿⣿⣿⣿⣿⣿⣿⣿⣤⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀ 3 hrs 9 mins
+- "C"             ⣿⣿⣿⣿⣿⣿⣿⣿⣄⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀ 3 hrs 4 mins
+- "CMake"         ⣿⣿⣿⣿⣤⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀ 1 hr 37 mins
+- "Mermaid"       ⣿⣿⣿⣶⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀ 1 hr 21 mins
+- "C#"            ⣿⣿⣿⣤⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀ 1 hr 13 mins
 ```
 
 The following attributes can be applied to the `wakatime-weekly-langs` tag:
@@ -157,19 +157,19 @@ variables:
 
 <div>
 <a href="https://www.last.fm/music/Jamie+Paige/_/Machine+Love">
-<img src="actions/cache/lastfm_lastfm-top-tracks-lumi_nya-fe30f0a3-255a-48a5-88ec-41f86afa57e4-0_000000006adc1892.svg" alt="Machine Love - Jamie Paige"></img>
-</a>
-<a href="https://www.last.fm/music/elio+mei/_/One+Man+Circus">
-<img src="actions/cache/lastfm_lastfm-top-tracks-lumi_nya--1_000000006adc1892.svg" alt="One Man Circus - elio mei"></img>
+<img src="actions/cache/lastfm_lastfm-top-tracks-lumi_nya-fe30f0a3-255a-48a5-88ec-41f86afa57e4-0_000000006ae8f145.svg" alt="Machine Love - Jamie Paige"></img>
 </a>
 <a href="https://www.last.fm/music/we+are+the+dirt/_/counting+the+days">
-<img src="actions/cache/lastfm_lastfm-top-tracks-lumi_nya--2_000000006adc1892.svg" alt="counting the days - we are the dirt"></img>
+<img src="actions/cache/lastfm_lastfm-top-tracks-lumi_nya--1_000000006ae8f145.svg" alt="counting the days - we are the dirt"></img>
+</a>
+<a href="https://www.last.fm/music/elio+mei/_/One+Man+Circus">
+<img src="actions/cache/lastfm_lastfm-top-tracks-lumi_nya--2_000000006ae8f145.svg" alt="One Man Circus - elio mei"></img>
 </a>
 <a href="https://www.last.fm/music/Elio+Mei/_/Velcro">
-<img src="actions/cache/lastfm_lastfm-top-tracks-lumi_nya--3_000000006adc1892.svg" alt="Velcro - Elio Mei"></img>
+<img src="actions/cache/lastfm_lastfm-top-tracks-lumi_nya--3_000000006ae8f145.svg" alt="Velcro - Elio Mei"></img>
 </a>
-<a href="https://www.last.fm/music/Elio+Mei/_/Playing+Dead">
-<img src="actions/cache/lastfm_lastfm-top-tracks-lumi_nya--4_000000006adc1892.svg" alt="Playing Dead - Elio Mei"></img>
+<a href="https://www.last.fm/music/Penelope+Scott/_/Soap">
+<img src="actions/cache/lastfm_lastfm-top-tracks-lumi_nya-a42b0571-c746-41d5-9e5c-685ee8b32f1f-4_000000006ae8f145.svg" alt="Soap - Penelope Scott"></img>
 </a>
 </div>
 
@@ -192,9 +192,9 @@ variables:
 <github-profile user="Anthragon" style="width: 49.5%;" />
 ```
 
-<img src="actions/cache/github_github-profile-lumi2021_000000006adb94f5.svg" width="49.5%" />
+<img src="actions/cache/github_github-profile-lumi2021_000000006ae8eeaf.svg" width="49.5%" />
 
-<img src="actions/cache/github_github-profile-Anthragon_000000006adb94f9.svg" width="49.5%" />
+<img src="actions/cache/github_github-profile-Anthragon_000000006ae8eeb3.svg" width="49.5%" />
 
 The following attributes can be applied to the `wakatime-weekly-langs` tag:
 
@@ -217,11 +217,11 @@ variables:[README.md](README.md)
 ```
 
 <a href="https://github.com/lumi2021-silly-workflows/markdown-plus">
-<img src="actions/cache/github_github-repository-lumi2021-silly-workflows-markdown-plus_000000006adb94f9.svg" width="49.5%" />
+<img src="actions/cache/github_github-repository-lumi2021-silly-workflows-markdown-plus_000000006ae8eeb4.svg" width="49.5%" />
 </a>
 
 <a href="https://github.com/Anthragon/Distribution">
-<img src="actions/cache/github_github-repository-Anthragon-Distribution_000000006adb94fa.svg" width="49.5%" />
+<img src="actions/cache/github_github-repository-Anthragon-Distribution_000000006ae8eeb4.svg" width="49.5%" />
 </a>
 
 The following attributes can be applied to the `wakatime-weekly-langs` tag:
@@ -243,7 +243,8 @@ variables:[README.md](README.md)
 <github-activity />
 ```
 
-- ✏️ Made 2 commits
+- ✏️ Made 3 commits
+- ✏️ Made 8 commits
 - ✏️ Made 9 commits
 - ✏️ Made 6 commits
 - ✏️ Made 8 commits
@@ -251,8 +252,6 @@ variables:[README.md](README.md)
 - ✏️ Made 3 commits
 - ✏️ Made 4 commits
 - ✏️ Made 1 commit
-- ✏️ Made 47 commits
-- ✏️ Made 3 commits
 
 ### Steam
 
@@ -273,32 +272,32 @@ variables:
 ```
 
 <p>
+<a href="https://store.steampowered.com/app/105600" target="_blank">
+<picture>
+<source media="(max-width: 1061px)" width="24%" srcset="actions/cache/steam_gamecard-105600-0000007f-thin_000000006af3a4e7.svg" />
+<source media="(min-width: 1061px)" width="49%" srcset="actions/cache/steam_gamecard-105600-0000007f-wide_000000006af3a4e7.svg" />
+<img style="max-width: 100%;" alt="Terraria" />
+</picture>
+</a>
 <a href="https://store.steampowered.com/app/1353300" target="_blank">
 <picture>
-<source media="(max-width: 1061px)" width="24%" srcset="actions/cache/steam_gamecard-1353300-000001cc-thin_000000006ae64b2b.svg" />
-<source media="(min-width: 1061px)" width="49%" srcset="actions/cache/steam_gamecard-1353300-000001cc-wide_000000006ae64b2b.svg" />
+<source media="(max-width: 1061px)" width="24%" srcset="actions/cache/steam_gamecard-1353300-000001cf-thin_000000006af3a4e7.svg" />
+<source media="(min-width: 1061px)" width="49%" srcset="actions/cache/steam_gamecard-1353300-000001cf-wide_000000006af3a4e7.svg" />
 <img style="max-width: 100%;" alt="Idle Slayer – Incremental RPG" />
 </picture>
 </a>
 <a href="https://store.steampowered.com/app/431730" target="_blank">
 <picture>
-<source media="(max-width: 1061px)" width="24%" srcset="actions/cache/steam_gamecard-431730-00000000-thin_000000006ae64b2b.svg" />
-<source media="(min-width: 1061px)" width="49%" srcset="actions/cache/steam_gamecard-431730-00000000-wide_000000006ae64b2b.svg" />
+<source media="(max-width: 1061px)" width="24%" srcset="actions/cache/steam_gamecard-431730-00000000-thin_000000006af3a4e7.svg" />
+<source media="(min-width: 1061px)" width="49%" srcset="actions/cache/steam_gamecard-431730-00000000-wide_000000006af3a4e7.svg" />
 <img style="max-width: 100%;" alt="Aseprite" />
 </picture>
 </a>
 <a href="https://store.steampowered.com/app/1919460" target="_blank">
 <picture>
-<source media="(max-width: 1061px)" width="24%" srcset="actions/cache/steam_gamecard-1919460-00000001-thin_000000006ae64b2b.svg" />
-<source media="(min-width: 1061px)" width="49%" srcset="actions/cache/steam_gamecard-1919460-00000001-wide_000000006ae64b2b.svg" />
+<source media="(max-width: 1061px)" width="24%" srcset="actions/cache/steam_gamecard-1919460-00000001-thin_000000006af3a4e7.svg" />
+<source media="(min-width: 1061px)" width="49%" srcset="actions/cache/steam_gamecard-1919460-00000001-wide_000000006af3a4e7.svg" />
 <img style="max-width: 100%;" alt="Seraph's Last Stand" />
-</picture>
-</a>
-<a href="https://store.steampowered.com/app/1454400" target="_blank">
-<picture>
-<source media="(max-width: 1061px)" width="24%" srcset="actions/cache/steam_gamecard-1454400-0000022e-thin_000000006ae64b2b.svg" />
-<source media="(min-width: 1061px)" width="49%" srcset="actions/cache/steam_gamecard-1454400-0000022e-wide_000000006ae64b2b.svg" />
-<img style="max-width: 100%;" alt="Cookie Clicker" />
 </picture>
 </a>
 </p>
@@ -325,29 +324,29 @@ variables:
 <p>
 <a href="https://store.steampowered.com/app/1289310" target="_blank">
 <picture>
-<source media="(max-width: 1061px)" width="24%" srcset="actions/cache/steam_gamecard-1289310-0000000a-thin_000000006ae64b2b.svg" />
-<source media="(min-width: 1061px)" width="49%" srcset="actions/cache/steam_gamecard-1289310-0000000a-wide_000000006ae64b2b.svg" />
+<source media="(max-width: 1061px)" width="24%" srcset="actions/cache/steam_gamecard-1289310-0000000a-thin_000000006af3a4e7.svg" />
+<source media="(min-width: 1061px)" width="49%" srcset="actions/cache/steam_gamecard-1289310-0000000a-wide_000000006af3a4e7.svg" />
 <img style="max-width: 100%;" alt="Helltaker" />
 </picture>
 </a>
 <a href="https://store.steampowered.com/app/433340" target="_blank">
 <picture>
-<source media="(max-width: 1061px)" width="24%" srcset="actions/cache/steam_gamecard-433340-00000039-thin_000000006ae64b2b.svg" />
-<source media="(min-width: 1061px)" width="49%" srcset="actions/cache/steam_gamecard-433340-00000039-wide_000000006ae64b2b.svg" />
+<source media="(max-width: 1061px)" width="24%" srcset="actions/cache/steam_gamecard-433340-00000039-thin_000000006af3a4e7.svg" />
+<source media="(min-width: 1061px)" width="49%" srcset="actions/cache/steam_gamecard-433340-00000039-wide_000000006af3a4e7.svg" />
 <img style="max-width: 100%;" alt="Slime Rancher" />
 </picture>
 </a>
 <a href="https://store.steampowered.com/app/255520" target="_blank">
 <picture>
-<source media="(max-width: 1061px)" width="24%" srcset="actions/cache/steam_gamecard-255520-00000002-thin_000000006ae64b2b.svg" />
-<source media="(min-width: 1061px)" width="49%" srcset="actions/cache/steam_gamecard-255520-00000002-wide_000000006ae64b2b.svg" />
+<source media="(max-width: 1061px)" width="24%" srcset="actions/cache/steam_gamecard-255520-00000002-thin_000000006af3a4e7.svg" />
+<source media="(min-width: 1061px)" width="49%" srcset="actions/cache/steam_gamecard-255520-00000002-wide_000000006af3a4e7.svg" />
 <img style="max-width: 100%;" alt="Viscera Cleanup Detail: Shadow Warrior" />
 </picture>
 </a>
 <a href="https://store.steampowered.com/app/1997680" target="_blank">
 <picture>
-<source media="(max-width: 1061px)" width="24%" srcset="actions/cache/steam_gamecard-1997680-0000003a-thin_000000006ae64b2b.svg" />
-<source media="(min-width: 1061px)" width="49%" srcset="actions/cache/steam_gamecard-1997680-0000003a-wide_000000006ae64b2b.svg" />
+<source media="(max-width: 1061px)" width="24%" srcset="actions/cache/steam_gamecard-1997680-0000003a-thin_000000006af3a4e7.svg" />
+<source media="(min-width: 1061px)" width="49%" srcset="actions/cache/steam_gamecard-1997680-0000003a-wide_000000006af3a4e7.svg" />
 <img style="max-width: 100%;" alt="REFLEXIA Prototype ver." />
 </picture>
 </a>

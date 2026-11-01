@@ -43,18 +43,17 @@ public static class Processor
             throw new AuthException([.. exceptions]);
         }
 
+        var max = int.TryParse(node.Attributes.GetValueOrDefault("max", "5"), out var value) ? value : 5;
+        
         logger.Info("Loading Last.fm top tracks...");
-
+        
         var taskKey = $"{username}:{apiKey}";
 
-        var tracks = await TrackTasks.GetOrAdd(
-            taskKey,
-            _ => new Lazy<Task<JsonArray?>>(
-                () => FetchLastFmTopTracksAsync(username, apiKey))
-        ).Value;
+        var tracks = await TrackTasks
+            .GetOrAdd(taskKey, _ => new Lazy<Task<JsonArray?>>(() => FetchLastFmTopTracksAsync(username, apiKey, max)))
+            .Value;
 
-        if (tracks == null || tracks.Count == 0)
-            return new ParagraphNode("No tracks found");
+        if (tracks == null || tracks.Count == 0) return new ParagraphNode("No tracks found");
 
         logger.Info("Loading tracks' cover images...");
 
@@ -77,7 +76,7 @@ public static class Processor
             if (string.IsNullOrWhiteSpace(coverUrl)) coverUrl = FallbackCover;
 
             var entry = new CardGenerator.TrackEntry(trackName, artistName, trackUrl, artistUrl, coverUrl, durationSec);
-            var svg = await CardGenerator.CreateTrackSvgAsync(entry, i);
+            var svg = await CardGenerator.CreateTrackSvgAsync(entry, i + 1);
             
             var resourceKey = $"lastfm-top-tracks-{username}-{mbid}-{i}";
             var alt = $"{trackName} - {artistName}";
@@ -98,7 +97,7 @@ public static class Processor
         return body;
     }
 
-    private static async Task<JsonArray?> FetchLastFmTopTracksAsync(string username, string apiKey)
+    private static async Task<JsonArray?> FetchLastFmTopTracksAsync(string username, string apiKey, int count)
     {
         var url = new UrlBuilder(
             "https://ws.audioscrobbler.com/2.0/",
@@ -108,7 +107,7 @@ public static class Processor
                 ["user"] = Uri.EscapeDataString(username),
                 ["api_key"] = Uri.EscapeDataString(apiKey),
                 ["format"] = "json",
-                ["limit"] = "5",
+                ["limit"] = $"{count}",
             }).ToString();
 
         for (var attempt = 0; attempt < 5; attempt++)
@@ -155,20 +154,23 @@ public static class Processor
 
             using var response = await Client.GetAsync(searchUrl);
             response.EnsureSuccessStatusCode();
+ 
+            var jsonStr = await response.Content.ReadAsStringAsync();
+            var json = JsonNode.Parse(jsonStr) ?? throw new InvalidOperationException("Not a valid json");
+            var count = json["resultCount"]!.GetValue<int>();
+            var results = json["results"]!;
 
-            var json = await response.Content.ReadAsStringAsync();
-            var result = JsonNode.Parse(json)?["results"]?[0];
-
-            if (result != null)
+            if (count > 0 && results[0] != null)
             {
-                var coverUrl = result["artworkUrl60"]?.ToString() ?? string.Empty;
+                var result = results[0];
+                var coverUrl = result["artworkUrl30"]?.ToString() ?? string.Empty;
                 var durationMs = result["trackTimeMillis"]?.GetValue<long>() ?? 0;
                 return (coverUrl, (int)(durationMs / 1000));
             }
         }
         catch (HttpRequestException)
         {
-            // Complementar source
+            // Complementary source
         }
         catch (System.Text.Json.JsonException)
         {

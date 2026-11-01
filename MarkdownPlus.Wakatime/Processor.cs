@@ -43,6 +43,7 @@ public static class Processor
             DisplayStyle.Code => CardGenerator.GenerateDisplayCode(data, max, levels),
             _ => throw new ArgumentOutOfRangeException(),
         };
+        
     }
     
 }
