@@ -1,0 +1,44 @@
+<svg width="600" height="260" viewBox="0 0 600 260" xmlns="http://www.w3.org/2000/svg">
+  <style>text { color: #777; }</style>
+  <text x="20" y="30" fill="currentColor" font-family="monospace" font-size="16">Total time: 19 hrs 6 mins</text>
+  <text x="20" y="55" fill="currentColor" font-family="monospace" font-size="14">C#</text>
+  <rect x="150" y="42" width="280" height="12" rx="3" fill="#30363d" />
+  <rect x="150" y="42" width="151.648" height="12" rx="3" fill="hsl(0, 70%, 55%)" />
+  <text x="440" y="55" fill="currentColor" font-family="monospace" font-size="14">10 hrs 21 mins</text>
+  <text x="20" y="75" fill="currentColor" font-family="monospace" font-size="14">C</text>
+  <rect x="150" y="62" width="280" height="12" rx="3" fill="#30363d" />
+  <rect x="150" y="62" width="45.584" height="12" rx="3" fill="hsl(36, 70%, 55%)" />
+  <text x="440" y="75" fill="currentColor" font-family="monospace" font-size="14">3 hrs 6 mins</text>
+  <text x="20" y="95" fill="currentColor" font-family="monospace" font-size="14">Python</text>
+  <rect x="150" y="82" width="280" height="12" rx="3" fill="#30363d" />
+  <rect x="150" y="82" width="18.732" height="12" rx="3" fill="hsl(72, 70%, 55%)" />
+  <text x="440" y="95" fill="currentColor" font-family="monospace" font-size="14">1 hr 16 mins</text>
+  <text x="20" y="115" fill="currentColor" font-family="monospace" font-size="14">Markdown</text>
+  <rect x="150" y="102" width="280" height="12" rx="3" fill="#30363d" />
+  <rect x="150" y="102" width="12.991999999999999" height="12" rx="3" fill="hsl(108, 70%, 55%)" />
+  <text x="440" y="115" fill="currentColor" font-family="monospace" font-size="14">53 mins</text>
+  <text x="20" y="135" fill="currentColor" font-family="monospace" font-size="14">JSON</text>
+  <rect x="150" y="122" width="280" height="12" rx="3" fill="#30363d" />
+  <rect x="150" y="122" width="12.208" height="12" rx="3" fill="hsl(144, 70%, 55%)" />
+  <text x="440" y="135" fill="currentColor" font-family="monospace" font-size="14">49 mins</text>
+  <text x="20" y="155" fill="currentColor" font-family="monospace" font-size="14">Kotlin</text>
+  <rect x="150" y="142" width="280" height="12" rx="3" fill="#30363d" />
+  <rect x="150" y="142" width="8.876" height="12" rx="3" fill="hsl(180, 70%, 55%)" />
+  <text x="440" y="155" fill="currentColor" font-family="monospace" font-size="14">36 mins</text>
+  <text x="20" y="175" fill="currentColor" font-family="monospace" font-size="14">TOML</text>
+  <rect x="150" y="162" width="280" height="12" rx="3" fill="#30363d" />
+  <rect x="150" y="162" width="5.46" height="12" rx="3" fill="hsl(216, 70%, 55%)" />
+  <text x="440" y="175" fill="currentColor" font-family="monospace" font-size="14">22 mins</text>
+  <text x="20" y="195" fill="currentColor" font-family="monospace" font-size="14">Zig</text>
+  <rect x="150" y="182" width="280" height="12" rx="3" fill="#30363d" />
+  <rect x="150" y="182" width="5.236000000000001" height="12" rx="3" fill="hsl(252, 70%, 55%)" />
+  <text x="440" y="195" fill="currentColor" font-family="monospace" font-size="14">21 mins</text>
+  <text x="20" y="215" fill="currentColor" font-family="monospace" font-size="14">GitIgnore file</text>
+  <rect x="150" y="202" width="280" height="12" rx="3" fill="#30363d" />
+  <rect x="150" y="202" width="3.696" height="12" rx="3" fill="hsl(288, 70%, 55%)" />
+  <text x="440" y="215" fill="currentColor" font-family="monospace" font-size="14">15 mins</text>
+  <text x="20" y="235" fill="currentColor" font-family="monospace" font-size="14">Bash</text>
+  <rect x="150" y="222" width="280" height="12" rx="3" fill="#30363d" />
+  <rect x="150" y="222" width="2.436" height="12" rx="3" fill="hsl(324, 70%, 55%)" />
+  <text x="440" y="235" fill="currentColor" font-family="monospace" font-size="14">9 mins</text>
+</svg>
