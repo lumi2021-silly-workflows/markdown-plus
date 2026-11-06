@@ -53,15 +53,15 @@ public static class MarkdownRenderer
     {
         var i = 0;
         var firstGroup = true;
-        
+        var prevEndedWithBreak = false;
+
         while (i < children.Count)
         {
-            if (!firstGroup) sb.Append('\n');
+            if (!firstGroup && !prevEndedWithBreak) sb.Append('\n');
             firstGroup = false;
 
             if (IsInlineNode(children[i]))
             {
-                // Agrupa todos os nós inline consecutivos num único bloco contínuo
                 var inlineGroup = new List<AstNode>();
                 while (i < children.Count && IsInlineNode(children[i]))
                 {
@@ -69,10 +69,12 @@ public static class MarkdownRenderer
                     i++;
                 }
                 WriteWrappedInlines(inlineGroup, sb, quoteDepth);
+                prevEndedWithBreak = inlineGroup[^1] is LineBreakNode;
             }
             else
             {
                 WriteBlock(children[i], sb, quoteDepth);
+                prevEndedWithBreak = children[i] is ParagraphNode { Inlines: { Count: > 0 } il } && il[^1] is LineBreakNode;
                 i++;
             }
         }
@@ -269,7 +271,7 @@ public static class MarkdownRenderer
             {
                 case LineBreakNode:
                     sb.Append(" \\\n");
-                    Prefix(sb, quoteDepth);
+                    if (i < inlines.Count - 1) Prefix(sb, quoteDepth);
                 break;
                 
                 case SoftBreakNode:
@@ -303,7 +305,8 @@ public static class MarkdownRenderer
                 break;
             }
         }
-        sb.Append('\n');
+        
+        if (inlines.Count == 0 || inlines[^1] is not LineBreakNode) sb.Append('\n');
     }
 
     // ------------------------------------------------------------

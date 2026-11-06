@@ -37,11 +37,12 @@ public static class InlineParser
             if (stopAt.HasValue && c.Current == stopAt.Value) break;
 
             // Hard line break: backslash immediately followed by a newline.
-            if (c.Current == '\\' && c.Peek(1) == '\n')
+            if (c.Current == '\\' && (c.Peek(1) == '\n' || c.Pos + 1 >= c.Text.Length))
             {
                 Flush();
                 nodes.Add(new LineBreakNode());
-                c.Advance(); c.Advance();
+                c.Advance();
+                if (c.Current == '\n') c.Advance();
                 continue;
             }
 

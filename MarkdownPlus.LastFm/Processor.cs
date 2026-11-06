@@ -89,10 +89,8 @@ public static class Processor
         var body = HtmlElementNode.Div();
         foreach (var (url, path, alt) in entries)
         {
-            body.Children.Add(HtmlElementNode.A(url,
-                HtmlElementNode.Img(path, alt)
-                )
-            );
+            body.Children.Add(HtmlElementNode.A(url, HtmlElementNode.Img(path, alt)));
+            body.Children.Add(HtmlElementNode.Br());
         }
         return body;
     }

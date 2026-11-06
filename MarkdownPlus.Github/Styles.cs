@@ -4,7 +4,8 @@ public enum Alignment { Left, Center, Right }
 
 public record struct CardStyles(
     Alignment alignment = Alignment.Left,
-    string? width = null
+    string? width = null,
+    string? titleColor = null
 )
 {
     public static CardStyles Parse(Dictionary<string, string>? styleStrings)
@@ -18,10 +19,12 @@ public record struct CardStyles(
             _ => Alignment.Left,
         };
         var width = styleStrings.GetValueOrDefault("width");
+        var titleColor = styleStrings.GetValueOrDefault("title-color");
         
         return new CardStyles(
             alignment,
-            width
+            width,
+            titleColor
         );
     }
 };

@@ -1,5 +1,6 @@
 ﻿using MarkdownPlus.Core;
 using MarkdownPlus.Markdown;
+using MarkdownPlus.Markdown.Ast;
 using MarkdownPlus.Markdown.Parser;
 
 namespace MarkdownPlus;
@@ -14,9 +15,9 @@ static class Program
         var content = await File.ReadAllTextAsync("README.template.md");
         var parser = new Parser(content);
         var document = parser.Parse();
-        document = await TreeProcessor.Process(document);
+        var document2 = await TreeProcessor.Process(document);
         
-        await File.WriteAllTextAsync("README.md", MarkdownRenderer.Render(document));
+        await File.WriteAllTextAsync("./README.md", MarkdownRenderer.Render(document2));
         Cache.PerformCleanup();
         
         Console.WriteLine();

@@ -33,6 +33,7 @@ public static class TreeProcessor
             case CodeBlockNode:
             case HeadingNode:
             case TextNode:
+            case HtmlTextNode:
             case ImageNode:
             case LineBreakNode:
             case SoftBreakNode:
@@ -91,7 +92,23 @@ public static class TreeProcessor
                 return new HtmlCommentNode(htmlElement.TagName);
             }
         }
-        return htmlElement;
+        
+        if (htmlElement.Children.Count == 0) return htmlElement;
+
+        var copy = new HtmlElementNode
+        {
+            Line              = htmlElement.Line,
+            TagName           = htmlElement.TagName,
+            SelfClosing       = htmlElement.SelfClosing,
+            TrailingLineBreak = htmlElement.TrailingLineBreak
+        };
+        foreach (var kv in htmlElement.Attributes) copy.Attributes[kv.Key] = kv.Value;
+
+        foreach (var child in htmlElement.Children)
+            copy.Children.AddRange(await ProcessNode(child));
+
+        return copy;
+        
     }
 
     private static void DumpDebug()

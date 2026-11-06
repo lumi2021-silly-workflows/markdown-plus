@@ -32,7 +32,7 @@ badges inside the code:
 ```html
 <badge color="202020" icon="python">python</badge>
 <badge color="303030" style="flat" icon="c">C</badge>
-<badge color="404040" style="flat-square" icon="c++">C++</badge>
+<badge color="404040" style="flat-square" icon="c++">C++</badge> \
 <badge color="505050" style="plastic" icon="dotnet">C#</badge>
 <badge color="606060" style="for-the-badge" icon="zig">Zig</badge>
 <badge color="707070" style="social" icon="lua">Lua</badge>
@@ -44,7 +44,7 @@ badges inside the code:
 
 <badge color="202020" icon="python">python</badge>
 <badge color="303030" style="flat" icon="c">C</badge>
-<badge color="404040" style="flat-square" icon="c++">C++</badge>
+<badge color="404040" style="flat-square" icon="c++">C++</badge> \
 <badge color="505050" style="plastic" icon="dotnet">C#</badge>
 <badge color="606060" style="for-the-badge" icon="zig">Zig</badge>
 <badge color="202020" style="social" icon="lua">Lua</badge>
@@ -158,14 +158,14 @@ variables:
 
 
 ```html
-<github-profile style="width: 49.5%;" />
-<github-profile user="Anthragon" style="width: 49.5%;" />
+<github-profile style="width: 48%;" />
+<github-profile user="Anthragon" style="width: 48%; title-color: #50FA7B;" />
 ```
-<github-profile style="width: 49.5%;" />
-<github-profile user="Anthragon" style="width: 49.5%;" />
+<github-profile style="width: 48%;" />
+<github-profile user="Anthragon" style="width: 48%; title-color: #50FA7B;" />
 
 The following attributes can be applied to the `wakatime-weekly-langs` tag:
-- `user`: Desired user
+- `user`: Desired user or organization name
 - `style`: CSS-based styling
 
 #### Repositories
@@ -179,11 +179,11 @@ variables:[README.md](README.md)
 
 
 ```html
-<github-repo path="lumi2021-silly-workflows/markdown-plus" style="width: 49.5%;" />
-<github-repo path="Anthragon/Distribution" style="width: 49.5%;" />
+<github-repo path="lumi2021-silly-workflows/markdown-plus" style="width: 48%;" />
+<github-repo path="Anthragon/Distribution" style="width: 48%; title-color: #FF5555;" />
 ```
-<github-repo path="lumi2021-silly-workflows/markdown-plus" style="width: 49.5%;" />
-<github-repo path="Anthragon/Distribution" style="width: 49.5%;" />
+<github-repo path="lumi2021-silly-workflows/markdown-plus" style="width: 48%;" />
+<github-repo path="Anthragon/Distribution" style="width: 48%; title-color: #FF5555;" />
 
 The following attributes can be applied to the `wakatime-weekly-langs` tag:
 - `path`: Desired repository path, formated as `{owner}/{repository}`
@@ -229,8 +229,8 @@ The `steam-lib-perfected` block tag provides a list of the user's perfected (100
 
 For allowing this service to work, the tool needs the following
 variables:
-- `steam_api_key`: A steam API key.
-- `steam_user_id`: The user id of the targeted steam account.
+- `steam_api_key`: A steam API key
+- `steam_user_id`: The user id of the targeted steam account
 
 ```html
 <steam-lib-perfected />

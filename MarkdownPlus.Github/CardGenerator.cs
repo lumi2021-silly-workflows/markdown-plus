@@ -16,6 +16,9 @@ internal static class CardGenerator
     {
         const int width = 480;
         const int height = 250;
+
+        var titleColor = styles.titleColor ?? "#58a6ff";
+        var isOrg = stats.Type == GithubAccountType.Organization;
         
         var doc = new XElement(Svg + "svg",
             new XAttribute("width", width.ToString()),
@@ -23,16 +26,17 @@ internal static class CardGenerator
             new XAttribute("viewBox", $"0 0 {width} {height}"),
             new XAttribute("fill", "none"),
             
-            new XElement(Svg + "style", """
-            
+            new XElement(Svg + "style",
+                $$"""
+                 
                  text { color: #777; }
-                .title { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 18px; font-weight: 600; fill: #58a6ff; }
-                .subtitle { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 12px; fill: #8b949e; }
-                .badge { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 10px; font-weight: bold; fill: #3fb950; }
-                .label { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 12px; fill: currentColor; }
-                .value { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 13px; font-weight: 600; fill: currentColor; }
-            
-            """),
+                 .title { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 18px; font-weight: 600; fill: {{titleColor}}; }
+                 .subtitle { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 12px; fill: #8b949e; }
+                 .badge { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 10px; font-weight: bold; fill: #3fb950; }
+                 .label { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 12px; fill: currentColor; }
+                 .value { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 13px; font-weight: 600; fill: currentColor; }
+                 
+                 """),
             
             // Avatar clip
             new XElement(Svg + "defs",
@@ -80,7 +84,9 @@ internal static class CardGenerator
                     new XAttribute("y", "38"),
                     new XAttribute("text-anchor", "end"),
                     new XAttribute("class", "subtitle"),
-                    $"Member since {stats.JoinedAt:MMM yyyy}")
+                    isOrg
+                        ? $"Created at {stats.JoinedAt:MMM yyyy}"
+                        : $"Member since {stats.JoinedAt:MMM yyyy}")
             ),
 
             // Line
@@ -134,6 +140,8 @@ internal static class CardGenerator
         const int width = 480;
         const int height = 190;
         
+        var titleColor = styles.titleColor ?? "#58a6ff";
+        
         var description = repository.Description ?? "";
 
         var doc = new XElement(Svg + "svg",
@@ -141,9 +149,9 @@ internal static class CardGenerator
             new XAttribute("height", height),
             new XAttribute("viewBox", $"0 0 {width} {height}"),
             new XAttribute("fill", "none"),
-
+            
             new XElement(Svg + "style",
-                """
+                $$"""
                 text {
                     color: #777;
                 }
@@ -152,7 +160,7 @@ internal static class CardGenerator
                     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
                     font-size: 18px;
                     font-weight: 600;
-                    fill: #58a6ff;
+                    fill: {{titleColor}};
                 }
 
                 .subtitle {

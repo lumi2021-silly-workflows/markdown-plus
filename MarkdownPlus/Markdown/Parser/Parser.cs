@@ -94,7 +94,10 @@ public sealed class Parser
         if (_c.AtEnd) return null;
 
         if (_c.StartsWith("<!--")) return HtmlTagParser.ParseComment(_c);
-        if (HtmlTagParser.LooksLikeTagStart(_c)) return ParseHtmlBlock();
+
+        if (HtmlTagParser.LooksLikeTagStart(_c))
+            return OpensHtmlBlock(_c.Text, _c.Pos) ? ParseHtmlBlock() : ParseParagraph();
+
         if (_c.StartsWith("```") || _c.StartsWith("~~~")) return ParseCodeFence();
         if (_c.Current == '#') return ParseHeading();
         if (_c.Current == '>') return ParseBlockquote();
@@ -222,14 +225,26 @@ public sealed class Parser
         while (!_c.AtEnd)
         {
             var trimmed = PeekLine().TrimStart();
-            if (trimmed.Length == 0) break; // blank line ends the paragraph
+            if (trimmed.Length == 0) break;
             if (lines.Count > 0 && StartsBlockConstruct(trimmed)) break;
-            lines.Add(ReadLine());
+
+            var line = ReadLine();
+            lines.Add(line);
+            
+            if (EndsWithHardBreak(line)) break;
         }
         var text = string.Join("\n", lines);
         var para = new ParagraphNode { Line = startLine };
         para.Inlines.AddRange(InlineParser.Parse(text));
         return para;
+    }
+    
+    private static bool EndsWithHardBreak(string line)
+    {
+        var s = line.TrimEnd();
+        var n = 0;
+        for (var i = s.Length - 1; i >= 0 && s[i] == '\\'; i--) n++;
+        return n % 2 == 1;
     }
 
     private static bool StartsBlockConstruct(string trimmedLine)
@@ -238,8 +253,23 @@ public sealed class Parser
         if (trimmedLine.StartsWith(">")) return true;
         if (trimmedLine.StartsWith("```") || trimmedLine.StartsWith("~~~")) return true;
         if (trimmedLine.StartsWith("<!--")) return true;
-        if (trimmedLine.Length > 1 && trimmedLine[0] == '<' && char.IsLetter(trimmedLine[1])) return true;
+        if (trimmedLine.Length > 1 && trimmedLine[0] == '<' && char.IsLetter(trimmedLine[1]) && OpensHtmlBlock(trimmedLine, 0)) return true;
         if (trimmedLine.StartsWith("- ") || trimmedLine.StartsWith("* ") || trimmedLine.StartsWith("+ ")) return true;
         return false;
+    }
+    
+    private static bool OpensHtmlBlock(string text, int pos)
+    {
+        var p = pos + 1;
+        while (p < text.Length && text[p] != '>')
+        {
+            if (text[p] == '<') return false;
+            p++;
+        }
+        if (p >= text.Length) return false;
+        
+        var eol = text.IndexOf('\n', p);
+        if (eol < 0) eol = text.Length;
+        return text.AsSpan(p + 1, eol - p - 1).Trim().IsEmpty;
     }
 }
