@@ -310,15 +310,18 @@ internal class API
 
         var endpoint = $"/repos/{Uri.EscapeDataString(owner)}/{Uri.EscapeDataString(repository)}";
         var result = await GetAsync<GithubRepository>(client, endpoint, cancellationToken);
-
+        
         return new GithubRepositoryStats(
             result.Owner.Login,
             result.Name,
             result.Description,
             result.Language,
+            result.Topics,
             result.StargazersCount,
+            result.OpenIssuesCount,
             result.ForksCount,
-            result.HtmlUrl);
+            result.HtmlUrl
+        );
     }
     
     private static async Task<JsonDocument> GraphqlFetchAsync(string query, string token, object? variables = null)
@@ -341,6 +344,7 @@ internal class API
         using var response = await client.GetAsync(endpoint, cancellationToken);
         await EnsureSuccessStatusCode(response, cancellationToken);
         
+        var s = await response.Content.ReadAsStringAsync(cancellationToken);
         var result = await response.Content.ReadFromJsonAsync<T>(cancellationToken);
         return result ?? throw new InvalidOperationException($"GitHub returned an empty response: {endpoint}");
     }

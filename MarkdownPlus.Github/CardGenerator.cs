@@ -17,7 +17,7 @@ internal static class CardGenerator
         const int width = 480;
         const int height = 250;
 
-        var titleColor = styles.titleColor ?? "#58a6ff";
+        var titleColor = styles.titleColor;
         var isOrg = stats.Type == GithubAccountType.Organization;
         
         var doc = new XElement(Svg + "svg",
@@ -139,11 +139,13 @@ internal static class CardGenerator
     {
         const int width = 480;
         const int height = 190;
+        const int descriptionMaxLines = 4;
         
-        var titleColor = styles.titleColor ?? "#58a6ff";
-        
+        var titleColor = styles.titleColor;
         var description = repository.Description ?? "";
 
+        var posY = 15;
+        
         var doc = new XElement(Svg + "svg",
             new XAttribute("width", width),
             new XAttribute("height", height),
@@ -193,38 +195,47 @@ internal static class CardGenerator
             // Repository owner
             new XElement(Svg + "text",
                 new XAttribute("x", 20),
-                new XAttribute("y", 35),
+                new XAttribute("y", posY.Inc(20)),
                 new XAttribute("class", "subtitle"),
-                repository.Owner),
+                repository.Owner + '/'),
 
             // Repository name
             new XElement(Svg + "text",
                 new XAttribute("x", 20),
-                new XAttribute("y", 62),
+                new XAttribute("y", posY.Inc(20)),
                 new XAttribute("class", "title"),
                 repository.Name),
 
             // Description
             new XElement(Svg + "text",
                 new XAttribute("x", 20),
-                new XAttribute("y", 84),
+                new XAttribute("y", posY.Inc(20 * descriptionMaxLines)),
                 new XAttribute("class", "subtitle"),
                 new XAttribute("font-size", 11),
-                WrapText(description, 65, 4)
+                WrapText(description, 65, descriptionMaxLines)
+            ),
+            
+            // Repository topics
+            new XElement(Svg + "g",
+                CreateTopicBadges(
+                    repository.Topics,
+                    width - 20,
+                    20, 105
+                )
             ),
 
             // Divider
             new XElement(Svg + "line",
                 new XAttribute("x1", 20),
-                new XAttribute("y1", 145),
+                new XAttribute("y1", 150),
                 new XAttribute("x2", width - 20),
-                new XAttribute("y2", 145),
+                new XAttribute("y2", 150),
                 new XAttribute("stroke", "#21262d"),
                 new XAttribute("stroke-width", 1)),
 
             // Repository metrics
             new XElement(Svg + "g",
-                new XAttribute("transform", "translate(30, 165)"),
+                new XAttribute("transform", "translate(30, 167)"),
 
                 // Language
                 new XElement(Svg + "circle",
@@ -235,15 +246,14 @@ internal static class CardGenerator
 
                 new XElement(Svg + "text",
                     new XAttribute("x", 17),
-                    new XAttribute("y", 4),
+                    new XAttribute("y", 5),
                     new XAttribute("class", "label"),
                     repository.Language ?? "Unknown"),
-
-                // Stars
-                CreateStatItem("Stars", FormatNumber(repository.Stars), 205, 0),
-
-                // Forks
-                CreateStatItem("Forks", FormatNumber(repository.Forks), 330, 0)
+                
+                // 80px between each
+                CreateStatItem("Stars", FormatNumber(repository.Stars), width - 80 * 3, 0),
+                CreateStatItem("Issues", FormatNumber(repository.Issues), width - 80 * 2, 0),
+                CreateStatItem("Forks", FormatNumber(repository.Forks), width - 80 * 1, 0)
             )
         );
 
@@ -328,6 +338,60 @@ internal static class CardGenerator
         var hue = (uint)hash % 360;
         return $"hsl({hue}, 65%, 55%)";
     }
+    private static IEnumerable<XElement> CreateTopicBadges(IEnumerable<string> topics, int maxWidth, int startX, int startY)
+    {
+        const int height = 15;
+        const int horizontalPadding = 9;
+        const int gap = 6;
+        const int maxLines = 2;
+
+        var elements = new List<XElement>();
+
+        var x = startX;
+        var y = startY;
+        var lines = 1;
+
+        foreach (var topic in topics)
+        {
+            var width = (int)(topic.Length * 4.5) + horizontalPadding * 2;
+
+            if (x + width > maxWidth)
+            {
+                if (lines >= maxLines) break;
+                
+                x =  startX;
+                y += height + gap;
+                lines++;
+            }
+
+            elements.Add(
+                new XElement(Svg + "g",
+                    new XElement(Svg + "rect",
+                        new XAttribute("x", x),
+                        new XAttribute("y", y),
+                        new XAttribute("width", width),
+                        new XAttribute("height", height),
+                        new XAttribute("rx", 10),
+                        new XAttribute("fill", "#1f3550")
+                    ),
+                    new XElement(Svg + "text",
+                        new XAttribute("x", x + width / 2.0),
+                        new XAttribute("y", y + height / 2.0 + 1),
+                        new XAttribute("text-anchor", "middle"),
+                        new XAttribute("dominant-baseline", "middle"),
+                        new XAttribute("font-size", 10),
+                        new XAttribute("font-weight", 500),
+                        new XAttribute("fill", "#79c0ff"),
+                        topic
+                    )
+                )
+            );
+
+            x += width + gap;
+        }
+
+        return elements;
+    }
     private static IEnumerable<XElement> WrapText(string text, int maxCharsPerLine, int maxLines)
     {
         var words = text.Split((char[]?)null, StringSplitOptions.RemoveEmptyEntries);
@@ -366,5 +430,18 @@ internal static class CardGenerator
                 new XAttribute("x", 20),
                 new XAttribute("dy", index == 0 ? 0 : 14),
                 line));
+    }
+}
+
+internal static class IntExtensions
+{
+    extension(ref int value)
+    {
+        public int Inc(int ammount)
+        {
+            var old = value;
+            value += ammount;
+            return old;
+        }
     }
 }

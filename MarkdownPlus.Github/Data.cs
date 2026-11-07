@@ -15,7 +15,7 @@ sealed internal record GithubUserStats(
 
 sealed internal record GithubRepositoryStats(
     string Owner, string Name, string? Description, string? Language,
-    long Stars, long Forks, string HtmlUrl);
+    string[] Topics, long Stars, long Issues, long Forks, string HtmlUrl);
 
 sealed internal class ActivityItem
 {
@@ -61,6 +61,9 @@ sealed internal class GithubRepository
     [JsonPropertyName("description")]
     public string? Description { get; init; }
     
+    [JsonPropertyName("topics")]
+    public string[] Topics { get; init; }
+    
     [JsonPropertyName("language")]
     public string? Language { get; init; }
 
@@ -72,6 +75,8 @@ sealed internal class GithubRepository
 
     [JsonPropertyName("forks_count")]
     public long ForksCount { get; init; }
+    [JsonPropertyName("open_issues_count")]
+    public long OpenIssuesCount { get; init; }
     
     [JsonPropertyName("html_url")]
     public required string HtmlUrl { get; init; }
