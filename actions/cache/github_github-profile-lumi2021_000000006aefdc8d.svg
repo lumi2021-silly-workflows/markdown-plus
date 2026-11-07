@@ -1,7 +1,7 @@
 <svg width="480" height="250" viewBox="0 0 480 250" fill="none" xmlns="http://www.w3.org/2000/svg">
   <style>
 text { color: #777; }
-.title { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 18px; font-weight: 600; fill: #58a6ff; }
+.title { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 18px; font-weight: 600; fill: #3B5CCC; }
 .subtitle { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 12px; fill: #8b949e; }
 .badge { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 10px; font-weight: bold; fill: #3fb950; }
 .label { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 12px; fill: currentColor; }
@@ -23,7 +23,7 @@ text { color: #777; }
   <g transform="translate(30, 120)">
     <g transform="translate(0, 0)">
       <text x="0" y="0" class="label">Repositories</text>
-      <text x="0" y="18" class="value">38</text>
+      <text x="0" y="18" class="value">39</text>
     </g>
     <g transform="translate(150, 0)">
       <text x="0" y="0" class="label">Stars</text>
